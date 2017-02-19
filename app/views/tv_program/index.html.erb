@@ -1,0 +1,16 @@
+<h1>TvProgram#index</h1>
+<p>Find me in app/views/tv_program/index.html.erb</p>
+
+<% @programs.each do |program| %>
+
+    <%= program.on_air_date %>
+    <%= program.title %>
+    <%= program.title_ja %>
+    <%= program.director.name_ja %>
+    <%= program.released_year %>
+    <%= program.country.name %>
+    <%= program.leading_actor.name_ja %>
+    <%= program.supporting_actor.name_ja %>
+    <br />
+
+<% end %>

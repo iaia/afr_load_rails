@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  title_ja: MyString
+  director: 1
+  released_year: 1
+  country_id: 1
+  actor_movie_id: 1
+
+two:
+  title: MyString
+  title_ja: マイ
+  director: 1
+  released_year: 1
+  country_id: 1
+  actor_movie_id: 1
