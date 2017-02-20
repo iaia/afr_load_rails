@@ -77,4 +77,8 @@ class TvProgram < ActiveRecord::Base
         end
     rescue
     end
+
+    def start_time
+        self.on_air_date
+    end
 end
