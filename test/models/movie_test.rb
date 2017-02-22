@@ -8,6 +8,7 @@ class MovieTest < ActiveSupport::TestCase
         programs = afr.get_program
 
         movie = Movie.add_by_tv_program(programs[0])
+        p movie.actors
 
         assert_equal("THE TUXEDO", movie.title)
         assert_equal("タキシード", movie.title_ja)

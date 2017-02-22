@@ -1,0 +1,7 @@
+
+<%= @actor.name_ja %>
+<%= @actor.name %>
+<br />
+<% @actor.movies.each do |movie| %>
+    <%= link_to movie.title_ja, movie_path(movie) %> <br />
+<% end %>

@@ -1,6 +1,6 @@
 class Actor < ActiveRecord::Base
     has_many :actor_movie
-    has_many :movie, through: :actor_movie
+    has_many :movies, through: :actor_movie
     has_many :tv_programs
 
     after_initialize do

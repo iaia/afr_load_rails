@@ -1,9 +1,9 @@
-<%= month_calendar events: @programs do |date, programs| %>
-    <%= date %>
+<%= month_calendar start_date: @start_date, events: @programs do |date, programs| %>
+    <%= date.mday %>
 
     <% programs.each do |program| %>
         <div>
-            <%= program.title_ja %>
+            <%= link_to program.title_ja, movie_path(program) %>
         </div>
     <% end %>
 <% end %>

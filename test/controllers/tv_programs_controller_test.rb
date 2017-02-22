@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TvProgramControllerTest < ActionController::TestCase
+class TvProgramsControllerTest < ActionController::TestCase
     test "should get index" do
         get :index
         assert_response :success
