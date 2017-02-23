@@ -1,8 +1,4 @@
-<%= @director.name_ja %>
-<%= @director.name %>
+<%= render partial: "director" %>
+
 <br />
-<% @director.movies.each do |movie| %>
-    <%= link_to movie.title_ja, movie_path(movie) %> <br />
-
-<% end %>
-
+<%= link_to "edit", [:edit, @director] %>

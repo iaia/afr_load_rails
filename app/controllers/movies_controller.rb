@@ -4,7 +4,23 @@ class MoviesController < ApplicationController
     end
 
     def show
-        id = params[:id]
-        @movie = Movie.find(id)
+        @movie = Movie.find(params[:id])
+    end
+
+    def edit
+        @movie = Movie.find(params[:id])
+    end
+
+    def update
+        @movie = Movie.find(params[:id])
+        if @movie.update_attributes(user_params)
+            redirect_to @movie, notice: "saved"
+        else
+        end
+    end
+
+    private
+    def user_params
+        params.require(:movie).permit(:title, :title_ja, :released_year)
     end
 end

@@ -4,7 +4,23 @@ class ActorsController < ApplicationController
     end
 
     def show
-        id = params[:id]
-        @actor = Actor.find(id)
+        @actor = Actor.find(params[:id])
+    end
+
+    def edit
+        @actor = Actor.find(params[:id])
+    end
+
+    def update
+        @actor = Actor.find(params[:id])
+        if @actor.update_attributes(user_params)
+            redirect_to @actor, notice: "saved"
+        else
+        end
+    end
+
+    private
+    def user_params
+        params.require(:actor).permit(:name, :name_ja)
     end
 end

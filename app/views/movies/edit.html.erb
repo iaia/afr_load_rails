@@ -1,0 +1,8 @@
+<%= render partial: "movie" %>
+
+<br />
+<%= form_for(@movie) do |f| %>
+    name: <%= f.text_field :title %> <br />
+    name_ja: <%= f.text_field :title_ja %> <br />
+    <%= f.submit "保存する" %>
+<% end %>

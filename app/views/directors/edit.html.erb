@@ -1,0 +1,7 @@
+<%= render partial: "director" %>
+
+<%= form_for(@director) do |f| %>
+    name: <%= f.text_field :name %> <br />
+    name_ja: <%= f.text_field :name_ja %> <br />
+    <%= f.submit "保存する" %>
+<% end %>

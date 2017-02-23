@@ -1,13 +1,3 @@
-<h1>Movies#show</h1>
-<p>Find me in app/views/movies/show.html.erb</p>
+<%= render partial: "movie" %>
 
-<%= @movie.title_ja %>
-<%= @movie.title %>
-<br />
-監督 <%= link_to @movie.director.name_ja, director_path(@movie.director) %>
-<%= @movie.released_year %>
-<%= @movie.country.name %>
-<br />
-<% @movie.actors.each do |actor| %>
-    <%= link_to actor.name_ja, actor_path(actor) %> <br />
-<% end %>
+<%= link_to "edit", [:edit, @movie] %>
