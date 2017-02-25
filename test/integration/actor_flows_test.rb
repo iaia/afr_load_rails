@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ActorsControllerTest < ActionDispatch::IntegrationTest
+class ActorFlowsTest < ActionDispatch::IntegrationTest
     def setup
         @actor = actors(:one)
     end
@@ -21,8 +21,12 @@ class ActorsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "should post update" do
-        patch actor_path @actor, params: {actor: {name: "Steve Buscemi"}}
+        new_name = "Steve Buscemi"
+        new_name_ja = "スティーブ・ブシェミ"
+        patch actor_path @actor, params: {actor: {name: new_name, name_ja: new_name_ja}}
         assert_redirected_to actor_path @actor
+        @actor.reload
+        assert_equal new_name, @actor.name
+        assert_equal new_name_ja, @actor.name_ja
     end
-
 end

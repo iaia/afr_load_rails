@@ -1,6 +1,6 @@
 class Movie < ActiveRecord::Base
     has_many :actor_movie
-    has_many :actors, :through => :actor_movie
+    has_many :actors, -> {distinct}, through: :actor_movie
     belongs_to :director
     belongs_to :country
     has_many :tv_programs

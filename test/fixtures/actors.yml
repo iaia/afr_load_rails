@@ -1,16 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Steve Buscemi,
+  name: 
   name_ja: スティーブ・ブシェミ
-  actor_movie_id: 1
 
 two:
   name: Steven Frederick Seagal
   name_ja: ステーブン・セガール
-  actor_movie_id: 2
 
 three:
     name:
     name_ja: ジャッキー・チェン
-    actor_movie_id: 3
