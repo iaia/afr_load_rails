@@ -4,6 +4,9 @@ class TvProgram < ActiveRecord::Base
     belongs_to :country
     belongs_to :leading_actor, class_name: "Actor"
     belongs_to :supporting_actor, class_name: "Actor"
+    has_one :watched, class_name: "WatchedTvProgram"
+    has_one :recorded
+    
 
     after_initialize do 
         build_director() if director.nil?

@@ -4,6 +4,7 @@ class Movie < ActiveRecord::Base
     belongs_to :director
     belongs_to :country
     has_many :tv_programs
+    has_one :watched, class_name: "WatchedMovie"
 
     def self.add_by_tv_program(program)
         # 先にdirector, country, actorを作成

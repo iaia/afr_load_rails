@@ -1,0 +1,1 @@
+json.partial! "watched_tv_programs/watched_tv_program", watched_tv_program: @watched_tv_program

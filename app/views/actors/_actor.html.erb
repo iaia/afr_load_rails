@@ -1,6 +1,6 @@
-<%= @actor.name_ja %>
-<%= @actor.name %>
+<%= actor.name_ja %>
+<%= actor.name %>
 <br />
-<% @actor.movies.each do |movie| %>
+<% actor.movies.each do |movie| %>
     <%= link_to movie.title_ja, movie %> <br />
 <% end %>

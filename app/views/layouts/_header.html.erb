@@ -19,6 +19,9 @@
                 <li class="<%= "active" if active == "directors" %>"><%= link_to "Directors", directors_path %></li>
                 <li class="<%= "active" if active == "actors" %>"><%= link_to "Actors", actors_path %></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class=""><%= link_to "User", users_path %></li>
+            </ul>
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>

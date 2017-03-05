@@ -1,0 +1,17 @@
+<%= form_for(recorded) do |f| %>
+  <% if recorded.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recorded.errors.count, "error") %> prohibited this recorded from being saved:</h2>
+
+      <ul>
+      <% recorded.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

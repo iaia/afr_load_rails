@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  movie_id: 1
+  watched: false
+  watched_date: 2017-02-26 00:59:40
+
+two:
+  user_id: 1
+  movie_id: 1
+  watched: false
+  watched_date: 2017-02-26 00:59:40

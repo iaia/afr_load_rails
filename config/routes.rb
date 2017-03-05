@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
     root to: "tv_programs#index"
 
     resources :movies
@@ -7,5 +9,15 @@ Rails.application.routes.draw do
 
     resources :directors
     resources :actors
+    resources :users
+
+    get "login" => "sessions#new"
+    post "login" => "sessions#create"
+    get "logout" => "sessions#destroy"
+
+    resources :watched_tv_programs
+    resources :watched_movies
+    resources :recordeds
+
 
 end

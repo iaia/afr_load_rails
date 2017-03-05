@@ -1,4 +1,4 @@
-<%= render partial: "actor" %>
+<%= render "actor", actor: @actor %>
 
 <%= form_for(@actor) do |f| %>
     name: <%= f.text_field :name %> <br />

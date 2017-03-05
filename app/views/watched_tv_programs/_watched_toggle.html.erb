@@ -1,0 +1,11 @@
+<% if watched.watched %>
+    <%= form_for(watched, remote: true, :authenticity_token => true) do |f| %>
+        <%= f.hidden_field :watched, value: false %>
+        <%= f.submit "unwatched", class: "btn btn-info btn-xs" %>
+    <% end %>
+<% else %>
+    <%= form_for(watched, remote: true, :authenticity_token => true) do |f| %>
+        <%= f.hidden_field :watched, value: true %>
+        <%= f.submit "watched", class: "btn btn-info btn-xs" %>
+    <% end %>
+<% end %>

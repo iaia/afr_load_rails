@@ -1,8 +1,11 @@
 class TvProgramsController < ApplicationController
     before_action :nil_guard
+
     def index
         @start_date = self.class.make_year_and_month(params[:year], params[:month])
         @programs = TvProgram.get_by(@start_date)
+        Recorded.create_user_tvs(@programs, @current_user) if @current_user
+        WatchedTvProgram.create_user_tvs(@programs, @current_user) if @current_user
     end
 
     def self.make_year_and_month(year, month)
@@ -28,7 +31,6 @@ class TvProgramsController < ApplicationController
         end
     rescue
     end
-
 
     def nil_guard
         @programs ||= []
