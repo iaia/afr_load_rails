@@ -5,4 +5,13 @@ class WatchedMovie < ApplicationRecord
         uniqueness: {scope: [:movie_id]}, on: :create
     validates :watched_date,
         presence: true, if: :watched
+
+    def self.watched_by_tv_program(watched_tv)
+        watched_movie = WatchedMovie.find_or_create_by(
+            user_id: watched_tv.user_id,
+            movie_id: watched_tv.tv_program.movie.id)
+        if not watched_movie.watched and watched_tv.watched
+            watched_movie.update_attributes(watched: true, watched_date: watched_tv.watched_date)
+        end
+    end
 end

@@ -1,0 +1,24 @@
+<% if watched.watched %>
+    <%= form_for(watched, remote: true, :authenticity_token => true) do |f| %>
+        <%= f.hidden_field :watched, value: false %>
+        <%= f.submit "unwatched", class: "btn btn-secondary btn-xs" %>
+    <% end %>
+<% else %>
+    <%= form_for(watched, remote: true, :authenticity_token => true) do |f| %>
+        <%= f.hidden_field :watched, value: true %>
+        <% if watched.id.nil? %>
+            <%= f.hidden_field :user_id, value: user.id %>
+            <% if watched.respond_to?(:tv_program) %>
+                <%= f.hidden_field :tv_program_id, value: watched.tv_program.id %>
+            <% end %>
+            <% if watched.respond_to?(:movie) %>
+                <%= f.hidden_field :movie_id, value: watched.movie.id %>
+            <% end %>
+        <% end %>
+
+        <div class="btn-group">
+            <%= f.submit "watched", class: "btn btn-info btn-xs" %>
+            <%= render "watched/dropdown_menu_watched_date", form: f, watched: watched %>
+        </div>
+    <% end %>
+<% end %>

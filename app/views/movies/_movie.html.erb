@@ -9,3 +9,8 @@
     <%= link_to actor.name_ja, actor %> <br />
 <% end %>
 
+<% if user %>
+    <div id="<%= "watched_movie_#{movie.id}" %>">
+        <%= render "watched/watched_toggle", watched: @watched, user: @current_user %>
+    </div>
+<% end %>

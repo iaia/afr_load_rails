@@ -30,9 +30,11 @@ class WatchedMoviesController < ApplicationController
             if @watched_movie.save
                 format.html { redirect_to @watched_movie, notice: 'Watched movie was successfully created.' }
                 format.json { render :show, status: :created, location: @watched_movie }
+                format.js {}
             else
                 format.html { render :new }
                 format.json { render json: @watched_movie.errors, status: :unprocessable_entity }
+                format.js {}
             end
         end
     end
@@ -40,14 +42,15 @@ class WatchedMoviesController < ApplicationController
     # PATCH/PUT /watched_movies/1
     # PATCH/PUT /watched_movies/1.json
     def update
-
         respond_to do |format|
             if @watched_movie.update_attributes(update_watched_movie_params)
                 format.html { redirect_to @watched_movie, notice: 'Watched movie was successfully updated.' }
                 format.json { render :show, status: :ok, location: @watched_movie }
+                format.js {}
             else
                 format.html { render :edit }
                 format.json { render json: @watched_movie.errors, status: :unprocessable_entity }
+                format.js {}
             end
         end
     end

@@ -5,9 +5,9 @@
         <div>
             <%= link_to program.title_ja, movie_path(program) %> <br />
             <% if user %>
-                <% watched = user.watched_tv_programs.find_by(tv_program_id: program.id) %>
+                <% watched = user.watched_tv_programs.find_or_initialize_by(tv_program_id: program.id) %>
                 <div id="<%= "watched_tv_#{watched.tv_program_id}" %>">
-                    <%= render "watched_tv_programs/watched_toggle", watched: watched %>
+                    <%= render "watched/watched_toggle", watched: watched, user: @current_user %>
                 </div>
 
                 <% rec = user.recordeds.find_by(tv_program_id: program.id) %>

@@ -16,11 +16,18 @@
             <ul class="nav navbar-nav">
                 <li class="<%= "active" if active == "tv_programs" %>"><%= link_to "TvPrograms", tv_programs_path %></li>
                 <li class="<%= "active" if active == "movies" %>"><%= link_to "Movies", movies_path %></li>
-                <li class="<%= "active" if active == "directors" %>"><%= link_to "Directors", directors_path %></li>
-                <li class="<%= "active" if active == "actors" %>"><%= link_to "Actors", actors_path %></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class=""><%= link_to "User", users_path %></li>
+                <li class="">
+                    <%= link_to "User", users_path, class: "dropdown-toggle", data: {toggle: "dropdown"} %>
+                    <ul class="dropdown-menu">
+                        <% if @current_user %>
+                            <li><%= link_to "logout", logout_path %></li>
+                        <% else %>
+                            <li><%= render "sessions/header_form" %></li>
+                        <% end %>
+                    </ul>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div>
