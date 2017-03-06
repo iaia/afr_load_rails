@@ -18,7 +18,14 @@
 
         <div class="btn-group">
             <%= f.submit "watched", class: "btn btn-info btn-xs" %>
-            <%= render "watched/dropdown_menu_watched_date", form: f, watched: watched %>
+            <%= button_tag class: "btn btn-info btn-xs dropdown-toggle", data: {toggle: "dropdown", "aria-expanded": "false"} do %>
+                <%= content_tag :span, "", class: "caret" %>
+            <% end %>
+            <ul class="dropdown-menu keep-open">
+                <li>
+                    <%= f.date_select :watched_date, {order: [:year, :month, :day]} %>
+                </li>
+            </ul>
         </div>
     <% end %>
 <% end %>

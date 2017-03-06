@@ -1,8 +1,0 @@
-<%= button_tag class: "btn btn-info btn-xs dropdown-toggle", data: {toggle: "dropdown", "aria-expanded": "false"} do %>
-    <%= content_tag :span, "", class: "caret" %>
-<% end %>
-<ul class="dropdown-menu keep-open">
-    <li>
-        <%= form.date_select :watched_date, {order: [:year, :month, :day]} %>
-    </li>
-</ul>
