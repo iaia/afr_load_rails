@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170307134205) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "actor_movies", force: :cascade do |t|
     t.integer  "actor_id"
     t.integer  "movie_id"
@@ -103,7 +106,7 @@ ActiveRecord::Schema.define(version: 20170307134205) do
     t.string   "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_users_on_name", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
   end
 
   create_table "watched_movies", force: :cascade do |t|
