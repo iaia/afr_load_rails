@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :actor_thumbnails
+  resources :movie_thumbnails
   get 'sessions/new'
 
     root to: "tv_programs#index"

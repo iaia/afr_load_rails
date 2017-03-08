@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
 
     def show
         @movie = Movie.find(params[:id])
-        @watched = @current_user.watched_movies.find_or_initialize_by(movie_id: @movie.id)
+        @watched = @current_user.watched_movies.find_or_initialize_by(movie_id: @movie.id) if @current_user
     end
 
     def edit

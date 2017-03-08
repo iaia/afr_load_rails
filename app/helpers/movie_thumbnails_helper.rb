@@ -1,0 +1,2 @@
+module MovieThumbnailsHelper
+end

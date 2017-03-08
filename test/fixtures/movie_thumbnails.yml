@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie_id: 1
+  path: MyString
+  file_size: 1
+  caption: MyString
+  view_status: false
+  status: false
+  removed: false
+
+two:
+  movie_id: 1
+  path: MyString
+  file_size: 1
+  caption: MyString
+  view_status: false
+  status: false
+  removed: false

@@ -5,6 +5,7 @@ class Movie < ActiveRecord::Base
     belongs_to :country
     has_many :tv_programs
     has_one :watched, class_name: "WatchedMovie"
+    has_many :thumbnails, -> {distinct}, class_name: "MovieThumbnail" 
 
     def self.add_by_tv_program(program)
         # 先にdirector, country, actorを作成

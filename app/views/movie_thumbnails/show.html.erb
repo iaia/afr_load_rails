@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Movie:</strong>
+  <%= @movie_thumbnail.movie_id %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @movie_thumbnail.path %>
+</p>
+
+<p>
+  <strong>File size:</strong>
+  <%= @movie_thumbnail.file_size %>
+</p>
+
+<p>
+  <strong>Caption:</strong>
+  <%= @movie_thumbnail.caption %>
+</p>
+
+<p>
+  <strong>View status:</strong>
+  <%= @movie_thumbnail.view_status %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @movie_thumbnail.status %>
+</p>
+
+<p>
+  <strong>Removed:</strong>
+  <%= @movie_thumbnail.removed %>
+</p>
+
+<%= link_to 'Edit', edit_movie_thumbnail_path(@movie_thumbnail) %> |
+<%= link_to 'Back', movie_thumbnails_path %>

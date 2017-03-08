@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226144529) do
+ActiveRecord::Schema.define(version: 20170307134205) do
 
   create_table "actor_movies", force: :cascade do |t|
     t.integer  "actor_id"
     t.integer  "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "actor_thumbnails", force: :cascade do |t|
+    t.integer  "actor_id"
+    t.string   "path"
+    t.integer  "file_size"
+    t.string   "caption"
+    t.boolean  "view_status"
+    t.boolean  "status"
+    t.boolean  "removed"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "actors", force: :cascade do |t|
@@ -39,6 +51,18 @@ ActiveRecord::Schema.define(version: 20170226144529) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "movie_thumbnails", force: :cascade do |t|
+    t.integer  "movie_id"
+    t.string   "path"
+    t.integer  "file_size"
+    t.string   "caption"
+    t.boolean  "view_status"
+    t.boolean  "status"
+    t.boolean  "removed"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.string   "title_ja"
@@ -48,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170226144529) do
     t.integer  "released_country", default: 0, null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "story"
   end
 
   create_table "recordeds", force: :cascade do |t|
