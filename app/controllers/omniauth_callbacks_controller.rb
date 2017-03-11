@@ -2,6 +2,10 @@ class OmniauthCallbacksController < ApplicationController
     def google_callback
         login(request.env["omniauth.auth"])
     end
+    def twitter_callback
+        login(request.env["omniauth.auth"])
+    end
+
 
     private
     def login(auth)
