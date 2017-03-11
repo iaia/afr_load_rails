@@ -4,6 +4,7 @@ class User < ApplicationRecord
     has_many :recordeds
     validates :name, presence: true, uniqueness: true,
         format: { with: /\A[a-z0-9_-]+\z/i }
+    has_one :social_profile
 
     def self.auth(name)
         User.find_by(name: name)

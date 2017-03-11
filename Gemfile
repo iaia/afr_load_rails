@@ -58,3 +58,7 @@ gem "afr_load", '>= 0.1.4'
 gem "simple_calendar", "~> 2.0"
 
 gem "bootstrap-sass"
+
+gem "omniauth-google-oauth2"
+
+gem 'dotenv-rails', groups: [:development, :test]

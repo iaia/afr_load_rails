@@ -24,7 +24,7 @@
                         <% if @current_user %>
                             <li><%= link_to "logout", logout_path %></li>
                         <% else %>
-                            <li><%= render "sessions/header_form" %></li>
+                            <li><%= link_to "login", login_path %></li>
                         <% end %>
                     </ul>
                 </li>

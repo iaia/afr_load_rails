@@ -17,4 +17,7 @@ class SessionsController < ApplicationController
         redirect_to :root
     end
 
+    def failure
+        redirect_to :root
+    end
 end

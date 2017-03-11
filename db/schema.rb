@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307134205) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20170311132912) do
 
   create_table "actor_movies", force: :cascade do |t|
     t.integer  "actor_id"
@@ -87,6 +84,24 @@ ActiveRecord::Schema.define(version: 20170307134205) do
     t.datetime "updated_at",                    null: false
   end
 
+  create_table "social_profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "email"
+    t.string   "url"
+    t.string   "image_url"
+    t.string   "description"
+    t.string   "other"
+    t.string   "credentials"
+    t.string   "raw_info"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_social_profiles_on_user_id"
+  end
+
   create_table "tv_programs", force: :cascade do |t|
     t.datetime "on_air_date"
     t.string   "title"
@@ -106,7 +121,7 @@ ActiveRecord::Schema.define(version: 20170307134205) do
     t.string   "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
+    t.index ["name"], name: "index_users_on_name", unique: true
   end
 
   create_table "watched_movies", force: :cascade do |t|

@@ -1,0 +1,11 @@
+<div class="social-block">
+    <div class="df">
+        <div class="title">
+            <i class="<%= icon %> <%= provider %>"></i>
+            <h3><%= display_name %></h3>
+        </div>
+        <div class="body">
+            <%= button_tag("auth", class: "social-connect", onclick: "window.open('/auth/google_oauth2')") %>
+        </div>
+    </div>
+</div>

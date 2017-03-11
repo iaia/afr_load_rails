@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :actor_thumbnails
-  resources :movie_thumbnails
-  get 'sessions/new'
-
     root to: "tv_programs#index"
+
+    resources :actor_thumbnails
+    resources :movie_thumbnails
 
     resources :movies
     resources :tv_programs
@@ -13,13 +12,15 @@ Rails.application.routes.draw do
     resources :actors
     resources :users
 
-    get "login" => "sessions#new"
-    post "login" => "sessions#create"
-    get "logout" => "sessions#destroy"
-
     resources :watched_tv_programs
     resources :watched_movies
     resources :recordeds
 
+    get 'auth/google_oauth2/callback', to: 'omniauth_callbacks#google_callback'
+    get "auth/failure" => "sessions#failure"
 
+    get "login" => "sessions#new"
+    post "login" => "sessions#create"
+    get "logout" => "sessions#destroy"
 end
+
