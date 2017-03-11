@@ -18,10 +18,10 @@
 
         <div class="btn-group">
             <% if watched.class == WatchedTvProgram %>
-                <% if watched.tv_program.movie.watched %>
-                    <%= f.submit "unwatched(watched movie)", class: "btn btn-info btn-xs" %>
+                <% if watched.tv_program.movie.watched  %>
+                    <%= f.submit "watched(watched movie)", class: "btn btn-info btn-xs" %>
                 <% else %>
-                    <%= f.submit "unwatched", class: "btn btn-info btn-xs" %>
+                    <%= f.submit "watched", class: "btn btn-info btn-xs" %>
                 <% end %>
             <% elsif watched.class == WatchedMovie %>
                 <%= f.submit "watched", class: "btn btn-info btn-xs" %>
