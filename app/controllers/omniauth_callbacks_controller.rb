@@ -6,7 +6,6 @@ class OmniauthCallbacksController < ApplicationController
         login(request.env["omniauth.auth"])
     end
 
-
     private
     def login(auth)
         profile = SocialProfile.find_for_oauth(auth)

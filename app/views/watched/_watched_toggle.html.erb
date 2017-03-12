@@ -1,7 +1,7 @@
 <% if watched.watched %>
     <%= form_for(watched, remote: true, :authenticity_token => true) do |f| %>
         <%= f.hidden_field :watched, value: false %>
-        <%= f.submit "unwatched", class: "btn btn-secondary btn-xs" %>
+        <%= f.submit "unwatch", class: "btn btn-secondary btn-xs" %>
     <% end %>
 <% else %>
     <%= form_for(watched, remote: true, :authenticity_token => true) do |f| %>
@@ -17,22 +17,22 @@
         <% end %>
 
         <div class="btn-group">
+            <% btn_class = "btn btn-primary btn-xs" %>
             <% if watched.class == WatchedTvProgram %>
                 <% if user.watched_movies.find_or_initialize_by(movie_id: watched.tv_program.movie).watched  %>
-                    <%= f.submit "watched(watched movie)", class: "btn btn-info btn-xs" %>
+                    <% btn_class = "btn btn-info btn-xs" %>
+                    <%= f.submit "watch", class: btn_class %>
                 <% else %>
-                    <%= f.submit "watched", class: "btn btn-info btn-xs" %>
+                    <%= f.submit "watch", class: btn_class %>
                 <% end %>
             <% elsif watched.class == WatchedMovie %>
-                <%= f.submit "watched", class: "btn btn-info btn-xs" %>
+                <%= f.submit "watch", class: btn_class %>
             <% end %>
-            <%= button_tag class: "btn btn-info btn-xs dropdown-toggle", data: {toggle: "dropdown", "aria-expanded": "false"} do %>
+            <%= button_tag class: "#{btn_class} dropdown-toggle", data: {toggle: "dropdown", "aria-expanded": "false"} do %>
                 <%= content_tag :span, "", class: "caret" %>
             <% end %>
-            <ul class="dropdown-menu keep-open">
-                <li>
-                    <%= f.date_select :watched_date, {order: [:year, :month, :day]} %>
-                </li>
+            <ul class="dropdown-menu keep-open watched-date-menu form-inline">
+                <li><%= f.date_select :watched_date, {order: [:year, :month, :day]}, {class: "form-control"} %></li>
             </ul>
         </div>
     <% end %>

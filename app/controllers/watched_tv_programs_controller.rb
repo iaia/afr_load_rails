@@ -44,7 +44,6 @@ class WatchedTvProgramsController < ApplicationController
     def update
         respond_to do |format|
             if @watched_tv_program.update_attributes(update_watched_tv_program_params)
-                WatchedMovie.watched_by_tv_program(@watched_tv_program)
                 format.html { redirect_to @watched_tv_program, notice: 'Watched tv program was successfully updated.', layout: false }
                 format.json { render :show, status: :ok, location: @watched_tv_program }
                 format.js {}
