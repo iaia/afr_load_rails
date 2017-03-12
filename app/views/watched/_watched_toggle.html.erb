@@ -18,7 +18,7 @@
 
         <div class="btn-group">
             <% if watched.class == WatchedTvProgram %>
-                <% if watched.tv_program.movie.watched  %>
+                <% if user.watched_movies.find_by(movie_id: watched.tv_program.movie)  %>
                     <%= f.submit "watched(watched movie)", class: "btn btn-info btn-xs" %>
                 <% else %>
                     <%= f.submit "watched", class: "btn btn-info btn-xs" %>

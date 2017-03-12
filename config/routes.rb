@@ -10,13 +10,13 @@ Rails.application.routes.draw do
 
     resources :directors
     resources :actors
-    resources :users
+    #resources :users
 
     resources :watched_tv_programs
     resources :watched_movies
     resources :recordeds
 
-    get 'auth/google_oauth2/callback', to: 'omniauth_callbacks#google_callback'
+    get 'auth/google/callback', to: 'omniauth_callbacks#google_callback'
     get 'auth/twitter/callback', to: 'omniauth_callbacks#twitter_callback'
     get "auth/failure" => "sessions#failure"
 

@@ -27,6 +27,7 @@ class WatchedTvProgramsController < ApplicationController
         @watched_tv_program = WatchedTvProgram.new(watched_tv_program_params)
         respond_to do |format|
             if @watched_tv_program.save
+                WatchedMovie.watched_by_tv_program(@watched_tv_program)
                 format.html { redirect_to @watched_tv_program, notice: 'User was successfully created.' }
                 format.json { render :show, status: :created, location: @watched_tv_program }
                 format.js {}
@@ -62,6 +63,7 @@ class WatchedTvProgramsController < ApplicationController
         respond_to do |format|
             format.html { redirect_to watched_tv_programs_url, notice: 'Watched tv program was successfully destroyed.' }
             format.json { head :no_content }
+            format.js {}
         end
     end
 
