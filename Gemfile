@@ -63,3 +63,5 @@ gem "omniauth-google-oauth2"
 gem "omniauth-twitter"
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem "pundit"

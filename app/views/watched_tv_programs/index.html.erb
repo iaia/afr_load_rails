@@ -10,11 +10,11 @@
   </thead>
 
   <tbody>
-    <% @watched_tv_programs.each do |watched_tv_program| %>
+    <% @watched_tv_programs.each do |watched_tv| %>
       <tr>
-        <td><%= link_to 'Show', watched_tv_program %></td>
-        <td><%= link_to 'Edit', edit_watched_tv_program_path(watched_tv_program) %></td>
-        <td><%= link_to 'Destroy', watched_tv_program, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= watched_tv.tv_program.title_ja %></td>
+          <td><%= watched_tv.tv_program.movie.director.name_ja %></td>
+          <td><%= watched_tv.watched_date %></td>
       </tr>
     <% end %>
   </tbody>

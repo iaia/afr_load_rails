@@ -4,7 +4,8 @@ class WatchedMoviesController < ApplicationController
     # GET /watched_movies
     # GET /watched_movies.json
     def index
-        @watched_movies = WatchedMovie.all
+        @watched_movies = WatchedMovie.where(user_id: @current_user.id)
+        authorize @watched_movies
     end
 
     # GET /watched_movies/1
@@ -25,6 +26,7 @@ class WatchedMoviesController < ApplicationController
     # POST /watched_movies.json
     def create
         @watched_movie = WatchedMovie.new(watched_movie_params)
+        authorize @watched_movie
 
         respond_to do |format|
             if @watched_movie.save
@@ -42,6 +44,7 @@ class WatchedMoviesController < ApplicationController
     # PATCH/PUT /watched_movies/1
     # PATCH/PUT /watched_movies/1.json
     def update
+        authorize @watched_movie
         respond_to do |format|
             if @watched_movie.update_attributes(update_watched_movie_params)
                 format.html { redirect_to @watched_movie, notice: 'Watched movie was successfully updated.' }
@@ -58,6 +61,7 @@ class WatchedMoviesController < ApplicationController
     # DELETE /watched_movies/1
     # DELETE /watched_movies/1.json
     def destroy
+        authorize @watched_movie
         @watched_movie.destroy
         respond_to do |format|
             format.html { redirect_to watched_movies_url, notice: 'Watched movie was successfully destroyed.' }
