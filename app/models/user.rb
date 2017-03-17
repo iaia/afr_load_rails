@@ -6,6 +6,8 @@ class User < ApplicationRecord
         format: { with: /\A[a-z0-9_-]+\z/i }
     has_one :social_profile
 
+    has_one :role
+
     def self.auth(name)
         User.find_by(name: name)
     end
