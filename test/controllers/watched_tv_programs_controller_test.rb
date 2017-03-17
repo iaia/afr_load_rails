@@ -2,10 +2,11 @@ require 'test_helper'
 
 class WatchedTvProgramsControllerTest < ActionDispatch::IntegrationTest
     setup do
-        @user = users(:one)
+        @current_user = users(:one)
         @tv_program = tv_programs(:one)
         @tv_program.movie = movies(:one)
         @watched_tv_program = watched_tv_programs(:one)
+        get "/auth/twitter/callback"
     end
 
     test "should get index" do
@@ -20,7 +21,7 @@ class WatchedTvProgramsControllerTest < ActionDispatch::IntegrationTest
 
     test "should create watched_tv_program" do
         assert_difference('WatchedTvProgram.count') do
-            post watched_tv_programs_url, params: { watched_tv_program: {user_id: @user.id, tv_program_id: @tv_program.id, watched_time: DateTime.now} }
+            post watched_tv_programs_url, params: { watched_tv_program: {user_id: @current_user.id, tv_program_id: @tv_program.id, watched_time: DateTime.now} }
         end
 
         assert_redirected_to watched_tv_program_url(WatchedTvProgram.last)

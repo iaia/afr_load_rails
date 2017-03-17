@@ -14,6 +14,22 @@ class WatchedMoviePolicy < ApplicationPolicy
         myself?
     end
 
+    def new?
+        true
+    end
+
+    def show?
+        true
+    end
+
+    def edit?
+        true
+    end
+    
+    def destroy?
+        true
+    end
+
     def create?
         myself?
     end
@@ -21,8 +37,10 @@ class WatchedMoviePolicy < ApplicationPolicy
     def update?
         myself?
     end
+
     private
     def myself?
+        return false if user == nil
         if @watched_movie.respond_to?(:where)
             return false if @watched_movie.where.not(user_id: user.id).count > 0
             true

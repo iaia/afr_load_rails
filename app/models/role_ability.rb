@@ -1,0 +1,2 @@
+class RoleAbility < ApplicationRecord
+end

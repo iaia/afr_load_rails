@@ -14,6 +14,6 @@
 
 <% if user %>
     <div id="<%= "watched_movie_#{movie.id}" %>">
-        <%= render "watched/watched_toggle", watched: @watched, user: user %>
+        <%= render "watched/watched_toggle", watched: user.watched_movies.find_by(movie_id: movie.id), user: user %>
     </div>
 <% end %>

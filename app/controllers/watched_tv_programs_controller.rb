@@ -12,21 +12,25 @@ class WatchedTvProgramsController < ApplicationController
     # GET /watched_tv_programs/1
     # GET /watched_tv_programs/1.json
     def show
+        authorize @watched_tv_program
     end
 
     # GET /watched_tv_programs/new
     def new
         @watched_tv_program = WatchedTvProgram.new
+        authorize @watched_tv_program
     end
 
     # GET /watched_tv_programs/1/edit
     def edit
+        authorize @watched_tv_program
     end
 
     # POST /watched_tv_programs
     # POST /watched_tv_programs.json
     def create
         @watched_tv_program = WatchedTvProgram.new(watched_tv_program_params)
+        @watched_tv_program.user_id = @current_user.id
         authorize @watched_tv_program
         respond_to do |format|
             if @watched_tv_program.save
@@ -45,6 +49,7 @@ class WatchedTvProgramsController < ApplicationController
     # PATCH/PUT /watched_tv_programs/1
     # PATCH/PUT /watched_tv_programs/1.json
     def update
+        @watched_tv_program.user_id = @current_user.id
         authorize @watched_tv_program
         respond_to do |format|
             if @watched_tv_program.update_attributes(update_watched_tv_program_params)
@@ -79,7 +84,7 @@ class WatchedTvProgramsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def watched_tv_program_params
-        params.fetch(:watched_tv_program, {}).permit(:user_id, :tv_program_id, :watched, :watched_date)
+        params.fetch(:watched_tv_program, {}).permit(:tv_program_id, :watched, :watched_date)
     end
 
     def update_watched_tv_program_params

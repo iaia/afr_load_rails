@@ -14,6 +14,22 @@ class WatchedTvProgramPolicy < ApplicationPolicy
         myself?
     end
 
+    def new?
+        true
+    end
+
+    def show?
+        true
+    end
+
+    def edit?
+        true
+    end
+
+    def destroy?
+        true
+    end
+
     def create?
         myself?
     end
@@ -24,6 +40,7 @@ class WatchedTvProgramPolicy < ApplicationPolicy
 
     private
     def myself?
+        return false if user == nil
         if @watched_tv.respond_to?(:where)
             return false if @watched_tv.where.not(user_id: user.id).count > 0
             true

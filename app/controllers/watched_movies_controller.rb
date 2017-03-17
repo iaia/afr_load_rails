@@ -1,5 +1,6 @@
 class WatchedMoviesController < ApplicationController
     before_action :set_watched_movie, only: [:show, :edit, :update, :destroy]
+    after_action :verify_authorized
 
     # GET /watched_movies
     # GET /watched_movies.json
@@ -11,21 +12,25 @@ class WatchedMoviesController < ApplicationController
     # GET /watched_movies/1
     # GET /watched_movies/1.json
     def show
+        authorize @watched_movie
     end
 
     # GET /watched_movies/new
     def new
         @watched_movie = WatchedMovie.new
+        authorize @watched_movie
     end
 
     # GET /watched_movies/1/edit
     def edit
+        authorize @watched_movie
     end
 
     # POST /watched_movies
     # POST /watched_movies.json
     def create
         @watched_movie = WatchedMovie.new(watched_movie_params)
+        @watched_movie.user_id = @current_user.id
         authorize @watched_movie
 
         respond_to do |format|
@@ -44,6 +49,7 @@ class WatchedMoviesController < ApplicationController
     # PATCH/PUT /watched_movies/1
     # PATCH/PUT /watched_movies/1.json
     def update
+        @watched_movie.user_id = @current_user.id
         authorize @watched_movie
         respond_to do |format|
             if @watched_movie.update_attributes(update_watched_movie_params)
@@ -77,7 +83,7 @@ class WatchedMoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def watched_movie_params
-        params.fetch(:watched_movie, {}).permit(:user_id, :movie_id, :watched, :watched_date)
+        params.fetch(:watched_movie, {}).permit(:movie_id, :watched, :watched_date)
     end
 
     def update_watched_movie_params
