@@ -1,4 +1,4 @@
 class RoleAbility < ApplicationRecord
     belongs_to :role
-    belongs_to :abilitiy
+    belongs_to :ability
 end

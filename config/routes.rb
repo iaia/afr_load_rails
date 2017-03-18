@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
     resources :directors
     resources :actors
-    #resources :users
+    resources :users
 
     resources :watched_tv_programs
     resources :watched_movies

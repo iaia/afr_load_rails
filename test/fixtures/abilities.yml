@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  domain: MyString
-  ability: MyString
+  domain: user
+  ability: index
 
 two:
-  domain: MyString
-  ability: MyString
+  domain: watched_tv_program
+  ability: create
+
+three:
+  domain: watched_tv_program
+  ability: update

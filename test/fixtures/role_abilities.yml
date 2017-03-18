@@ -1,9 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  role_id: 
-  ability_id: 
+  role_id: 1
+  ability_id: 1
 
 two:
-  role_id: 
-  ability_id: 
+  role_id: 1
+  ability_id: 2
+
+three:
+  role_id: 1
+  ability_id: 3
+
+four:
+  role_id: 2
+  ability_id: 2
+
+five:
+  role_id: 2
+  ability_id: 3

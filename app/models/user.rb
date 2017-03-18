@@ -6,10 +6,18 @@ class User < ApplicationRecord
         format: { with: /\A[a-z0-9_-]+\z/i }
     has_one :social_profile
 
-    has_one :role
+    belongs_to :role
 
     def self.auth(name)
         User.find_by(name: name)
+    end
+
+    def admin?
+        role.name == "admin"
+    end
+    
+    def abilities
+        role.abilities
     end
 
 end

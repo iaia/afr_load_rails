@@ -1,7 +1,6 @@
 class Role < ApplicationRecord
-    belongs_to :user
+    has_many :users
 
-    has_many :roles_abilities
-    has_many :abilities, -> {distinct}, through: :roles_abilities
-
+    has_many :role_ability
+    has_many :abilities, -> {distinct}, through: :role_ability
 end
