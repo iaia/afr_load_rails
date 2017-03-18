@@ -13,6 +13,7 @@ class User < ApplicationRecord
     end
 
     def admin?
+        return false if role.nil?
         role.name == "admin"
     end
     

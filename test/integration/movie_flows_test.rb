@@ -19,17 +19,19 @@ class MovieFlowsTest < ActionDispatch::IntegrationTest
     end
 
     test "should get edit" do
-        get edit_movie_path @movie
-        assert_response :success
+        assert_raise(Pundit::NotAuthorizedError) do
+            get edit_movie_path @movie
+        end
     end
 
     test "should post update" do
-        new_title = "THE TUXEDO"
-        new_title_ja = "タキシード"
-        patch movie_path @movie, params: {movie: {title: new_title, title_ja: new_title_ja}}
-        assert_redirected_to movie_path @movie
+        new_title = @movie.title + "aaa"
+        new_title_ja = @movie.title_ja + "aaaaa:" 
+        assert_raise(Pundit::NotAuthorizedError) do
+            patch movie_path @movie, params: {movie: {title: new_title, title_ja: new_title_ja}}
+        end
         @movie.reload
-        assert_equal new_title, @movie.title
-        assert_equal new_title_ja, @movie.title_ja
+        assert_not_equal new_title, @movie.title
+        assert_not_equal new_title_ja, @movie.title_ja
     end
 end

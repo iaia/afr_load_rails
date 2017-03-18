@@ -1,18 +1,22 @@
 class DirectorsController < ApplicationController
+    before_action :set_director, only: [:show, :edit, :update]
+    after_action :verify_authorized
+
     def index
         @directors = Director.all
+        authorize @directors
     end
 
     def show
-        @director = Director.find(params[:id])
+        authorize @director
     end
 
     def edit
-        @director = Director.find(params[:id])
+        authorize @director
     end
 
     def update
-        @director = Director.find(params[:id])
+        authorize @director
         if @director.update_attributes(user_params)
             redirect_to @director, notice: "saved"
         else
@@ -20,6 +24,10 @@ class DirectorsController < ApplicationController
     end
 
     private
+    def set_director
+        @director = Director.find(params[:id])
+    end
+
     def user_params
         params.require(:director).permit(:name, :name_ja)
     end

@@ -7,6 +7,7 @@ class ApplicationPolicy
     end
 
     def can?(action)
+        return false if user.nil?
         action = action.to_s.chop
         user.abilities.exists?(domain: record.class.to_s.split("::").first.underscore, ability: action)
     end

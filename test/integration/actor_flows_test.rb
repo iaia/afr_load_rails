@@ -16,17 +16,20 @@ class ActorFlowsTest < ActionDispatch::IntegrationTest
     end
 
     test "should get edit" do
-        get edit_actor_path @actor
-        assert_response :success
+        assert_raise(Pundit::NotAuthorizedError) do
+            get edit_actor_path @actor
+        end
     end
 
     test "should post update" do
         new_name = "Steve Buscemi"
-        new_name_ja = "スティーブ・ブシェミ"
-        patch actor_path @actor, params: {actor: {name: new_name, name_ja: new_name_ja}}
-        assert_redirected_to actor_path @actor
+        assert_raise(Pundit::NotAuthorizedError) do
+            patch actor_path @actor, params: {actor: {name: new_name}}
+        end
+
         @actor.reload
-        assert_equal new_name, @actor.name
-        assert_equal new_name_ja, @actor.name_ja
+        assert_not_equal new_name, @actor.name
     end
+
+
 end

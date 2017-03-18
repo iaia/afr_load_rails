@@ -11,3 +11,48 @@ two:
 three:
   domain: watched_tv_program
   ability: update
+
+four:
+  domain: user
+  ability: show
+
+five:
+  domain: user
+  ability: create
+
+six:
+  domain: user
+  ability: edit
+
+seven:
+  domain: user
+  ability: update
+
+eight:
+  domain: user
+  ability: destroy
+
+nine:
+    domain: movie
+    ability: edit
+
+ten:
+    domain: movie
+    ability: update
+
+eleven:
+    domain: actor
+    ability: edit
+
+twelve: 
+    domain: actor
+    ability: update
+
+thirty:
+    domain: director
+    ability: edit
+
+fourty:
+    domain: director
+    ability: update
+

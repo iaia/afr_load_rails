@@ -16,18 +16,20 @@ class DirectorFlowsTest < ActionDispatch::IntegrationTest
     end
 
     test "should get edit" do
-        get edit_director_path @director.id
-        assert_response :success
+        assert_raise(Pundit::NotAuthorizedError) do
+            get edit_director_path @director.id
+        end
     end
 
     test "should post update" do
-        new_name = "ケビン・ドノバン"
-        new_name_ja = " kevin donovan"
-        patch director_path @director, params: {director: {name: new_name, name_ja: new_name_ja}}
-        assert_redirected_to director_path @director
+        new_name = @director.name + "aaaa"
+        new_name_ja = @director.name_ja + "aaaa"
+        assert_raise(Pundit::NotAuthorizedError) do
+            patch director_path @director, params: {director: {name: new_name, name_ja: new_name_ja}}
+        end
         @director.reload
-        assert_equal new_name, @director.name
-        assert_equal new_name_ja, @director.name_ja
+        assert_not_equal new_name, @director.name
+        assert_not_equal new_name_ja, @director.name_ja
     end
 
 end
