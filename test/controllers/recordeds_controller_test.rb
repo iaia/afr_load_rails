@@ -2,18 +2,26 @@ require 'test_helper'
 
 class RecordedsControllerTest < ActionDispatch::IntegrationTest
     setup do
-        @user = users(:one)
-        @tv_program = tv_programs(:one)
         @recorded = recordeds(:one)
+        @recorded.recorded = false
+        @recorded.tv_program = tv_programs(:one)
+
+        get "/auth/twitter/callback"
+        @user = SocialProfile.find_by(uid: "123545").user
+        @user.recordeds << @recorded
+        @user.save
+
+        @tv_program = tv_programs(:two)
+    end
+
+    def set_another_user
+        @another_user = users(:one)
+        @user.recordeds << @recorded
+        @user.save
     end
 
     test "should get index" do
         get recordeds_url
-        assert_response :success
-    end
-
-    test "should get new" do
-        get new_recorded_url
         assert_response :success
     end
 
@@ -23,16 +31,6 @@ class RecordedsControllerTest < ActionDispatch::IntegrationTest
         end
 
         assert_redirected_to recorded_url(Recorded.last)
-    end
-
-    test "should show recorded" do
-        get recorded_url(@recorded)
-        assert_response :success
-    end
-
-    test "should get edit" do
-        get edit_recorded_url(@recorded)
-        assert_response :success
     end
 
     test "should update recorded" do
@@ -47,4 +45,13 @@ class RecordedsControllerTest < ActionDispatch::IntegrationTest
 
         assert_redirected_to recordeds_url
     end
+
+    test "should create recorded by another user" do
+        set_another_user
+        assert_raise(Pundit::NotAuthorizedError) do
+            post recordeds_url, params: { recorded: {user_id: @another_user.id, tv_program_id: @tv_program.id} }
+        end
+
+    end
+
 end

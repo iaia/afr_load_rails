@@ -1,4 +1,4 @@
-class WatchedMoviePolicy < ApplicationPolicy
+class RecordedPolicy < ApplicationPolicy
     class Scope < Scope
         def resolve
             scope
@@ -9,20 +9,12 @@ class WatchedMoviePolicy < ApplicationPolicy
         mine?
     end
 
-    def new?
-        true
-    end
-
     def show?
         true
     end
 
     def edit?
-        true
-    end
-    
-    def destroy?
-        true
+        mine?
     end
 
     def create?
@@ -33,4 +25,11 @@ class WatchedMoviePolicy < ApplicationPolicy
         mine?
     end
 
+    def create?
+        mine?
+    end
+
+    def destroy?
+        mine?
+    end
 end

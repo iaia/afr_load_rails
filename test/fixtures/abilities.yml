@@ -56,3 +56,14 @@ fourty:
     domain: director
     ability: update
 
+recorded_mine_update:
+    domain: recorded
+    ability: update
+
+recorded_mine_create:
+    domain: recorded
+    ability: create
+
+recorded_mine_create:
+    domain: recorded
+    ability: destroy

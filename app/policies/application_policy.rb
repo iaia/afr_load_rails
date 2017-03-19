@@ -12,6 +12,17 @@ class ApplicationPolicy
         user.abilities.exists?(domain: record.class.to_s.split("::").first.underscore, ability: action)
     end
 
+    def mine?
+        return false if user.nil?
+        if record.respond_to?(:where)
+            # ActiveRecordRelation
+            return false if record.where.not(user_id: user.id).count > 0
+            true
+        else
+            record.user_id == user.id
+        end
+    end
+
     def index?
         false
     end

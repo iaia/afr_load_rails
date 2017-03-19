@@ -5,13 +5,8 @@ class WatchedTvProgramPolicy < ApplicationPolicy
         end
     end
 
-    def initialize(user, watched_tv)
-        @user = user
-        @watched_tv = watched_tv
-    end
-
     def index?
-        myself?
+        mine?
     end
 
     def new?
@@ -31,22 +26,11 @@ class WatchedTvProgramPolicy < ApplicationPolicy
     end
 
     def create?
-        myself?
+        mine?
     end
 
     def update?
-        myself?
-    end
-
-    private
-    def myself?
-        return false if user == nil
-        if @watched_tv.respond_to?(:where)
-            return false if @watched_tv.where.not(user_id: user.id).count > 0
-            true
-        else
-            @watched_tv.user_id == user.id
-        end
+        mine?
     end
 
 end

@@ -4,6 +4,7 @@ class MoviePolicy < ApplicationPolicy
             scope
         end
     end
+
     def index?
         true
     end
