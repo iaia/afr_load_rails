@@ -82,6 +82,6 @@ class RecordedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recorded_params
-        params.fetch(:recorded, {}).permit(:user_id, :tv_program_id, :recorded)
+        params.fetch(:recorded, {}).permit(:user_id, :tv_program_id, :recorded, :removed)
     end
 end

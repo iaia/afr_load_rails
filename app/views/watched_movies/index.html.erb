@@ -12,9 +12,9 @@
   <tbody>
     <% @watched_movies.each do |watched_movie| %>
       <tr>
-        <td><%= link_to 'Show', watched_movie %></td>
-        <td><%= link_to 'Edit', edit_watched_movie_path(watched_movie) %></td>
-        <td><%= link_to 'Destroy', watched_movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= watched_movie.movie.title_ja %></td>
+          <td><%= watched_movie.movie.director.name_ja %></td>
+          <td><%= watched_movie.watched_date %></td>
       </tr>
     <% end %>
   </tbody>

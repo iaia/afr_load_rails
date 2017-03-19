@@ -7,7 +7,8 @@ class SocialProfile < ApplicationRecord
         profile = SocialProfile.find_or_initialize_by(provider: auth['provider'], uid: auth['uid'])
         profile.set_values(auth)
         if profile.new_record?
-            profile.user = User.create(name: "#{auth['provider']}#{auth['uid']}")
+            role = Role.find_by(name: "user")
+            profile.user = User.create(name: "#{auth['provider']}#{auth['uid']}", role_id: role.id)
         end
         profile.save!
         profile

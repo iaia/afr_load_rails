@@ -1,3 +1,5 @@
 <%= render "movie", movie: @movie, user: @current_user %>
 
-<%= link_to "edit", [:edit, @movie] %>
+<% if policy(@movie).update? %>
+    <%= link_to "edit", [:edit, @movie] %>
+<% end %>

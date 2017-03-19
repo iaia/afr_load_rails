@@ -12,7 +12,7 @@
 
                 <% rec = user.recordeds.find_by(tv_program_id: program.id) %>
                 <div id="<%= "recorded_#{rec.tv_program_id}" %>">
-                    <%= render "recordeds/recorded_toggle", recorded: rec %>
+                    <%= render "recordeds/recorded_toggle", recorded: rec, user: @current_user %>
                 </div>
             <% end %>
         </div>

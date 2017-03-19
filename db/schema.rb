@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317164747) do
+ActiveRecord::Schema.define(version: 20170319135512) do
 
   create_table "abilities", force: :cascade do |t|
     t.string   "domain"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20170317164747) do
     t.string   "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "role_id"
+    t.integer  "role_id",    null: false
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
