@@ -1,5 +1,5 @@
 class WatchedMoviesController < ApplicationController
-    before_action :set_watched_movie, only: [:show, :edit, :update, :destroy]
+    before_action :set_watched_movie, only: [:update, :destroy]
     after_action :verify_authorized
 
     # GET /watched_movies
@@ -7,23 +7,6 @@ class WatchedMoviesController < ApplicationController
     def index
         @watched_movies = WatchedMovie.where(user_id: @current_user.id)
         authorize @watched_movies
-    end
-
-    # GET /watched_movies/1
-    # GET /watched_movies/1.json
-    def show
-        authorize @watched_movie
-    end
-
-    # GET /watched_movies/new
-    def new
-        @watched_movie = WatchedMovie.new
-        authorize @watched_movie
-    end
-
-    # GET /watched_movies/1/edit
-    def edit
-        authorize @watched_movie
     end
 
     # POST /watched_movies

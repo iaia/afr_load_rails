@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Watched Tv Programs</h1>
+<h1>視聴済みTV</h1>
 
 <table>
   <thead>
@@ -12,14 +12,10 @@
   <tbody>
     <% @watched_tv_programs.each do |watched_tv| %>
       <tr>
-          <td><%= watched_tv.tv_program.title_ja %></td>
+          <td><%= link_to watched_tv.tv_program.title_ja, movie_path(watched_tv.tv_program.movie) %></td>
           <td><%= watched_tv.tv_program.movie.director.name_ja %></td>
           <td><%= watched_tv.watched_date %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Watched Tv Program', new_watched_tv_program_path %>

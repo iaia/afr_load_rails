@@ -12,27 +12,12 @@ class WatchedMoviesControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
   end
 
-  test "should get new" do
-      get new_watched_movie_url
-      assert_response :success
-  end
-
   test "should create watched_movie" do
       assert_difference('WatchedMovie.count') do
           post watched_movies_url, params: { watched_movie: {  } }
       end
 
       assert_redirected_to watched_movie_url(WatchedMovie.last)
-  end
-
-  test "should show watched_movie" do
-      get watched_movie_url(@watched_movie)
-      assert_response :success
-  end
-
-  test "should get edit" do
-      get edit_watched_movie_url(@watched_movie)
-      assert_response :success
   end
 
   test "should update watched_movie" do

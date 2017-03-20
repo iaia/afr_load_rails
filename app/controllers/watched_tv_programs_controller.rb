@@ -1,5 +1,5 @@
 class WatchedTvProgramsController < ApplicationController
-    before_action :set_watched_tv_program, only: [:show, :edit, :update, :destroy]
+    before_action :set_watched_tv_program, only: [:update, :destroy]
     after_action :verify_authorized
 
     # GET /watched_tv_programs
@@ -7,23 +7,6 @@ class WatchedTvProgramsController < ApplicationController
     def index
         @watched_tv_programs = WatchedTvProgram.where(user_id: @current_user.id)
         authorize @watched_tv_programs
-    end
-
-    # GET /watched_tv_programs/1
-    # GET /watched_tv_programs/1.json
-    def show
-        authorize @watched_tv_program
-    end
-
-    # GET /watched_tv_programs/new
-    def new
-        @watched_tv_program = WatchedTvProgram.new
-        authorize @watched_tv_program
-    end
-
-    # GET /watched_tv_programs/1/edit
-    def edit
-        authorize @watched_tv_program
     end
 
     # POST /watched_tv_programs

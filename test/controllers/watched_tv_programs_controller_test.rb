@@ -14,27 +14,12 @@ class WatchedTvProgramsControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
-    test "should get new" do
-        get new_watched_tv_program_url
-        assert_response :success
-    end
-
     test "should create watched_tv_program" do
         assert_difference('WatchedTvProgram.count') do
             post watched_tv_programs_url, params: { watched_tv_program: {user_id: @current_user.id, tv_program_id: @tv_program.id, watched_time: DateTime.now} }
         end
 
         assert_redirected_to watched_tv_program_url(WatchedTvProgram.last)
-    end
-
-    test "should show watched_tv_program" do
-        get watched_tv_program_url(@watched_tv_program)
-        assert_response :success
-    end
-
-    test "should get edit" do
-        get edit_watched_tv_program_url(@watched_tv_program)
-        assert_response :success
     end
 
     test "should update watched_tv_program" do

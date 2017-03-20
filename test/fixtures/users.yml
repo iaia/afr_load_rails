@@ -3,7 +3,9 @@
 one:
   name: MyString
   nickname: test
+  role_id: 1
 
 two:
   name: iaia2
   nickname: joe
+  role_id: 2

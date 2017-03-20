@@ -2,8 +2,9 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
     test "create user" do
-        user = User.create(name: "iaia")
-        assert_equal("iaia", user.name)
+        role = roles(:one)
+        user = User.create(name: "iaia", role_id: role.id)
+        assert_equal("iaia", user.name, roles(:one).id)
     end
     test "bad create user duplicate" do
         user = User.create(name: "iaia2")
