@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
     get 'auth/google/callback', to: 'omniauth_callbacks#google_callback'
     get 'auth/twitter/callback', to: 'omniauth_callbacks#twitter_callback'
+    get 'auth/github/callback', to: 'omniauth_callbacks#github_callback'
+    get 'auth/facebook/callback', to: 'omniauth_callbacks#facebook_callback'
     get "auth/failure" => "sessions#failure"
 
     get "login" => "sessions#new"

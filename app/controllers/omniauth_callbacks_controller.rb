@@ -5,6 +5,12 @@ class OmniauthCallbacksController < ApplicationController
     def twitter_callback
         login(request.env["omniauth.auth"])
     end
+    def github_callback
+        login(request.env["omniauth.auth"])
+    end
+    def facebook_callback
+        login(request.env["omniauth.auth"])
+    end
 
     private
     def login(auth)
