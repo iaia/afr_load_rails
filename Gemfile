@@ -53,7 +53,7 @@ group :development do
     gem 'spring', ">= 1.0"
 end
 
-gem "afr_load", '>= 0.1.4'
+gem "afr_load", '>= 0.1.5'
 
 gem "simple_calendar", "~> 2.0"
 

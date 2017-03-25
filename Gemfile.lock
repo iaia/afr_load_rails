@@ -267,7 +267,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  afr_load (>= 0.1.4)
+  afr_load (>= 0.1.5)
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.1)
