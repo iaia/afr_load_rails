@@ -10,7 +10,7 @@ if not Rails.env.production?
     Dotenv::Railtie.load
 end
 
-module Src
+module AfrLoadRails
     class Application < Rails::Application
         # Settings in config/environments/* take precedence over those specified here.
         # Application configuration should go into files in config/initializers
@@ -20,3 +20,4 @@ module Src
         config.i18n.default_locale = :ja
     end
 end
+

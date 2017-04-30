@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319135512) do
+ActiveRecord::Schema.define(version: 20170430115655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,23 @@ ActiveRecord::Schema.define(version: 20170319135512) do
     t.string   "name_ja"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comment_providers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "body"
+    t.string   "user_name"
+    t.integer  "provider_id"
+    t.datetime "commented_time"
+    t.integer  "tv_program_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "countries", force: :cascade do |t|
@@ -123,6 +140,20 @@ ActiveRecord::Schema.define(version: 20170319135512) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["user_id"], name: "index_social_profiles_on_user_id", using: :btree
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.integer  "tv_program_informations_id"
+    t.string   "term"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "tv_program_infomations", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "on_air_minutes"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "tv_programs", force: :cascade do |t|

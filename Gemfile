@@ -43,6 +43,7 @@ group :development, :test do
     gem 'byebug'
     gem "guard-test"
     gem "guard-rspec"
+    gem "rspec-rails"
 end
 
 group :development do
@@ -68,3 +69,4 @@ gem "omniauth-facebook"
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem "pundit"
+gem "tweetstream"
