@@ -1,29 +1,33 @@
 require 'test_helper'
 
 class TvProgramTest < ActiveSupport::TestCase
-    FILE_PATH = Pathname.new(File.dirname(__FILE__)).join("../fixtures/index.html")
+    FILE_PATH = Pathname.new(File.dirname(__FILE__)).join("../fixtures/index.html").to_s
     test "add one by tv_program" do
-        afr = AfrLoad::AfrLoad.new()
-        afr.get_schedule_from_file(File.open(FILE_PATH))
+        afr = AfrLoad::AfrLoad.new() do |info|
+            info.url = FILE_PATH
+        end
+        afr.get_schedule
         programs = afr.get_program
 
         movie = Movie.add_by_tv_program(programs[0])
         tv = TvProgram.add(programs[0], movie)
         
-        assert_equal("2017/01/04", tv.on_air_date.strftime("%Y/%m/%d"))
-        assert_equal("THE TUXEDO", tv.title)
-        assert_equal("タキシード", tv.title_ja)
+        assert_equal("2017/04/03", tv.on_air_date.strftime("%Y/%m/%d"))
+        assert_equal("WHITE HOUSE DOWN", tv.title)
+        assert_equal("ホワイトハウス・ダウン", tv.title_ja)
         assert_equal("アメリカ", tv.country.name)
-        assert_equal("ケビン・ドノバン", tv.director.name_ja)
-        assert_equal(2002, tv.released_year)
-        assert_equal("ジャッキー・チェン", tv.leading_actor.name_ja)
-        assert_equal("ジェニファー・ラブ・ヒューイット", tv.supporting_actor.name_ja)
+        assert_equal("ローランド・エメリッヒ", tv.director.name_ja)
+        assert_equal(2013, tv.released_year)
+        assert_equal("チャニング・テイタム", tv.leading_actor.name_ja)
+        assert_equal("ジェイミー・フォックス", tv.supporting_actor.name_ja)
         assert_equal(movie.id, tv.movie.id)
     end
 
     test "add by tv_program" do
-        afr = AfrLoad::AfrLoad.new()
-        afr.get_schedule_from_file(File.open(FILE_PATH))
+        afr = AfrLoad::AfrLoad.new() do |info|
+            info.url = FILE_PATH
+        end
+        afr.get_schedule
         programs = afr.get_program
 
         programs.each do |program|

@@ -1,8 +1,10 @@
+# encoding: utf-8
 
 namespace :get_afr_load_comment_tweet do
     desc "毎日動かして午後ローがある日は"
     task :get_afr_load_comment_tweet => :environment do
         com = CommentGetter.new(DateTime.now, "午後のロードショー", "Twitter")
+        p ""
         p com
     end
 

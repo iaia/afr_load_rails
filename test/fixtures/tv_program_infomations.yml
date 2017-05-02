@@ -3,9 +3,7 @@
 one:
   name: MyString
   on_air_minutes: 1
-  topic_id: 
 
 two:
   name: MyString
   on_air_minutes: 1
-  topic_id: 
