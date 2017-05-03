@@ -3,13 +3,20 @@
 namespace :get_afr_load_comment_tweet do
     desc "毎日動かして午後ローがある日は"
     task :get_afr_load_comment_tweet => :environment do
-        com = CommentGetter.new(DateTime.now, "午後のロードショー", "Twitter")
-        p ""
-        p com
+        now = DateTime.now
+        now = DateTime.new(2017, 5, 1, 23, 04)
+        com = CommentGetter.new(now, "午後のロードショー", "Twitter")
+        if com.prepare_ok?
+            com.get
+        end
     end
 
     class CommentGetter
         def initialize(now, tv_info_name, provider_name)
+            # ちょっと早めにタスクを動かす(13:20とか)
+            # 午後ローは13:35~なので、13:20~14:20の間で引っかかるのがあるはず
+            tv = TvProgram.where(on_air_date: now..(now + Rational(1, 24))).first
+            @tv_id = tv.id
             TweetStream.configure do |config|
                 config.consumer_key = ENV["API_KEY"]
                 config.consumer_secret = ENV["API_SECRET"]
@@ -23,19 +30,26 @@ namespace :get_afr_load_comment_tweet do
             @topics = tv_program_info.topics.pluck(:term)
             @on_air_time = tv_program_info.on_air_minutes
             @provider_id = CommentProvider.where(name: provider_name)
-            @tv_id = TvProgram.where(on_air_date: now..(now + Rational(1/24))).first.id
+        end
+
+        def prepare_ok?
+            if @client.nil? or @topics.nil? or @on_air_time.nil? or @provider_id.nil? or @tv_id.nil?
+                false
+            else
+                true
+            end
         end
 
         def get
             EM.run do 
+                puts "****** get_afr_oad_comment_tweet start!"
                 EM::PeriodicTimer.new(@on_air_time) do
                     EM.stop
                 end
 
-                @client.track(topics) do |status|
-                    p [@tv_id, @provider_id, status.full_text, status.id, status.user.screen_name, status.created_at.strftime("%Y-%m-%d %X:%M:%S")]
+                @client.track(@topics) do |status|
                     begin
-                        # save
+                        p [@tv_id, @provider_id, status.full_text, status.id, status.user.screen_name, status.created_at.strftime("%Y-%m-%d %X:%M:%S")]
                     rescue => ex
                         p "failed insert. #{ex.message}"
                     end
