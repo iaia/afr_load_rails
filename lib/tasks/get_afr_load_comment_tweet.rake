@@ -19,10 +19,10 @@ namespace :get_afr_load_comment_tweet do
             end
             @client = TweetStream::Client.new
             # ["#午後ロー", "#午後のロードショー", "#午後ﾛｰ", "#午後ロード", "#tvtokyo", "#テレビ東京", "#テレ東"]
-            tv_program_info = TvProgramInformation.where(name: tv_info_name).first
+            tv_program_info = TvProgramInfomation.where(name: tv_info_name).first
             @topics = tv_program_info.topics.pluck(:term)
             @on_air_time = tv_program_info.on_air_minutes
-            @provider_id = CommenProvider.where(name: provider_name)
+            @provider_id = CommentProvider.where(name: provider_name)
             @tv_id = TvProgram.where(on_air_date: now..(now + Rational(1/24))).first.id
         end
 
