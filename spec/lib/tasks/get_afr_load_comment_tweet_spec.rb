@@ -12,7 +12,7 @@ describe "get_afr_load_comment_tweet" do
 
     describe "get_afr_load_comment" do
         it 'returns hoge' do
-            @rake["get_afr_load_comment_tweet:get_afr_load_comment_tweet"].execute
+            @rake["get_comment:get_afr_load_comment"].execute(tv_name: "午後のロードショー", provider: "Twitter")
 
         end
     end

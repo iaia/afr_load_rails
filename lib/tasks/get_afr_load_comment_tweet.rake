@@ -1,11 +1,13 @@
 # encoding: utf-8
 
-namespace :get_afr_load_comment_tweet do
+namespace :get_comment do
     desc "毎日動かして午後ローがある日は"
-    task :get_afr_load_comment_tweet => :environment do
+    task :get_afr_load_comment => :environment do |task, args|
         now = DateTime.now
         now = DateTime.new(2017, 5, 1, 23, 04)
-        com = CommentGetter.new(now, "午後のロードショー", "Twitter")
+        p task
+        p args
+        com = CommentGetter.new(now, args[:tv_name], args[:provider])
         if com.prepare_ok?
             com.get
         end
@@ -13,10 +15,15 @@ namespace :get_afr_load_comment_tweet do
 
     class CommentGetter
         def initialize(now, tv_info_name, provider_name)
-            # ちょっと早めにタスクを動かす(13:20とか)
-            # 午後ローは13:35~なので、13:20~14:20の間で引っかかるのがあるはず
             tv = TvProgram.where(on_air_date: now..(now + Rational(1, 24))).first
             @tv_id = tv.id
+            @provider_id = CommentProvider.where(name: provider_name)
+            if provider_name == "Twitter"
+                prepare_twitter(tv_info_name)
+            end
+        end
+
+        def prepare_twitter(tv_info_name)
             TweetStream.configure do |config|
                 config.consumer_key = ENV["API_KEY"]
                 config.consumer_secret = ENV["API_SECRET"]
@@ -29,7 +36,6 @@ namespace :get_afr_load_comment_tweet do
             tv_program_info = TvProgramInfomation.where(name: tv_info_name).first
             @topics = tv_program_info.topics.pluck(:term)
             @on_air_time = tv_program_info.on_air_minutes
-            @provider_id = CommentProvider.where(name: provider_name)
         end
 
         def prepare_ok?
