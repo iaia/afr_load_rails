@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :movie_thumbnails
 
     resources :movies
+    get "tv_programs/:tv_program_id/comments", to: "comments#index"
     resources :tv_programs
     get "tv_programs/:year/:month", to: "tv_programs#index"
 
@@ -25,4 +26,5 @@ Rails.application.routes.draw do
     get "login" => "sessions#new"
     post "login" => "sessions#create"
     get "logout" => "sessions#destroy"
+
 end
