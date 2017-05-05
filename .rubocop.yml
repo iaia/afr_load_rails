@@ -1,0 +1,32 @@
+AllCops:
+  Exclude:
+    - "db/migrate/*"
+    - "db/schema.rb"
+    - "db/seeds.rb"
+    - "Guardfile"
+    - "Gemfile"
+    - "Gemfile.lock"
+    - "Rakefile"
+    - "config/*"
+    - "config/*/*"
+
+
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+# single_quotesじゃなくdouble_quotes
+StringLiterals:
+  EnforcedStyle: double_quotes
+# && ||ではなくand or
+Style/AndOr:
+  Enabled: false
+# ! ではなく not
+Style/Not:
+  Enabled: false
+# ;使って1行で書かない
+Style/Semicolon:
+  AllowAsExpressionSeparator: false
+# "Missing top-level class documentation comment."を無効
+Style/Documentation:
+  Enabled: false

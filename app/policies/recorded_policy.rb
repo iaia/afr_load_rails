@@ -1,35 +1,31 @@
 class RecordedPolicy < ApplicationPolicy
-    class Scope < Scope
-        def resolve
-            scope
-        end
+  class Scope < Scope
+    def resolve
+      scope
     end
+  end
 
-    def index?
-        mine?
-    end
+  def index?
+    mine?
+  end
 
-    def show?
-        true
-    end
+  def show?
+    true
+  end
 
-    def edit?
-        mine?
-    end
+  def edit?
+    mine?
+  end
 
-    def create?
-        mine?
-    end
+  def create?
+    mine?
+  end
 
-    def update?
-        mine?
-    end
+  def update?
+    mine?
+  end
 
-    def create?
-        mine?
-    end
-
-    def destroy?
-        mine?
-    end
+  def destroy?
+    mine?
+  end
 end

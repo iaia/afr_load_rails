@@ -1,1 +1,1 @@
-json.array! @recordeds, partial: 'recordeds/recorded', as: :recorded
+json.array! @recordeds, partial: "recordeds/recorded", as: :recorded

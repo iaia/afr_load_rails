@@ -5,6 +5,6 @@ class TvProgramPolicy < ApplicationPolicy
     end
   end
   def index?
-      true
+    true
   end
 end
