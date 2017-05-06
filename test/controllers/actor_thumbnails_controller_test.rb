@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class ActorThumbnailsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,21 @@ class ActorThumbnailsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create actor_thumbnail" do
-    assert_difference('ActorThumbnail.count') do
-      post actor_thumbnails_url, params: { actor_thumbnail: { actor_id: @actor_thumbnail.actor_id, caption: @actor_thumbnail.caption, file_size: @actor_thumbnail.file_size, path: @actor_thumbnail.path, removed: @actor_thumbnail.removed, status: @actor_thumbnail.status, view_status: @actor_thumbnail.view_status } }
+    assert_difference("ActorThumbnail.count") do
+      post actor_thumbnails_url,
+           params:
+           {
+             actor_thumbnail:
+             {
+               actor_id: @actor_thumbnail.actor_id,
+               caption: @actor_thumbnail.caption,
+               file_size: @actor_thumbnail.file_size,
+               path: @actor_thumbnail.path,
+               removed: @actor_thumbnail.removed,
+               status: @actor_thumbnail.status,
+               view_status: @actor_thumbnail.view_status
+             }
+           }
     end
 
     assert_redirected_to actor_thumbnail_url(ActorThumbnail.last)
@@ -34,12 +47,23 @@ class ActorThumbnailsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update actor_thumbnail" do
-    patch actor_thumbnail_url(@actor_thumbnail), params: { actor_thumbnail: { actor_id: @actor_thumbnail.actor_id, caption: @actor_thumbnail.caption, file_size: @actor_thumbnail.file_size, path: @actor_thumbnail.path, removed: @actor_thumbnail.removed, status: @actor_thumbnail.status, view_status: @actor_thumbnail.view_status } }
+    patch actor_thumbnail_url(@actor_thumbnail),
+          params: {
+            actor_thumbnail: {
+              actor_id: @actor_thumbnail.actor_id,
+              caption: @actor_thumbnail.caption,
+              file_size: @actor_thumbnail.file_size,
+              path: @actor_thumbnail.path,
+              removed: @actor_thumbnail.removed,
+              status: @actor_thumbnail.status,
+              view_status: @actor_thumbnail.view_status
+            }
+          }
     assert_redirected_to actor_thumbnail_url(@actor_thumbnail)
   end
 
   test "should destroy actor_thumbnail" do
-    assert_difference('ActorThumbnail.count', -1) do
+    assert_difference("ActorThumbnail.count", -1) do
       delete actor_thumbnail_url(@actor_thumbnail)
     end
 

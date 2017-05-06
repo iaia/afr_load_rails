@@ -1,0 +1,2 @@
+class CommentProvider < ApplicationRecord
+end

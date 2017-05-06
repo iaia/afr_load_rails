@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :nickname
 
-      t.index [:name], unique:true
+      t.index [:name], unique: true
 
       t.timestamps
     end

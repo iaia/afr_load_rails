@@ -1,3 +1,3 @@
 class ActorThumbnail < ApplicationRecord
-    belongs_to :actor
+  belongs_to :actor
 end
