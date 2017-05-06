@@ -4,7 +4,7 @@ namespace :get_comment do
   desc "毎日動かして午後ローがある日は"
   task get_afr_load_comment: :environment do |_task, args|
     now = DateTime.current
-    # now = DateTime.new(2017, 5, 1, 23, 0o4)
+    now = DateTime.new(2017, 5, 1, 23, 0o4)
     tv_name = "午後のロードショー"
     provider = "Twitter"
     p args
@@ -54,6 +54,8 @@ namespace :get_comment do
         end
 
         client.track(@topics) do |status|
+          p status
+          debugger
           p [@tv.id, @provider.id,
              status.full_text, status.id, status.user.screen_name,
              status.created_at.strftime("%Y-%m-%d %X:%M:%S")]
