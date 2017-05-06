@@ -46,7 +46,6 @@ group :development, :test do
   gem "guard-rspec"
   gem "guard-test"
   gem "rspec-rails"
-  gem "web-console", "~> 2.0"
 end
 
 group :development do
