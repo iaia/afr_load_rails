@@ -37,7 +37,7 @@ end
 yaml_provider = YAML.load_file("#{File.dirname(__FILE__)}/seeds/comment_provider.yml")
 
 yaml_provider.each do |name, url|
-  provider = CommentProvider.find_or_create_by(name: name, url: url)
   p "#{name} #{url}"
+  provider = CommentProvider.find_or_create_by(name: name, url: url)
   provider.save
 end
