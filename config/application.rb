@@ -16,6 +16,8 @@ module AfrLoadRails
     config.time_zone = "Tokyo"
     config.beginning_of_week = :sunday
     config.i18n.default_locale = :ja
-    config.web_console.development_only = false
+    unless Rails.env.production?
+      config.web_console.development_only = false
+    end
   end
 end
