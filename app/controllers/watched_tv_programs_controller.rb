@@ -22,17 +22,21 @@ class WatchedTvProgramsController < ApplicationController
         WatchedMovie.watched_by_tv_program(@watched_tv_program)
         format.html do
           redirect_to @watched_tv_program,
-                      notice: "User was successfully created."
+            notice: "User was successfully created."
         end
         format.json do
           render :show,
-                 status: :created, location: @watched_tv_program
+            status: :created, location: @watched_tv_program
+        end
+        format.js do
         end
       else
         format.html { render :new }
         format.json do
           render json: @watched_tv_program.errors,
-                 status: :unprocessable_entity
+            status: :unprocessable_entity
+        end
+        format.js do
         end
       end
     end
@@ -47,18 +51,22 @@ class WatchedTvProgramsController < ApplicationController
       if @watched_tv_program.update_attributes(update_watched_tv_program_params)
         format.html do
           redirect_to @watched_tv_program,
-                      notice: "Watched tv program was successfully updated.",
-                      layout: false
+            notice: "Watched tv program was successfully updated.",
+            layout: false
         end
         format.json do
           render :show, status: :ok,
-                        location: @watched_tv_program
+            location: @watched_tv_program
+        end
+        format.js do
         end
       else
         format.html { render :edit }
         format.json do
           render json: @watched_tv_program.errors,
-                 status: :unprocessable_entity
+            status: :unprocessable_entity
+        end
+        format.js do
         end
       end
     end
@@ -72,9 +80,11 @@ class WatchedTvProgramsController < ApplicationController
     respond_to do |format|
       format.html do
         redirect_to watched_tv_programs_url,
-                    notice: "Watched tv program was successfully destroyed."
+          notice: "Watched tv program was successfully destroyed."
       end
       format.json { head :no_content }
+      format.js do
+      end
     end
   end
 

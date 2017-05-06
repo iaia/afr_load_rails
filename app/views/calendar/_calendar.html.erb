@@ -1,23 +1,23 @@
 <%= month_calendar start_date: @start_date, events: programs do |date, programs| %>
-    <%= date.mday %>
+  <%= date.mday %>
 
-    <% programs.each do |program| %>
-        <div>
-            <%= link_to program.title_ja, movie_path(program) %> <br />
-            <% if user %>
-                <div class="button_group">
-                    <% watched = user.watched_tv_programs.find_or_initialize_by(tv_program_id: program.id) %>
-                    <div class="watched_tv_button" id="<%= "watched_tv_#{watched.tv_program_id}" %>">
-                        <%= render "watched/watched_toggle", watched: watched, user: @current_user %>
-                    </div>
+  <% programs.each do |program| %>
+    <div>
+      <%= link_to program.title_ja, movie_path(program) %> <br />
+      <% if user %>
+        <div class="button_group">
+          <% watched = user.watched_tv_programs.find_or_initialize_by(tv_program_id: program.id) %>
+          <div class="watched_tv_button" id="<%= "watched_tv_#{watched.tv_program_id}" %>">
+            <%= render "watched/watched_toggle", watched: watched, user: @current_user %>
+          </div>
 
-                    <% rec = user.recordeds.find_by(tv_program_id: program.id) %>
-                    <div class="remove_tv_button" id="<%= "recorded_#{rec.tv_program_id}" %>">
-                        <%= render "recordeds/recorded_toggle", recorded: rec, user: @current_user %>
-                    </div>
-                </div>
-                <%= link_to "実況リプレイ",  "/tv_programs/#{program.id}/comments" %>
-            <% end %>
+          <% rec = user.recordeds.find_by(tv_program_id: program.id) %>
+          <div class="remove_tv_button" id="<%= "recorded_#{rec.tv_program_id}" %>">
+            <%= render "recordeds/recorded_toggle", recorded: rec, user: @current_user %>
+          </div>
         </div>
-    <% end %>
+        <%= link_to "実況リプレイ",  "/tv_programs/#{program.id}/comments" %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
