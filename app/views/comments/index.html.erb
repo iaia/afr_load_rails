@@ -1,4 +1,4 @@
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<% @tv.comments.each do |comment| %>
+<% @comments.each do |comment| %>
   <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><%= comment.body %></p>&mdash; <%= comment.user_name %> <a href="https://twitter.com/<%= comment.user_name %>/status/<%= comment.comment_id_on_provider %>"><%= comment.commented_time %></a></blockquote>
 <% end %>
