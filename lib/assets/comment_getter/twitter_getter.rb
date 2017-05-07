@@ -28,7 +28,7 @@ module CommentGetter
           id_on_provider: status.id,
           body: status.full_text,
           user_name: status.user.screen_name,
-          commented_time: status.created_at.strftime("%Y-%m-%d %X:%M:%S")}
+          commented_time: status.created_at}
         )
         yield status
       end
