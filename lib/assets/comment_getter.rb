@@ -24,7 +24,8 @@ module CommentGetter
 
       EM.run do
         puts "****** get_afr_load start!"
-        EM::PeriodicTimer.new(@getter.on_air_time * 60) do
+        # 放映時間120m + 前2m + 後ろ5m
+        EM::PeriodicTimer.new((@getter.on_air_time + 2 + 5) * 60) do
           puts "****** get_afr_load end!"
           EM.stop
         end

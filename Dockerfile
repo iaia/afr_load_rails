@@ -12,9 +12,12 @@ RUN ln -s ~/dotfiles/.vimrc ~/.vimrc
 RUN ln -s ~/dotfiles/.zshrc ~/.zshrc
 RUN ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 RUN mkdir ~/dotfiles/.vim
+RUN mkdir ~/dotfiles/.vim/.vimundo
 RUN curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/dotfiles/installer.sh 
 RUN sh ~/dotfiles/installer.sh ~/.vim/dein
 RUN rm ~/dotfiles/installer.sh
+
+RUN apt-get install cron
 
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 RUN mkdir /afr_load_rails
