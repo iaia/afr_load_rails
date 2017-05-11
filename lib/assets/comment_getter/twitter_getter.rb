@@ -24,6 +24,7 @@ module CommentGetter
 
     def get
       client.track(@topics) do |status|
+        next if status.full_text.index("RT")
         status = Status.new({
           id_on_provider: status.id,
           body: status.full_text,
