@@ -4,9 +4,8 @@ require "assets/comment_getter"
 namespace :get_comment do
   desc "get comment everyday."
   task get_afr_load_comment: :environment do |_task, args|
-    puts "get afr_load_comment start"
-
     now = DateTime.current
+    puts "get afr_load_comment start #{now}"
     #now = DateTime.new(2017, 5, 1, 23, 04)
 
     args = {}

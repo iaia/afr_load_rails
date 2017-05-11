@@ -19,10 +19,13 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+ENV.each { |k, v| env(k, v) }
+env :PATH, ENV['PATH']
 
 set :output, "log/crontab.log"
 set :environment, :development
 
+# utc
 every :day, at: "04:33" do
   rake "get_comment:get_afr_load_comment"  
 end

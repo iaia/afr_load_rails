@@ -5,6 +5,7 @@ require_relative "comment_getter/twitter_getter"
 module CommentGetter
   class CommentGetter 
     def initialize(now, tv_info_name, provider_name)
+      p TvProgram.where(on_air_date: now..(now + Rational(1, 24))).to_sql
       @tv = TvProgram.where(on_air_date: now..(now + Rational(1, 24))).first
       @provider = CommentProvider.where(name: provider_name).first
 
