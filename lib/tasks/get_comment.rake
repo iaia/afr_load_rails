@@ -6,7 +6,7 @@ namespace :get_comment do
   task get_afr_load_comment: :environment do |_task, args|
     now = DateTime.current
     puts "get afr_load_comment start #{now}"
-    #now = DateTime.new(2017, 5, 1, 23, 04)
+    #now = DateTime.new(2017, 5, 1, 04, 04)
 
     args = {}
     args[:tv_name] = "午後のロードショー"
