@@ -1,5 +1,15 @@
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<% @comments.each do |comment| %>
-  <!--<%= comment.body %> <%= comment.comment_id_on_provider %><br />-->
-  <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><%= comment.body %></p>&mdash; <%= comment.user_name %> <a href="https://twitter.com/<%= comment.user_name %>/status/<%= comment.comment_id_on_provider %>"><%= comment.commented_time %></a></blockquote>
-<% end %>
+<div class="comments" style="width:50%; float:left; margin-left: 15px;">
+<ul class="list-group">
+  <% @comments.each do |comment| %>
+    <li class="list-group-item">
+      <p class="text-muted">@<%= comment.user_name %></p>
+      <p class=""><%= comment.body%></p>
+      <%= "<a href=\"https://twitter.com/#{comment.user_name}/status/#{comment.comment_id_on_provider}\">#{comment.commented_time}</a><br />".html_safe %></li>
+  <% end %>
+</ul>
+</div>
+
+<div class="comments-status" style="left:60%; position:fixed; z-index:1; padding:10px;">
+  <h2><%= @tv.title %></h2>
+  コメント数: <%= @comments.count %>
+</div>

@@ -9,7 +9,7 @@ module CommentGetter
       @tv = TvProgram.where(on_air_date: now..(now + Rational(1, 24))).first
       @provider = CommentProvider.where(name: provider_name).first
 
-      @getter = eval("#{provider_name}Getter.create_client(tv_info_name)")
+      @getter = eval("#{provider_name}Getter.create_client(tv_info_name, @tv)")
     end
 
     def prepare_ok?

@@ -4,12 +4,12 @@ require_relative "status"
 module CommentGetter
   class TwitterGetter < Getter
     attr_accessor :client
-    def initialize(tv_info_name)
+    def initialize(tv_info_name, tv)
       super
     end
 
-    def self.create_client(tv_info_name)
-      tw = self.new(tv_info_name)
+    def self.create_client(tv_info_name, tv)
+      tw = self.new(tv_info_name, tv)
       TweetStream.configure do |config|
         config.consumer_key = ENV["TWEETSTREAM_API_KEY"]
         config.consumer_secret = ENV["TWEETSTREAM_API_SECRET"]
