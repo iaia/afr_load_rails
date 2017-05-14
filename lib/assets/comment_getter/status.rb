@@ -1,6 +1,6 @@
 module CommentGetter
   class Status
-    attr_accessor :id_on_provider, :body, :user_name, :commented_time
+    attr_accessor :id_on_provider, :body, :user_name, :commented_time, :contents
 
     def initialize(args = {})
       args.each_pair do |key, val|

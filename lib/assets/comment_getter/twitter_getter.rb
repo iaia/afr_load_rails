@@ -29,8 +29,9 @@ module CommentGetter
           id_on_provider: status.id,
           body: status.full_text,
           user_name: status.user.screen_name,
-          commented_time: status.created_at}
-        )
+          commented_time: status.created_at,
+          contents: status.media
+        })
         yield status
       end
     end

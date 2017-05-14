@@ -1,7 +1,6 @@
-<img src="https://twitter.com/kuzu_ningen/status/863364843075649539/photo/1">
 <div class="comments" style="width:50%; float:left; margin-left: 15px;">
 <ul class="list-group">
-  <% @comments.each do |comment| %>
+  <% @tv.comments.each do |comment| %>
     <li class="list-group-item" style="">
       <p class="text-muted" style="float: left;">@<%= comment.user_name %></p>
       <p style="text-align: right">
@@ -9,14 +8,20 @@
         "https://twitter.com/#{comment.user_name}/status/#{comment.comment_id_on_provider}" %>
     </p>
     <p class=""><%= comment.body%></p>
+    <% comment.contents.each do |content| %>
+      <img src="<%= content.expanded_url %>:small" width="300px" />
+    <% end %>
     </li>
   <% end %>
 </ul>
 </div>
 
 <div class="comments-status" style="float:clear; left:60%; position:fixed; z-index:1; padding:10px; height: 300px;">
-  <h2><%= @tv.title %></h2>
-  総コメント数: <%= @comments.count %>
+  <h2><%= @tv.title_ja %></h2>
+  <h3><%= @tv.title %></h3>
+  <p>開始: <%= @tv.oa_start %></p>
+  <p>終了: <%= @tv.oa_end %></p>
+  総コメント数: <%= @tv.comments.count %>
 </div>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

@@ -45,10 +45,23 @@ module CommentGetter
           provider_id: @provider.id,
           comment_id_on_provider: status.id_on_provider
         )
-        comment.update_attributes(body: status.body, user_name: status.user_name, commented_time: status.commented_time)
+        comment.update_attributes(
+          body: status.body, 
+          user_name: status.user_name,
+          commented_time: status.commented_time)
         comment.save
+        save_comment_contents(comment, status)
+
       rescue => ex
         p "failed insert. #{ex.message}"
+      end
+    end
+
+    def save_comment_contents(comment, status)
+      status.contents.each do |media|
+        expanded_url = media.media_url_https? ? media.media_url_https : media.expanded_url
+        comment.contents << CommentContent.find_or_create_by(
+          url: media.uri.to_s, expanded_url: expanded_url.to_s)
       end
     end
   end

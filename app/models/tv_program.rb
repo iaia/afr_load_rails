@@ -6,8 +6,10 @@ class TvProgram < ActiveRecord::Base
   belongs_to :supporting_actor, class_name: "Actor"
   has_one :watched, class_name: "WatchedTvProgram"
   has_one :recorded
-
   has_many :comments
+
+  alias_attribute :oa_start, :on_air_start
+  alias_attribute :oa_end, :on_air_end
 
   after_initialize do
     build_director if director.nil?
