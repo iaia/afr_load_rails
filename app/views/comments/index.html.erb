@@ -1,15 +1,64 @@
+<img src="https://twitter.com/kuzu_ningen/status/863364843075649539/photo/1">
 <div class="comments" style="width:50%; float:left; margin-left: 15px;">
 <ul class="list-group">
   <% @comments.each do |comment| %>
-    <li class="list-group-item">
-      <p class="text-muted">@<%= comment.user_name %></p>
-      <p class=""><%= comment.body%></p>
-      <%= "<a href=\"https://twitter.com/#{comment.user_name}/status/#{comment.comment_id_on_provider}\">#{comment.commented_time}</a><br />".html_safe %></li>
+    <li class="list-group-item" style="">
+      <p class="text-muted" style="float: left;">@<%= comment.user_name %></p>
+      <p style="text-align: right">
+      <%= link_to comment.commented_time,
+        "https://twitter.com/#{comment.user_name}/status/#{comment.comment_id_on_provider}" %>
+    </p>
+    <p class=""><%= comment.body%></p>
+    </li>
   <% end %>
 </ul>
 </div>
 
-<div class="comments-status" style="left:60%; position:fixed; z-index:1; padding:10px;">
+<div class="comments-status" style="float:clear; left:60%; position:fixed; z-index:1; padding:10px; height: 300px;">
   <h2><%= @tv.title %></h2>
-  コメント数: <%= @comments.count %>
+  総コメント数: <%= @comments.count %>
+</div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+function refreshSwatch() {
+  var red = $("#slider").slider("value");
+}
+
+$(function() {
+  var sliderMax = document.documentElement.scrollHeight;//$(window).height();
+  $("#slider").slider({
+    orientation: "horizontal",
+    range: "min",
+    max: sliderMax,
+    value: 0,
+    slide: refreshSlider,
+    change: refreshSlider
+  });
+});
+
+function refreshSlider() {
+  var position = $("#slider").slider("value");
+  $(window).scrollTop(position);
+}
+
+$(window).scroll(function(){
+  var position = $(window).scrollTop();
+  $("#slider").slider("value", position);
+});
+
+</script>
+
+<style>
+#slider .ui-slider-range {
+  background: #ef2929;
+}
+#slider .ui-slider-handle {
+  border-color: #eff929;
+}
+</style>
+<div class="comments-slider-div" style="position:fixed; z-index: 2; bottom: 10%; width: 90%; left:30px;">
+  <div id="slider"></div>
 </div>
