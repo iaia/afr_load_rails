@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_170_504_142_149) do
+ActiveRecord::Schema.define(version: 20170514075103) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +46,14 @@ ActiveRecord::Schema.define(version: 20_170_504_142_149) do
     t.string   "name_ja"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comment_contents", force: :cascade do |t|
+    t.string   "url"
+    t.string   "expanded_url"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "comment_id",   default: 0, null: false
   end
 
   create_table "comment_providers", force: :cascade do |t|
@@ -160,7 +169,7 @@ ActiveRecord::Schema.define(version: 20_170_504_142_149) do
     t.datetime "on_air_date"
     t.string   "title"
     t.string   "title_ja"
-    t.integer  "director_id", default: 0, null: false
+    t.integer  "director_id",         default: 0, null: false
     t.integer  "released_year"
     t.integer  "country_id",          default: 0, null: false
     t.integer  "leading_actor_id",    default: 0, null: false
@@ -168,6 +177,8 @@ ActiveRecord::Schema.define(version: 20_170_504_142_149) do
     t.integer  "movie_id",            default: 0, null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.datetime "on_air_start"
+    t.datetime "on_air_end"
   end
 
   create_table "users", force: :cascade do |t|
@@ -182,7 +193,7 @@ ActiveRecord::Schema.define(version: 20_170_504_142_149) do
   create_table "watched_movies", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "movie_id"
-    t.boolean  "watched", default: false, null: false
+    t.boolean  "watched",      default: false, null: false
     t.datetime "watched_date"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false

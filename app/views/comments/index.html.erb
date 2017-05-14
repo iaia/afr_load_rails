@@ -1,4 +1,69 @@
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<% @tv.comments.each do |comment| %>
-  <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><%= comment.body %></p>&mdash; <%= comment.user_name %> <a href="https://twitter.com/<%= comment.user_name %>/status/<%= comment.comment_id_on_provider %>"><%= comment.commented_time %></a></blockquote>
-<% end %>
+<div class="comments" style="width:50%; float:left; margin-left: 15px;">
+<ul class="list-group">
+  <% @tv.comments.each do |comment| %>
+    <li class="list-group-item" style="">
+      <p class="text-muted" style="float: left;">@<%= comment.user_name %></p>
+      <p style="text-align: right">
+      <%= link_to comment.commented_time,
+        "https://twitter.com/#{comment.user_name}/status/#{comment.comment_id_on_provider}" %>
+    </p>
+    <p class=""><%= comment.body%></p>
+    <% comment.contents.each do |content| %>
+      <img src="<%= content.expanded_url %>:small" width="300px" />
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+</div>
+
+<div class="comments-status" style="float:clear; left:60%; position:fixed; z-index:1; padding:10px; height: 300px;">
+  <h2><%= @tv.title_ja %></h2>
+  <h3><%= @tv.title %></h3>
+  <p>開始: <%= @tv.oa_start %></p>
+  <p>終了: <%= @tv.oa_end %></p>
+  総コメント数: <%= @tv.comments.count %>
+</div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+function refreshSwatch() {
+  var red = $("#slider").slider("value");
+}
+
+$(function() {
+  var sliderMax = document.documentElement.scrollHeight;//$(window).height();
+  $("#slider").slider({
+    orientation: "horizontal",
+    range: "min",
+    max: sliderMax,
+    value: 0,
+    slide: refreshSlider,
+    change: refreshSlider
+  });
+});
+
+function refreshSlider() {
+  var position = $("#slider").slider("value");
+  $(window).scrollTop(position);
+}
+
+$(window).scroll(function(){
+  var position = $(window).scrollTop();
+  $("#slider").slider("value", position);
+});
+
+</script>
+
+<style>
+#slider .ui-slider-range {
+  background: #ef2929;
+}
+#slider .ui-slider-handle {
+  border-color: #eff929;
+}
+</style>
+<div class="comments-slider-div" style="position:fixed; z-index: 2; bottom: 10%; width: 90%; left:30px;">
+  <div id="slider"></div>
+</div>
