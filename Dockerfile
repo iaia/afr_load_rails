@@ -34,5 +34,6 @@ RUN sh ~/dotfiles/installer.sh ~/.vim/dein
 RUN rm ~/dotfiles/installer.sh
 RUN mkdir ~/.ssh/id_rsa
 ADD ~/.ssh/id_rsa ~/.ssh/id_rsa
-ADD ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
+ADD ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub
+ADD ~/.ssh/config ~/.ssh/config
 
