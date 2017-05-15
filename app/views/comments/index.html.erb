@@ -1,27 +1,32 @@
-<div class="comments" style="width:50%; float:left; margin-left: 15px;">
-<ul class="list-group">
-  <% @tv.comments.each do |comment| %>
-    <li class="list-group-item" style="">
-      <p class="text-muted" style="float: left;">@<%= comment.user_name %></p>
-      <p style="text-align: right">
-      <%= link_to comment.commented_time,
-        "https://twitter.com/#{comment.user_name}/status/#{comment.comment_id_on_provider}" %>
-    </p>
-    <p class=""><%= comment.body%></p>
-    <% comment.contents.each do |content| %>
-      <img src="<%= content.expanded_url %>:small" width="300px" />
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<div class="comments" style="width:50%; float:left; padding-left: 15px;">
+  <ul class="list-group">
+    <% @tv.comments.each do |comment| %>
+      <li class="list-group-item" style="">
+        <p class="text-muted" style="float: left;">@<%= comment.user_name %></p>
+        <p style="text-align: right">
+        <%= link_to comment.commented_time,
+          "https://twitter.com/#{comment.user_name}/status/#{comment.comment_id_on_provider}" %>
+      </p>
+      <p class=""><%= comment.body%></p>
+      <% comment.contents.each do |content| %>
+        <img src="<%= content.expanded_url %>:small" width="300px" />
+      <% end %>
+      </li>
     <% end %>
-    </li>
-  <% end %>
-</ul>
+  </ul>
 </div>
 
-<div class="comments-status" style="float:clear; left:60%; position:fixed; z-index:1; padding:10px; height: 300px;">
+<div class="comments-status" style="float:clear; left:50%; position:fixed; z-index:1; padding:10px; height: 300px; width: 50%;">
   <h2><%= @tv.title_ja %></h2>
   <h3><%= @tv.title %></h3>
   <p>開始: <%= @tv.oa_start %></p>
   <p>終了: <%= @tv.oa_end %></p>
   総コメント数: <%= @tv.comments.count %>
+
+<div class="comments-graph">
+  <%= area_chart @tv.comments.group_by_minute(:commented_time, time_zone: "Asia/Tokyo").count, {library: {width: 500}} %>
+</div>
 </div>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
