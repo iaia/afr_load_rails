@@ -72,3 +72,6 @@ gem "pundit"
 gem "tweetstream"
 
 gem "whenever", :require => false
+
+gem "chartkick"
+gem "groupdate"
