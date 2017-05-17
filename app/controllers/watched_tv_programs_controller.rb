@@ -1,3 +1,5 @@
+require "assets/tweet"
+
 class WatchedTvProgramsController < ApplicationController
   before_action :set_watched_tv_program, only: %i[update destroy]
   after_action :verify_authorized
@@ -21,18 +23,7 @@ class WatchedTvProgramsController < ApplicationController
       if @watched_tv_program.save
         WatchedMovie.watched_by_tv_program(@watched_tv_program)
 
-        begin
-          credentials = JSON.parse(@current_user.social_profile.credentials)
-          client = Twitter::REST::Client.new do |config|
-            config.consumer_key        = ENV["TWITTER_API_KEY"]
-            config.consumer_secret     = ENV["TWITTER_API_SECRET"]
-            config.access_token        = credentials["token"]
-            config.access_token_secret = credentials["secret"]
-          end
-          client.update("#{@watched_tv_program.tv_program.title_ja}を見ました https://afr-load.herokuapp.com/")
-        rescue Exception => ex
-          puts "failed to tweet... #{ex.message}"
-        end
+        Tweet::tweet(@current_user, @watched_tv_program)
 
         format.html do
           redirect_to @watched_tv_program,
