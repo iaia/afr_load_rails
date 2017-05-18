@@ -6,6 +6,9 @@ class User < ApplicationRecord
                    format: { with: /\A[a-z0-9_-]+\z/i }
   has_one :social_profile, dependent: :destroy
 
+  has_one :setting, class_name: "UserSetting", dependent: :destroy
+  accepts_nested_attributes_for :setting
+
   belongs_to :role
 
   def self.auth(name)
