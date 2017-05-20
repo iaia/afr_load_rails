@@ -18,10 +18,10 @@
             <div class="modal-body">
               <table class="table table-condensed">
                 <tr>
-                  <td>開始</td><td><%= program.on_air_start %></td>
+                  <td>開始</td><td><%= program.on_air_start.to_s(:datetime_ja) %></td>
                 </tr>
                 <tr>
-                  <td>終了</td><td><%= program.on_air_end %></td>
+                  <td>終了</td><td><%= program.on_air_end.to_s(:datetime_ja) %></td>
                 </tr>
                 <tr>
                   <td>コメント数</td><td><%= program.comments.count %></td>

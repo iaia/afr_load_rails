@@ -5,19 +5,20 @@ class WatchedMoviesController < ApplicationController
   # GET /watched_movies
   # GET /watched_movies.json
   def index
-    authorize @watched_movies
     @watched_movies = WatchedMovie
+      .order(watched_date: "DESC")
       .includes(:movie, movie: [:director])
       .where(user_id: @current_user.id)
+    authorize @watched_movies
   end
 
   # POST /watched_movies
   # POST /watched_movies.json
   def create
-    authorize @watched_movie
     @watched_movie = WatchedMovie.new(watched_movie_params)
     @watched_movie.user_id = @current_user.id
 
+    authorize @watched_movie
     respond_to do |format|
       if @watched_movie.save
         format.html do

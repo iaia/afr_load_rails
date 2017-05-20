@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @movies = Movie.all
+    @movies = Movie.includes(:director, :actors).order(:title_ja).all
     authorize @movies
   end
 
