@@ -1,0 +1,26 @@
+<%= form_for(director) do |f| %>
+  <% if director.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(director.errors.count, "error") %> prohibited this director from being saved:</h2>
+
+      <ul>
+        <% movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label for="editName">name</label>
+    <%= f.text_field :name, id: "editName", class: "form-control", placeholder: "name" %>
+  </div>
+  <div class="form-group">
+    <label for="editNameJa">日本名</label>
+    <%= f.text_field :name_ja, id: "editNameJa", class: "form-control", placeholder: "日本名" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

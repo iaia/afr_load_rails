@@ -1,23 +1,34 @@
 admin:
-    user:
-        - index
-        - show
-        - edit
-        - update
-        - destroy
-    movie:
-        - edit
-        - update
-    actor:      
-        - edit
-        - update
-    director:
-        - edit
-        - update
+  user:
+    - index
+    - show
+    - edit
+    - update
+    - destroy
+  movie:
+    - new
+    - create
+    - edit
+    - update
+  actor:      
+    - new
+    - create
+    - edit
+    - update
+  director:
+    - new
+    - create
+    - edit
+    - update
+  country:
+    - new
+    - create
+    - edit
+    - update
 
 user:
-    user:
-        - show
-        - edit
-        - update
+  user:
+    - show
+    - edit
+    - update
 

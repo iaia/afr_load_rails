@@ -1,9 +1,10 @@
-class DirectorPolicy < ApplicationPolicy
+class CountryPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
     end
   end
+
   def index?
     true
   end

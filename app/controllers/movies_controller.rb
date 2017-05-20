@@ -7,6 +7,27 @@ class MoviesController < ApplicationController
     authorize @movies
   end
 
+  def new
+    @movie = Movie.new
+    authorize @movie
+  end
+
+  def create
+    @movie = Movie.new(movie_params_on_create)
+    authorize @movie
+    return
+
+    respond_to do |format|
+      if @movie.save
+        format.html do
+          redirect_to @movie, notice: "Movie was successfully created."
+        end
+      else
+        format.html { render :new }
+      end
+    end
+  end
+
   def show
     if @current_user
       @watched = @current_user.watched_movies
@@ -21,7 +42,7 @@ class MoviesController < ApplicationController
 
   def update
     authorize @movie
-    redirect_to @movie, notice: "saved" if @movie.update_attributes(user_params)
+    redirect_to @movie, notice: "saved" if @movie.update_attributes(movie_params)
   end
 
   private
@@ -30,7 +51,16 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  def user_params
+  def movie_params
     params.require(:movie).permit(:title, :title_ja, :released_year)
+  end
+
+  def movie_params_on_create
+    params.require(:movie).permit(
+      :title, :title_ja,
+      :director_id, :country_id,
+      :released_year, :released_country_id,
+      :story
+    )
   end
 end

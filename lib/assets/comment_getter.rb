@@ -13,7 +13,7 @@ module CommentGetter
     end
 
     def prepare_ok?
-      if @getter.nil? or @provider.nil? or @tv.nil?
+      if @getter.nil? or @provider.nil? or @tv.nil? or @getter.on_air_time.nil?
         false
       else
         true

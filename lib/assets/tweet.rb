@@ -1,5 +1,6 @@
 module Tweet
   def self.tweet(user, watched_tv)
+    return if user.setting.nil?
     return unless user.setting.is_tweet?
     begin
       credentials = JSON.parse(user.social_profile.credentials)

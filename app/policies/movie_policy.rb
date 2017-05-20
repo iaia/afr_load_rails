@@ -5,6 +5,10 @@ class MoviePolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    can?(__method__)
+  end
+
   def index?
     true
   end
