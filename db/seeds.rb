@@ -8,7 +8,7 @@ yaml_ability.each do |role_name, domain_ability|
   role = Role.find_or_create_by(name: role_name)
   domain_ability.each do |domain, abilities|
     abilities.each do |ability|
-      role.abilities << Ability.find_or_create_by(domain: domain, ability: ability)
+      role.abilities.find_or_create_by(domain: domain, ability: ability)
       p "#{role_name} #{domain} #{ability}"
     end
   end
