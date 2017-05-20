@@ -11,9 +11,18 @@ admin:
     - edit
     - update
   actor:      
+    - new
+    - create
     - edit
     - update
   director:
+    - new
+    - create
+    - edit
+    - update
+  country:
+    - new
+    - create
     - edit
     - update
 

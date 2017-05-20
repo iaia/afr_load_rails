@@ -11,6 +11,11 @@ class DirectorsController < ApplicationController
     authorize @director
   end
 
+  def new
+    @director = Director.new
+    authorize @director
+  end
+
   def edit
     authorize @director
   end
