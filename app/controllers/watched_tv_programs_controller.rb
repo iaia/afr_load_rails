@@ -7,8 +7,9 @@ class WatchedTvProgramsController < ApplicationController
   # GET /watched_tv_programs
   # GET /watched_tv_programs.json
   def index
-    @watched_tv_programs =
-      WatchedTvProgram.where(user_id: @current_user.id)
+    @watched_tv_programs = WatchedTvProgram
+      .includes(:tv_program, tv_program: [:movie, movie: [:director]])
+      .where(user_id: @current_user.id)
     authorize @watched_tv_programs
   end
 
