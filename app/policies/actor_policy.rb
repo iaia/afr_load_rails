@@ -13,6 +13,14 @@ class ActorPolicy < ApplicationPolicy
     true
   end
 
+  def new?
+    can?(__method__)
+  end
+
+  def create?
+    can?(__method__)
+  end
+
   def edit?
     can?(__method__)
   end
