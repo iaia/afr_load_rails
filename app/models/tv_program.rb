@@ -25,7 +25,7 @@ class TvProgram < ActiveRecord::Base
       director: movie.director
     ) do |tv|
       tv.on_air_start = program.on_air_start
-      tv.on_air_end =  program.on_air_end
+      tv.on_air_end = program.on_air_end
       tv.title_ja = program.title_ja
       tv.released_year = program.released_year
       tv.country = movie.country

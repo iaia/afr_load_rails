@@ -3,8 +3,8 @@
 require_relative "comment_getter/twitter_getter"
 
 module CommentGetter
-  class CommentGetter 
-    def initialize(now, tv_info_name, provider_name)
+  class CommentGetter
+    def initialize(now, _tv_info_name, provider_name)
       p TvProgram.where(on_air_date: now..(now + Rational(1, 24))).to_sql
       @tv = TvProgram.where(on_air_date: now..(now + Rational(1, 24))).first
       @provider = CommentProvider.where(name: provider_name).first
@@ -38,30 +38,29 @@ module CommentGetter
     end
 
     def create_comment(status)
-      begin
-        p status
-        comment = Comment.find_or_create_by(
-          tv_program_id: @tv.id,
-          provider_id: @provider.id,
-          comment_id_on_provider: status.id_on_provider
-        )
-        comment.update_attributes(
-          body: status.body, 
-          user_name: status.user_name,
-          commented_time: status.commented_time)
-        comment.save
-        save_comment_contents(comment, status)
-
-      rescue => ex
-        p "failed insert. #{ex.message}"
-      end
+      p status
+      comment = Comment.find_or_create_by(
+        tv_program_id: @tv.id,
+        provider_id: @provider.id,
+        comment_id_on_provider: status.id_on_provider
+      )
+      comment.update_attributes(
+        body: status.body,
+        user_name: status.user_name,
+        commented_time: status.commented_time
+      )
+      comment.save
+      save_comment_contents(comment, status)
+    rescue => ex
+      p "failed insert. #{ex.message}"
     end
 
     def save_comment_contents(comment, status)
       status.contents.each do |media|
         expanded_url = media.media_url_https? ? media.media_url_https : media.expanded_url
         comment.contents << CommentContent.find_or_create_by(
-          url: media.uri.to_s, expanded_url: expanded_url.to_s)
+          url: media.uri.to_s, expanded_url: expanded_url.to_s
+        )
       end
     end
   end

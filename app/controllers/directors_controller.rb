@@ -54,7 +54,7 @@ class DirectorsController < ApplicationController
 
   def director_params_on_create
     params.require(:director).permit(
-      :name, :name_ja,
+      :name, :name_ja
     )
   end
 end

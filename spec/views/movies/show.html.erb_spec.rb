@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "movies/show", type: :view do
   before(:each) do
-    @movie = assign(:movie, Movie.create!())
+    @movie = assign(:movie, Movie.create!)
   end
 
   it "renders attributes in <p>" do

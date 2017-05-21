@@ -85,10 +85,10 @@ class UsersController < ApplicationController
   end
 
   def user_params_on_create
-    params.require(:user).permit(:name, :nickname, setting_attributes: [:is_tweet, :is_post_on_facebook])
+    params.require(:user).permit(:name, :nickname, setting_attributes: %i[is_tweet is_post_on_facebook])
   end
 
   def user_params
-    params.require(:user).permit(:nickname, setting_attributes: [:is_tweet, :is_post_on_facebook])
+    params.require(:user).permit(:nickname, setting_attributes: %i[is_tweet is_post_on_facebook])
   end
 end

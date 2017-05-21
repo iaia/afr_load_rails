@@ -36,7 +36,7 @@ class RecordedsController < ApplicationController
       if @recorded.save
         format.html do
           redirect_to @recorded,
-            notice: "Recorded was successfully created."
+                      notice: "Recorded was successfully created."
         end
         format.js do
         end
@@ -58,7 +58,7 @@ class RecordedsController < ApplicationController
       if @recorded.update_attributes(recorded_params)
         format.html do
           redirect_to @recorded,
-            notice: "Recorded was successfully updated."
+                      notice: "Recorded was successfully updated."
         end
         format.js do
         end
@@ -80,7 +80,7 @@ class RecordedsController < ApplicationController
     respond_to do |format|
       format.html do
         redirect_to recordeds_url,
-          notice: "Recorded was successfully destroyed."
+                    notice: "Recorded was successfully destroyed."
       end
       format.js do
       end

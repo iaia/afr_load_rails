@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "countries/new", type: :view do
   before(:each) do
-    assign(:country, Country.new())
+    assign(:country, Country.new)
   end
 
   it "renders new country form" do
