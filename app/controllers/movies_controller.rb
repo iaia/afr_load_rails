@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[show edit update]
+  before_action :set_movie, only: %i[show edit update destroy]
   after_action :verify_authorized
 
   def index
@@ -13,9 +13,8 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(movie_params_on_create)
+    @movie = Movie.new(movie_params)
     authorize @movie
-    return
 
     respond_to do |format|
       if @movie.save
@@ -45,6 +44,18 @@ class MoviesController < ApplicationController
     redirect_to @movie, notice: "saved" if @movie.update_attributes(movie_params)
   end
 
+    # DELETE /users/1
+  # DELETE /users/1.json
+  def destroy
+    authorize @movie
+    @movie.destroy
+    respond_to do |format|
+      format.html do
+        redirect_to movies_url, notice: "Movie was successfully destroyed."
+      end
+    end
+  end
+
   private
 
   def set_movie
@@ -52,10 +63,6 @@ class MoviesController < ApplicationController
   end
 
   def movie_params
-    params.require(:movie).permit(:title, :title_ja, :released_year)
-  end
-
-  def movie_params_on_create
     params.require(:movie).permit(
       :title, :title_ja,
       :director_id, :country_id,

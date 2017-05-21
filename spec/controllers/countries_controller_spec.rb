@@ -78,14 +78,15 @@ RSpec.describe CountriesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "america2"
+        }
       }
 
       it "updates the requested country" do
         country = Country.create! valid_attributes
         put :update, params: {id: country.to_param, country: new_attributes}, session: valid_session
         country.reload
-        skip("Add assertions for updated state")
       end
 
       it "redirects to the country" do

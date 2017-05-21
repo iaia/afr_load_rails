@@ -28,4 +28,8 @@ class CountryPolicy < ApplicationPolicy
   def update?
     can?(__method__)
   end
+
+  def destroy?
+    can?(__method__)
+  end
 end
