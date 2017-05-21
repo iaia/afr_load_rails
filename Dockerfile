@@ -19,21 +19,8 @@ RUN bundle exec whenever --update-crontab
 RUN apt-get update
 RUN apt-get install -y zsh
 RUN chsh -s $(which zsh)
+RUN apt-get install -y less
 RUN apt-get install -y vim
 RUN apt-get install -y git
 RUN apt-get install -y curl
-RUN git clone https://github.com/iaia/dotfiles.git ~/dotfiles
-RUN ln -sd ~/dotfiles/.vim/ ~/.vim
-RUN ln -s ~/dotfiles/.vimrc ~/.vimrc
-RUN ln -s ~/dotfiles/.zshrc ~/.zshrc
-RUN ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-RUN mkdir ~/dotfiles/.vim
-RUN mkdir ~/dotfiles/.vim/.vimundo
-RUN curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/dotfiles/installer.sh 
-RUN sh ~/dotfiles/installer.sh ~/.vim/dein
-RUN rm ~/dotfiles/installer.sh
-RUN mkdir ~/.ssh/id_rsa
-ADD ~/.ssh/id_rsa ~/.ssh/id_rsa
-ADD ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub
-ADD ~/.ssh/config ~/.ssh/config
 
