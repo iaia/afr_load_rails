@@ -73,7 +73,6 @@ class UsersController < ApplicationController
       format.html do
         redirect_to users_url, notice: "User was successfully destroyed."
       end
-      format.json { head :no_content }
     end
   end
 
