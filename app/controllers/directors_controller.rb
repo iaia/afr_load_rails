@@ -19,7 +19,6 @@ class DirectorsController < ApplicationController
   def create
     @director = Director.new(director_params_on_create)
     authorize @director
-    return
 
     respond_to do |format|
       if @director.save
@@ -31,7 +30,6 @@ class DirectorsController < ApplicationController
       end
     end
   end
-
 
   def edit
     authorize @director
