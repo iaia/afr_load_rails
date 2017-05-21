@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "countries/edit", type: :view do
   before(:each) do
-    @country = assign(:country, Country.create!())
+    @country = assign(:country, Country.create!)
   end
 
   it "renders the edit country form" do

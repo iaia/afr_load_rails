@@ -6,9 +6,9 @@ class WatchedMoviesController < ApplicationController
   # GET /watched_movies.json
   def index
     @watched_movies = WatchedMovie
-      .order(watched_date: "DESC")
-      .includes(:movie, movie: [:director])
-      .where(user_id: @current_user.id)
+                      .order(watched_date: "DESC")
+                      .includes(:movie, movie: [:director])
+                      .where(user_id: @current_user.id)
     authorize @watched_movies
   end
 
@@ -23,7 +23,7 @@ class WatchedMoviesController < ApplicationController
       if @watched_movie.save
         format.html do
           redirect_to @watched_movie,
-            notice: "Watched movie was successfully created."
+                      notice: "Watched movie was successfully created."
         end
         format.json { render :show, status: :created, location: @watched_movie }
         format.js do
@@ -48,7 +48,7 @@ class WatchedMoviesController < ApplicationController
       if @watched_movie.update_attributes(update_watched_movie_params)
         format.html do
           redirect_to @watched_movie,
-            notice: "Watched movie was successfully updated."
+                      notice: "Watched movie was successfully updated."
         end
         format.json { render :show, status: :ok, location: @watched_movie }
         format.js do
@@ -72,7 +72,7 @@ class WatchedMoviesController < ApplicationController
     respond_to do |format|
       format.html do
         redirect_to watched_movies_url,
-          notice: "Watched movie was successfully destroyed."
+                    notice: "Watched movie was successfully destroyed."
       end
       format.json { head :no_content }
       format.js do

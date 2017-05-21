@@ -4,9 +4,7 @@ module CommentGetter
 
     def initialize(tv_info_name, tv)
       tv_program_info = TvProgramInfomation.where(name: tv_info_name).first
-      if tv_program_info.nil? or tv.nil?
-        return
-      end
+      return if tv_program_info.nil? or tv.nil?
       @topics = tv_program_info.topics.pluck(:term)
       @oa_start = tv.on_air_start
       @oa_end = tv.on_air_end

@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "movies/new", type: :view do
   before(:each) do
-    assign(:movie, Movie.new())
+    assign(:movie, Movie.new)
   end
 
   it "renders new movie form" do

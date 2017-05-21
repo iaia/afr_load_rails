@@ -44,7 +44,7 @@ class MoviesController < ApplicationController
     redirect_to @movie, notice: "saved" if @movie.update_attributes(movie_params)
   end
 
-    # DELETE /users/1
+  # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     authorize @movie

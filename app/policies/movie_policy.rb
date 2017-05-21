@@ -21,7 +21,6 @@ class MoviePolicy < ApplicationPolicy
     can?(__method__)
   end
 
-
   def edit?
     can?(__method__)
   end

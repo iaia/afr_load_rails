@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 require "rails_helper"
 require "rake"
 
@@ -15,7 +16,7 @@ describe "fetch_afr_load" do
 
   describe "get_afr_load_comment" do
     it "returns hoge" do
-      @rake["fetch_afr_load:fetch_afr_load"].execute()
+      @rake["fetch_afr_load:fetch_afr_load"].execute
     end
   end
 end

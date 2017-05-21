@@ -51,6 +51,7 @@ class ActorsController < ApplicationController
   end
 
   private
+
   def set_actor
     @actor = Actor.find(params[:id])
   end
