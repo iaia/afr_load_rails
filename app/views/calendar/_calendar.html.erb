@@ -26,6 +26,11 @@
                 <tr>
                   <td>コメント数</td><td><%= program.comments.count %></td>
                 </tr>
+                <% if policy(program).edit? %>
+                  <tr>
+                    <td>delete</td><td><%= link_to "delete", tv_program_path(program), method: :delete, confirm: "削除しますか?" %></td>
+                  </tr>
+                <% end %>
               </table>
             </div>
             <div class="modal-footer">

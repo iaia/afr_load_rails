@@ -7,4 +7,20 @@ class TvProgramPolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def show?
+    true
+  end
+
+  def destroy?
+    can?(__method__)
+  end
+
+  def update?
+    can?(__method__)
+  end
+
+  def edit?
+    can?(__method__)
+  end
 end

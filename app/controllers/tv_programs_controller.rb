@@ -1,5 +1,6 @@
 class TvProgramsController < ApplicationController
   before_action :nil_guard
+  before_action :set_tv_program, only: %i[show edit update destroy]
   after_action :verify_authorized
 
   def index
@@ -7,6 +8,16 @@ class TvProgramsController < ApplicationController
     @programs = TvProgram.get_by(@start_date)
     Recorded.create_user_tvs(@programs, @current_user) if @current_user
     authorize @programs
+  end
+
+  def destroy
+    authorize @program
+    @program.destroy
+    respond_to do |format|
+      format.html do
+        redirect_to tv_programs_url, notice: "Program was successfully destroyed."
+      end
+    end
   end
 
   def self.make_year_and_month(year, month)
@@ -31,5 +42,9 @@ class TvProgramsController < ApplicationController
 
   def nil_guard
     @programs ||= []
+  end
+
+  def set_tv_program
+    @program = TvProgram.find(params[:id])
   end
 end

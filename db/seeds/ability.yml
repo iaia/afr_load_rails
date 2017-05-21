@@ -29,6 +29,10 @@ admin:
     - edit
     - update
     - destroy
+  tv_program:
+    - edit
+    - update
+    - destroy
 
 user:
   user:
