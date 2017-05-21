@@ -5,10 +5,6 @@ class MoviePolicy < ApplicationPolicy
     end
   end
 
-  def new?
-    can?(__method__)
-  end
-
   def index?
     true
   end
@@ -16,6 +12,15 @@ class MoviePolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def new?
+    can?(__method__)
+  end
+
+  def create?
+    can?(__method__)
+  end
+
 
   def edit?
     can?(__method__)

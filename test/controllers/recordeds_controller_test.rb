@@ -63,7 +63,7 @@ class RecordedsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create recorded by another user" do
     set_another_user
-    assert_raise(Pundit::NotAuthorizedError) do
+    assert_raise(Pundit::NotAuthorizedError, "aaa") do
       post recordeds_url,
            params:
            {

@@ -16,7 +16,6 @@ class RoleTvProgramFlowsTest < ActionDispatch::IntegrationTest
     @user.role.abilities << abilities(:five)
     @user.role.abilities << abilities(:six)
     @user.role.abilities << abilities(:seven)
-    @user.role.abilities << abilities(:seven)
     @user.role.abilities << abilities(:eight)
 
     @user.save

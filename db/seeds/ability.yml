@@ -10,21 +10,25 @@ admin:
     - create
     - edit
     - update
+    - destroy
   actor:      
     - new
     - create
     - edit
     - update
+    - destroy
   director:
     - new
     - create
     - edit
     - update
+    - destroy
   country:
     - new
     - create
     - edit
     - update
+    - destroy
 
 user:
   user:

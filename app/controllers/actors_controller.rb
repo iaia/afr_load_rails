@@ -1,5 +1,5 @@
 class ActorsController < ApplicationController
-  before_action :set_actor, only: %i[show edit update]
+  before_action :set_actor, only: %i[show edit update destroy]
   after_action :verify_authorized
 
   def index
@@ -23,7 +23,6 @@ class ActorsController < ApplicationController
   def create
     @actor = Actor.new(actor_params)
     authorize @actor
-    return
 
     respond_to do |format|
       if @actor.save
@@ -38,7 +37,17 @@ class ActorsController < ApplicationController
 
   def update
     authorize @actor
-    redirect_to @actor, notice: "saved" if @actor.update_attributes(user_params)
+    redirect_to @actor, notice: "saved" if @actor.update_attributes(actor_params)
+  end
+
+  def destroy
+    authorize @actor
+    @actor.destroy
+    respond_to do |format|
+      format.html do
+        redirect_to actors_url, notice: "Actor was successfully destroyed."
+      end
+    end
   end
 
   private
