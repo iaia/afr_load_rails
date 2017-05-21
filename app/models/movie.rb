@@ -29,7 +29,9 @@ class Movie < ActiveRecord::Base
       m.title_ja = title_ja
       m.story = ""
       actors.each do |actor|
-        m.actors << actor
+        if not m.actors.exist?(actor)
+          m.actors << actor
+        end
       end
     end
     movie
