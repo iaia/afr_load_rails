@@ -3,12 +3,22 @@ require 'rails_helper'
 RSpec.describe CountriesController, type: :controller do
 
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "america"
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: ""
+    }
   }
+
+  before :each do
+    user = User.where(role_id: 3).first 
+    session[:user_id] = user.id
+    redirect_to "/auth/twitter/callback"
+  end
 
   let(:valid_session) { {} }
 
@@ -60,7 +70,7 @@ RSpec.describe CountriesController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: {country: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).not_to be_success
       end
     end
   end
@@ -89,7 +99,7 @@ RSpec.describe CountriesController, type: :controller do
       it "returns a success response (i.e. to display the 'edit' template)" do
         country = Country.create! valid_attributes
         put :update, params: {id: country.to_param, country: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        expect(response).not_to be_success
       end
     end
   end
