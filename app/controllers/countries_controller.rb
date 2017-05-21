@@ -75,6 +75,6 @@ class CountriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def country_params
-    params.fetch(:country, :name)
+    params.require(:country).permit(:name)
   end
 end
