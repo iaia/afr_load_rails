@@ -20,12 +20,12 @@ class TvProgram < ActiveRecord::Base
 
   def self.add(program, movie)
     TvProgram.find_or_create_by(
-      on_air_date: make_date_type(program.on_air_date),
       title: program.title,
-      director: movie.director
+      director: movie.director,
+      on_air_start: program.on_air_start,
+      on_air_end: program.on_air_end
     ) do |tv|
-      tv.on_air_start = program.on_air_start
-      tv.on_air_end = program.on_air_end
+      tv.on_air_date = make_date_type(program.on_air_date),
       tv.title_ja = program.title_ja
       tv.released_year = program.released_year
       tv.country = movie.country

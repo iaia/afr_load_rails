@@ -14,7 +14,8 @@ class Movie < ActiveRecord::Base
     # [leading_actor, supporting_actor]
     actors = Actor.add_by_tv_program(program)
     add(program.title, program.title_ja,
-        director, program.released_year, country, actors)
+        director, program.released_year, country, actors
+       )
   end
 
   def self.add(title, title_ja, director, year, country, actors)
@@ -22,9 +23,11 @@ class Movie < ActiveRecord::Base
       title: title,
       director: director,
       released_year: year,
+      released_country: country.id,
       country: country
     )
     movie.title_ja = title_ja
+    movie.story = ""
 
     actors.each do |actor|
       movie.actors << actor
