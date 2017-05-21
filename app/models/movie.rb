@@ -25,15 +25,13 @@ class Movie < ActiveRecord::Base
       released_year: year,
       released_country: country.id,
       country: country
-    )
-    movie.title_ja = title_ja
-    movie.story = ""
-
-    actors.each do |actor|
-      movie.actors << actor
+    ) do |m|
+      m.title_ja = title_ja
+      m.story = ""
+      actors.each do |actor|
+        m.actors << actor
+      end
     end
-
-    movie.save
     movie
   end
 
