@@ -79,3 +79,5 @@ gem "chartkick"
 gem "groupdate"
 
 gem "twitter"
+
+gem "countries"
