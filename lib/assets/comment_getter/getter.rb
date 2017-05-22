@@ -6,8 +6,8 @@ module CommentGetter
       tv_program_info = TvProgramInfomation.where(name: tv_info_name).first
       return if tv_program_info.nil? or tv.nil?
       @topics = tv_program_info.topics.pluck(:term)
-      @oa_start = tv.on_air_start
-      @oa_end = tv.on_air_end
+      @oa_start = tv.oa_start
+      @oa_end = tv.oa_end
       @on_air_time = ((@oa_end - @oa_start) / 60).to_i
     end
   end
