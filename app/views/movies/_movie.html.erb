@@ -6,7 +6,9 @@
 <br />
 監督 <%= link_to movie.director.name_ja, movie.director %>
 <%= movie.released_year %>
-<%= movie.country.name %>
+<% movie.countries.each do |country| %>
+  <%= country.name %> <br />
+<% end %>
 <br />
 <% movie.actors.each do |actor| %>
     <%= link_to actor.name_ja, actor %> <br />

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movie_countries
   root to: "tv_programs#index"
 
   resources :actor_thumbnails

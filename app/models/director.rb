@@ -7,7 +7,4 @@ class Director < ActiveRecord::Base
     self.name_ja ||= "no name"
   end
 
-  def self.add_by_tv_program(program)
-    Director.find_or_create_by(name_ja: program.movie_director)
-  end
 end
