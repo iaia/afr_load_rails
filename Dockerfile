@@ -1,4 +1,5 @@
 FROM ruby:2.3.3
+ENV LANG C.UTF-8
 
 # rails
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
@@ -24,7 +25,3 @@ RUN apt-get install -y vim
 RUN apt-get install -y git
 RUN apt-get install -y curl
 
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
