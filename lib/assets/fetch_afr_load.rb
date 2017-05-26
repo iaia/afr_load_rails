@@ -29,31 +29,7 @@ class FetchAfrLoad
     TvProgram.find_or_create_by(
       movie: movie,
       on_air_start: program.on_air_start,
-      on_air_end: program.on_air_end,
-      on_air_date: make_date_type(program.on_air_date),
-      released_year: program.released_year
+      on_air_end: program.on_air_end
     )
-  end
-
-  def make_date_type(on_air_date)
-    # 月/日[曜日]の形
-    # とりあえず今月の+-1ヶ月分しか見えないはず
-    # 今月の-+=で年月日は分かる
-    now = Time.zone.now
-    on_air_time = parse_on_air_date(now.year, on_air_date)
-
-    if (on_air_time - now).to_i > 6 * 31 * 24 * 60 * 60
-      on_air_time.year - 1
-    elsif (on_air_time - now).to_i < -1 * 6 * 31 * 24 * 60 * 60
-      on_air_time.year + 1
-    else
-      on_air_time
-    end
-  end
-
-  def parse_on_air_date(year, on_air_date)
-    on_air_month = on_air_date.match(/(.*)\//)[1]
-    on_air_day = on_air_date.match(/.*\/(.*)\[.*\]/)[1]
-    Time.zone.local(year, on_air_month, on_air_day)
   end
 end

@@ -6,7 +6,6 @@ RSpec.describe MoviesController, type: :controller do
       title: "THE TUXEDO",
       title_ja: "タキシード",
       director_id: 1,
-      country_id: 1,
       released_year: 2002,
       released_country: 1,
       story: "arasuji"
@@ -18,8 +17,7 @@ RSpec.describe MoviesController, type: :controller do
       title: "",
       title_ja: "タキシード",
       director: 1,
-      released_year: 2002,
-      country_id: 1
+      released_year: 2002
     }
   end
 
@@ -91,9 +89,7 @@ RSpec.describe MoviesController, type: :controller do
           title: "THE TUXEDO2",
           title_ja: "タキシード2",
           director_id: 1,
-          country_id: 1,
           released_year: 2012,
-          released_country: 1,
           story: "arasuji2"
         }
       end
