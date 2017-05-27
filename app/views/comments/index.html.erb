@@ -18,8 +18,8 @@
 </div>
 
 <div class="comments-status" style="float:clear; left:50%; position:fixed; z-index:1; padding:10px; height: 300px; width: 50%;">
-  <h2><%= @tv.title_ja %></h2>
-  <h3><%= @tv.title %></h3>
+  <h2><%= @tv.movie.title_ja %></h2>
+  <h3><%= @tv.movie.title %></h3>
   <p>開始: <%= @tv.oa_start.to_s(:datetime_ja) %></p>
   <p>終了: <%= @tv.oa_end.to_s(:datetime_ja) %></p>
   総コメント数: <%= @tv.comments.count %>
@@ -39,6 +39,7 @@ function refreshSwatch() {
 
 $(function() {
   var sliderMax = document.documentElement.scrollHeight;//$(window).height();
+  sliderMax *= 1.5;
   $("#slider").slider({
     orientation: "horizontal",
     range: "min",

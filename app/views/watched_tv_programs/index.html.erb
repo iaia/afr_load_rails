@@ -15,8 +15,8 @@
   <tbody>
     <% @watched_tv_programs.each do |watched_tv| %>
       <tr>
-        <td><%= link_to watched_tv.tv_program.title_ja, movie_path(watched_tv.tv_program.movie) %></td>
-        <td><%= watched_tv.tv_program.title %></td>
+        <td><%= link_to watched_tv.tv_program.movie.title_ja, movie_path(watched_tv.tv_program.movie) %></td>
+        <td><%= watched_tv.tv_program.movie.title %></td>
         <td><%= watched_tv.tv_program.movie.director.name_ja %></td>
         <td><%= watched_tv.watched_date.to_s(:date_ja) %></td>
       </tr>

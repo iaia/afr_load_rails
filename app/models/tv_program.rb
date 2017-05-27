@@ -8,8 +8,7 @@ class TvProgram < ActiveRecord::Base
   alias_attribute :oa_end, :on_air_end
 
   def self.get_by(date)
-    TvProgram.where(on_air_date: date.beginning_of_month..date.end_of_month)
-             .includes(%i[director leading_actor supporting_actor])
+    TvProgram.includes(:movie).where(on_air_start: date.beginning_of_month..date.end_of_month)
   end
 
   def start_time
