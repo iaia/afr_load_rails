@@ -45,6 +45,7 @@ group :development, :test do
   gem "guard-minitest"
 
   gem "rspec-rails"
+  gem "factory_girl_rails"
 end
 
 group :development do
@@ -61,7 +62,6 @@ end
 gem "afr_load", ">= 0.1.5"
 
 gem "simple_calendar", "~> 2.0"
-
 gem "bootstrap-sass"
 
 gem "omniauth"
@@ -71,7 +71,6 @@ gem "omniauth-google-oauth2"
 gem "omniauth-twitter"
 
 gem "pundit"
-gem "tweetstream"
 
 gem "whenever", :require => false
 
@@ -79,5 +78,6 @@ gem "chartkick"
 gem "groupdate"
 
 gem "twitter"
+gem "tweetstream"
 
 gem "countries"

@@ -1,37 +1,27 @@
 require "rails_helper"
 
 RSpec.describe MoviesController, type: :controller do
+  let(:valid_movie) do
+    create(:movie)
+  end
+
   let(:valid_attributes) do
-    {
-      title: "THE TUXEDO",
-      title_ja: "タキシード",
-      director_id: 1,
-      released_year: 2002,
-      released_country: 1,
-      story: "arasuji"
-    }
+    attributes_for(:movie)
   end
 
   let(:invalid_attributes) do
-    {
-      title: "",
-      title_ja: "タキシード",
-      director: 1,
-      released_year: 2002
-    }
+    attributes_for(:movie, title: "")
   end
 
-  let(:valid_session) { {} }
-
-  before :each do
-    user = User.where(role_id: 3).first
-    session[:user_id] = user.id
-    redirect_to "/auth/twitter/callback"
+  let(:valid_session) do
+    user = create(:admin)
+    {user_id: user.id}
   end
+
 
   describe "GET #index" do
     it "returns a success response" do
-      movie = Movie.create! valid_attributes
+      movie = valid_movie
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -39,7 +29,7 @@ RSpec.describe MoviesController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      movie = Movie.create! valid_attributes
+      movie = valid_movie
       get :show, params: { id: movie.to_param }, session: valid_session
       expect(response).to be_success
     end
@@ -54,13 +44,18 @@ RSpec.describe MoviesController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      movie = Movie.create! valid_attributes
+      movie = valid_movie
       get :edit, params: { id: movie.to_param }, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
+    let(:valid_attributes) do
+      attributes_for(:movie)
+    end
+
+
     context "with valid params" do
       it "creates a new Movie" do
         expect do
@@ -86,22 +81,19 @@ RSpec.describe MoviesController, type: :controller do
     context "with valid params" do
       let(:new_attributes) do
         {
-          title: "THE TUXEDO2",
-          title_ja: "タキシード2",
-          director_id: 1,
-          released_year: 2012,
-          story: "arasuji2"
+          title: "Back to the Future 2",
+          title_ja: "バック・トゥ・ザ・フューチャー2"
         }
       end
 
       it "updates the requested movie" do
-        movie = Movie.create! valid_attributes
+        movie = valid_movie
         put :update, params: { id: movie.to_param, movie: new_attributes }, session: valid_session
         movie.reload
       end
 
       it "redirects to the movie" do
-        movie = Movie.create! valid_attributes
+        movie = valid_movie
         put :update, params: { id: movie.to_param, movie: valid_attributes }, session: valid_session
         expect(response).to redirect_to(movie)
       end
@@ -109,7 +101,7 @@ RSpec.describe MoviesController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        movie = Movie.create! valid_attributes
+        movie = valid_movie
         put :update, params: { id: movie.to_param, movie: invalid_attributes }, session: valid_session
         expect(response).not_to be_success
       end
@@ -118,14 +110,14 @@ RSpec.describe MoviesController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested movie" do
-      movie = Movie.create! valid_attributes
+      movie = valid_movie
       expect do
         delete :destroy, params: { id: movie.to_param }, session: valid_session
       end.to change(Movie, :count).by(-1)
     end
 
     it "redirects to the movies list" do
-      movie = Movie.create! valid_attributes
+      movie = valid_movie
       delete :destroy, params: { id: movie.to_param }, session: valid_session
       expect(response).to redirect_to(movies_url)
     end

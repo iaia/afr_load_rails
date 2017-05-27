@@ -11,7 +11,7 @@ class FetchAfrLoad
         director: director, released_year: program.released_year
       ) do |m|
         m.title_ja = program.title_ja
-        m.actors.find_or_create_by(actors)
+        m.actors = actors
         m.story = ""
       end
       MovieCountry.split_and_create(movie, program.released_country)
