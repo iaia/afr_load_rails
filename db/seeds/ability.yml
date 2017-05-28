@@ -33,6 +33,12 @@ admin:
     - edit
     - update
     - destroy
+  movie_country:
+    - new
+    - create
+    - edit
+    - update
+    - destroy
 
 user:
   user:

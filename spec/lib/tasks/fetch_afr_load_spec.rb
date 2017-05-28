@@ -15,7 +15,7 @@ describe "fetch_afr_load" do
   end
 
   describe "get_afr_load_comment" do
-    it "returns hoge" do
+    it "returns hoge", skip: true do
       @rake["fetch_afr_load:fetch_afr_load"].execute
     end
   end

@@ -1,7 +1,26 @@
-<%= director.name_ja %>
-<%= director.name %>
-<br />
-<% director.movies.each do |movie| %>
-    <%= link_to movie.title_ja, movie %> <br />
-<% end %>
+<div class="director-thumbnails" style="width:320px; float:left; padding-left:15px;">
+<img src="" class="img-fluid" width="300px" height="400px" />
+</div>
+
+<div class="director-info" style="float:left; padding-left:10px;">
+  <table class="table">
+    <tr>
+      <th>名前</th>
+      <td><%= director.name_ja %></td>
+    </tr>
+    <tr>
+      <th>名前</th>
+      <td><%= director.name %></td>
+    </tr>
+    <tr>
+      <th>作品</th>
+      <td>
+        <% director.movies.each do |movie| %>
+          <%= link_to movie.title_ja, movie %> <br />
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
 

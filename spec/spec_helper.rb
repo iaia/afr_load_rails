@@ -8,4 +8,10 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.before(:suite) do
+    require Rails.root.join("db", "seeds")
+  end
+
+  config.filter_run_excluding skip: true
 end

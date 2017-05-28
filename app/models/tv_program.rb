@@ -1,9 +1,5 @@
 class TvProgram < ActiveRecord::Base
-  belongs_to :director
   belongs_to :movie
-  belongs_to :country
-  belongs_to :leading_actor, class_name: "Actor"
-  belongs_to :supporting_actor, class_name: "Actor"
   has_one :watched, class_name: "WatchedTvProgram"
   has_one :recorded
   has_many :comments
@@ -11,58 +7,15 @@ class TvProgram < ActiveRecord::Base
   alias_attribute :oa_start, :on_air_start
   alias_attribute :oa_end, :on_air_end
 
-  after_initialize do
-    build_director if director.nil?
-    build_country if country.nil?
-    build_leading_actor if leading_actor.nil?
-    build_supporting_actor if supporting_actor.nil?
-  end
-
-  def self.add(program, movie)
-    TvProgram.find_or_create_by(
-      title: program.title,
-      director: movie.director,
-      on_air_start: program.on_air_start,
-      on_air_end: program.on_air_end
-    ) do |tv|
-      tv.on_air_date = make_date_type(program.on_air_date)
-      tv.title_ja = program.title_ja
-      tv.released_year = program.released_year
-      tv.country = movie.country
-      tv.leading_actor = movie.actors[0]
-      tv.supporting_actor = movie.actors[1]
-      tv.movie = movie
-    end
-  end
-
-  def self.make_date_type(on_air_date)
-    # 月/日[曜日]の形
-    # とりあえず今月の+-1ヶ月分しか見えないはず
-    # 今月の-+=で年月日は分かる
-    now = Time.zone.now
-    on_air_time = parse_on_air_date(now.year, on_air_date)
-
-    if (on_air_time - now).to_i > 6 * 31 * 24 * 60 * 60
-      on_air_time.year - 1
-    elsif (on_air_time - now).to_i < -1 * 6 * 31 * 24 * 60 * 60
-      on_air_time.year + 1
-    else
-      on_air_time
-    end
-  end
-
-  def self.parse_on_air_date(year, on_air_date)
-    on_air_month = on_air_date.match(/(.*)\//)[1]
-    on_air_day = on_air_date.match(/.*\/(.*)\[.*\]/)[1]
-    Time.zone.local(year, on_air_month, on_air_day)
-  end
-
   def self.get_by(date)
-    TvProgram.where(on_air_date: date.beginning_of_month..date.end_of_month)
-             .includes(%i[director country leading_actor supporting_actor])
+    TvProgram.includes(:movie).where(on_air_start: date.beginning_of_month..date.end_of_month)
   end
 
   def start_time
-    on_air_date
+    on_air_start
+  end
+
+  def end_time
+    on_air_end
   end
 end

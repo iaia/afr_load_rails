@@ -12,7 +12,7 @@
   <% end %>
 
   <% directors = Director.order(:name_ja).all.pluck(:name_ja, :id) %>
-  <% countries = Country.order(:name).all.pluck(:name, :id) %>
+  <% countries = ISO3166::Country.all.map do |c| [c.translated_names.join(" "), c.number]; end %>
   <div class="form-group">
     <label for="editTitle">原題</label>
     <%= f.text_field :title, id: "editTitle", class: "form-control", placeholder: "Back to the Future" %>
@@ -30,17 +30,12 @@
 
   <div class="form-group">
     <label for="editCountry">製作国</label>
-    <%= f.select :country_id, countries, {include_blank: true}, {id: "editCountry", class: "form-control"} %>
+    <%= f.select :countries, countries, {include_blank: true}, {id: "editCountry", class: "form-control"} %>
   </div>
 
   <div class="form-group">
     <label for="editReleasedYear">公開年</label>
     <%= f.text_field :released_year, id: "editReasedYear", class: "form-control", placeholder: "1985" %>
-  </div>
-
-  <div class="form-group">
-    <label for="editReleasedCountry">公開国</label>
-    <%= f.select :released_country, countries, {include_blank: true}, {id: "editReleasedCountry", class: "form-control"} %>
   </div>
 
   <div class="form-group">

@@ -3,7 +3,7 @@
 
   <% programs.each do |program| %>
     <div>
-      <%= link_to program.title_ja, movie_path(program) %>
+      <%= link_to program.movie.title_ja, movie_path(program.movie) %>
       <a class="glyphicon glyphicon-list-alt" href="#staticModal<%= program.id %>" data-toggle="modal"></a>
 
       <div class="modal" id="staticModal<%= program.id %>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">
@@ -13,7 +13,7 @@
               <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&#215;</span><span class="sr-only">閉じる</span>
               </button>
-              <h4 class="modal-title"><%= program.title_ja %> (<%= program.title %>)</h4>
+              <h4 class="modal-title"><%= program.movie.title_ja %> (<%= program.movie.title %>)</h4>
             </div><!-- /modal-header -->
             <div class="modal-body">
               <table class="table table-condensed">

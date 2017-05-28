@@ -9,10 +9,7 @@ yaml_ability.each do |role_name, domain_ability|
   domain_ability.each do |domain, abilities|
     abilities.each do |ability|
       p "#{role_name} #{domain} #{ability}"
-      ability = Ability.find_or_create_by(domain: domain, ability: ability)
-      if not role.abilities.exists?(ability)
-        role.abilities << ability
-      end
+      role.abilities.where(domain: domain, ability: ability).first_or_create
     end
   end
   p role.abilities.pluck(:domain, :ability)
@@ -32,7 +29,7 @@ yaml_topics = YAML.load_file("#{File.dirname(__FILE__)}/seeds/topics.yml")
 yaml_topics.each do |tv_name, terms|
   tv_info = TvProgramInfomation.where(name: tv_name).first
   terms.each do |term|
-    tv_info.topics.find_or_create_by(term: term)
+    tv_info.topics.where(term: term).first_or_create
     p "#{tv_name} #{term}"
   end
   tv_info.save!

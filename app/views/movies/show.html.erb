@@ -1,5 +1,7 @@
 <%= render "movie", movie: @movie, user: @current_user %>
 
+<div style="clear:both;">
 <% if policy(@movie).update? %>
     <%= link_to "edit", [:edit, @movie] %>
 <% end %>
+</div>

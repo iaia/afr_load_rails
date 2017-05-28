@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518163654) do
+ActiveRecord::Schema.define(version: 20170526192630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "abilities", force: :cascade do |t|
-    t.string   "domain"
-    t.string   "ability"
+    t.string   "domain",     null: false
+    t.string   "ability",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["domain", "ability"], name: "index_abilities_on_domain_and_ability", unique: true, using: :btree
   end
 
   create_table "actor_movies", force: :cascade do |t|
@@ -74,17 +75,18 @@ ActiveRecord::Schema.define(version: 20170518163654) do
     t.string   "comment_id_on_provider"
   end
 
-  create_table "countries", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "directors", force: :cascade do |t|
     t.string   "name"
     t.string   "name_ja"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "movie_countries", force: :cascade do |t|
+    t.integer  "movie_id",     null: false
+    t.string   "country_code", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "movie_thumbnails", force: :cascade do |t|
@@ -102,10 +104,8 @@ ActiveRecord::Schema.define(version: 20170518163654) do
   create_table "movies", force: :cascade do |t|
     t.string   "title"
     t.string   "title_ja"
-    t.integer  "director_id",      default: 0, null: false
-    t.integer  "country_id",       default: 0, null: false
-    t.integer  "released_year"
-    t.integer  "released_country", default: 0, null: false
+    t.integer  "director_id",   default: 0,    null: false
+    t.integer  "released_year", default: 1893, null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.string   "story"
@@ -118,17 +118,20 @@ ActiveRecord::Schema.define(version: 20170518163654) do
     t.boolean  "removed",       default: false, null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.index ["user_id", "tv_program_id"], name: "index_recordeds_on_user_id_and_tv_program_id", unique: true, using: :btree
   end
 
   create_table "role_abilities", force: :cascade do |t|
-    t.integer  "role_id"
-    t.integer  "ability_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "role_id"
+    t.integer  "ability_id"
+    t.index ["ability_id"], name: "index_role_abilities_on_ability_id", using: :btree
+    t.index ["role_id"], name: "index_role_abilities_on_role_id", using: :btree
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -166,17 +169,9 @@ ActiveRecord::Schema.define(version: 20170518163654) do
   end
 
   create_table "tv_programs", force: :cascade do |t|
-    t.datetime "on_air_date"
-    t.string   "title"
-    t.string   "title_ja"
-    t.integer  "director_id",         default: 0, null: false
-    t.integer  "released_year"
-    t.integer  "country_id",          default: 0, null: false
-    t.integer  "leading_actor_id",    default: 0, null: false
-    t.integer  "supporting_actor_id", default: 0, null: false
-    t.integer  "movie_id",            default: 0, null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.integer  "movie_id",     default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.datetime "on_air_start"
     t.datetime "on_air_end"
   end
@@ -205,6 +200,7 @@ ActiveRecord::Schema.define(version: 20170518163654) do
     t.datetime "watched_date"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.index ["user_id", "movie_id"], name: "index_watched_movies_on_user_id_and_movie_id", unique: true, using: :btree
   end
 
   create_table "watched_tv_programs", force: :cascade do |t|
@@ -215,7 +211,10 @@ ActiveRecord::Schema.define(version: 20170518163654) do
     t.datetime "watched_date"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.index ["user_id", "tv_program_id"], name: "index_watched_tv_programs_on_user_id_and_tv_program_id", unique: true, using: :btree
   end
 
+  add_foreign_key "role_abilities", "abilities"
+  add_foreign_key "role_abilities", "roles"
   add_foreign_key "social_profiles", "users"
 end
