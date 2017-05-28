@@ -10,7 +10,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    can?(__method__)
+    can?(__method__) and mine?
+  end
+
+  def edit?
+    can?(__method__) and mine?
   end
 
   def new?
@@ -22,7 +26,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    can?(__method__)
+    can?(__method__) and mine?(__method__)
   end
 
   def destroy?

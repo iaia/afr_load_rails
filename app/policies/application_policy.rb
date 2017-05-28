@@ -22,7 +22,7 @@ class ApplicationPolicy
       return false if record.where.not(user_id: user.id).count > 0
       true
     else
-      record.user_id == user.id
+      record.id == user.id
     end
   end
 
