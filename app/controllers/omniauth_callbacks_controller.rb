@@ -21,6 +21,6 @@ class OmniauthCallbacksController < ApplicationController
     profile = SocialProfile.find_for_oauth(auth)
     session[:user_id] = profile.user.id
 
-    redirect_to :root
+    redirect_to root_path
   end
 end

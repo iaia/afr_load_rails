@@ -15,7 +15,7 @@ class TvProgramsController < ApplicationController
     @program.destroy
     respond_to do |format|
       format.html do
-        redirect_to tv_programs_url, notice: "Program was successfully destroyed."
+        redirect_to :back, notice: "Program was successfully destroyed."
       end
     end
   end
