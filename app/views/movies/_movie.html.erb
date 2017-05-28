@@ -1,21 +1,59 @@
-<%= movie.thumbnails.each do |thumbnail| %>
-    <%= thumbnail.path %>
+<div class="movie-thumbnails" style="width:320px; float:left; padding-left:15px;">
+<% if movie.thumbnails.count > 0 %>
+  <% movie.thumbnails.each do |thumbnail| %>
+    <img src="<%= thumbnail.path %>" width="90%" />
+  <% end %>
+<% else %>
+  <img src="" class="img-fluid" width="300px" height="400px" />
 <% end %>
-<%= movie.title_ja %>
-<%= movie.title %>
-<br />
-監督 <%= link_to movie.director.name_ja, movie.director %>
-<%= movie.released_year %>
-<% movie.countries.each do |country| %>
-  <%= country.name %> <br />
-<% end %>
-<br />
-<% movie.actors.each do |actor| %>
-    <%= link_to actor.name_ja, actor %> <br />
+</div>
+
+<div class="movie-info" style="float:left; padding-left:10px;">
+
+  <% if user %>
+    <div id="<%= "watched_movie_#{movie.id}" %>">
+      <%= render "watched/watched_toggle",
+        watched: user.watched_movies.find_or_initialize_by(movie_id: movie.id),
+        user: user
+      %>
+  </div>
 <% end %>
 
-<% if user %>
-    <div id="<%= "watched_movie_#{movie.id}" %>">
-        <%= render "watched/watched_toggle", watched: user.watched_movies.find_or_initialize_by(movie_id: movie.id), user: user %>
-    </div>
-<% end %>
+<br />
+<table class="table">
+  <tr>
+    <th>邦題</th>
+    <td><%= movie.title_ja %></td>
+  </tr>
+  <tr>
+    <th>原題</th>
+    <td><%= movie.title %></td>
+  </tr>
+  <tr>
+    <th>監督</th>
+    <td><%= link_to movie.director.name_ja, movie.director %></td>
+  </tr>
+  <tr>
+    <th>公開</th>
+    <td><%= movie.released_year %></td>
+  </tr>
+  <tr>
+    <th>製作国</th>
+    <td>
+      <% movie.countries.each do |country| %>
+        <%= country.name %><br />
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>出演者</th>
+    <td>
+      <% movie.actors.each do |actor| %>
+        <%= link_to actor.name_ja, actor %><br />
+      <% end %>
+    </td>
+  </tr>
+</table>
+</div>
+</div>
+
