@@ -12,6 +12,8 @@
   <% end %>
 
   <div class="form-group">
+    <label for="role">role</label>
+    <p id="role"><%= user.role.name %></p>
     <label for="editName">name</label>
     <%= f.text_field :name, id: "editName", class: "form-control" %> <br />
     <label for="editNickname">nickname</label>
