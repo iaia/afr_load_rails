@@ -3,7 +3,7 @@
 
   <% programs.each do |program| %>
     <div>
-      <%= link_to program.movie.title_ja, movie_path(program) %>
+      <%= link_to program.movie.title_ja, movie_path(program.movie) %>
       <a class="glyphicon glyphicon-list-alt" href="#staticModal<%= program.id %>" data-toggle="modal"></a>
 
       <div class="modal" id="staticModal<%= program.id %>" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static">

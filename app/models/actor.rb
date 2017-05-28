@@ -9,11 +9,4 @@ class Actor < ActiveRecord::Base
     self.name_ja ||= "no name"
   end
 
-  def self.add_by_tv_program(program)
-    leading_actor =
-      Actor.find_or_create_by(name_ja: program.leading_actor)
-    supporting_actor =
-      Actor.find_or_create_by(name_ja: program.supporting_actor)
-    [leading_actor, supporting_actor]
-  end
 end
