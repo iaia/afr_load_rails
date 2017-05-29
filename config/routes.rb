@@ -6,9 +6,14 @@ Rails.application.routes.draw do
   resources :actor_thumbnails
   resources :movie_thumbnails
 
-  resources :movies
-  get "tv_programs/:tv_program_id/comments", to: "comments#index"
-  resources :tv_programs
+  resources :movies do
+    collection do
+      get "title_search"
+    end
+  end
+  resources :tv_programs do
+    get :comments, :index
+  end
   get "tv_programs/:year/:month", to: "tv_programs#index"
 
   resources :directors

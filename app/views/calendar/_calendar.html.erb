@@ -1,6 +1,10 @@
 <%= month_calendar start_date: @start_date, events: programs do |date, programs| %>
   <%= date.mday %>
 
+  <% if policy(TvProgram.new).new? %>
+    <%= link_to "new", new_tv_program_path(date: date) %>
+  <% end %>
+
   <% programs.each do |program| %>
     <div>
       <%= link_to program.movie.title_ja, movie_path(program.movie) %>
@@ -56,4 +60,6 @@
       <% end %>
     </div>
   <% end %>
+
+
 <% end %>

@@ -56,6 +56,12 @@ class MoviesController < ApplicationController
     end
   end
 
+  def title_search
+    @movies = Movie.where("title LIKE(?)", "%#{params[:keyword]}%")
+    skip_authorization
+    render json: @movies
+  end
+
   private
 
   def set_movie

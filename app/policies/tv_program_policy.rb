@@ -12,6 +12,14 @@ class TvProgramPolicy < ApplicationPolicy
     true
   end
 
+  def create?
+    can?(__method__)
+  end
+
+  def new?
+    can?(__method__)
+  end
+
   def destroy?
     can?(__method__)
   end
