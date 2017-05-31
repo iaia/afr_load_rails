@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
   resources :tv_programs do
-    get :comments, :index
+    get :comments, :index, to: "comments#index"
   end
   get "tv_programs/:year/:month", to: "tv_programs#index"
 

@@ -13,6 +13,7 @@ class TvProgramsController < ApplicationController
   def new
     date = params[:date]
     @program = TvProgram.new(on_air_start: date, on_air_end: date)
+    @program.movie = Movie.new
     authorize @program
   end
 
@@ -27,6 +28,24 @@ class TvProgramsController < ApplicationController
         end
       else
         format.html { render :new }
+      end
+    end
+  end
+
+  def edit
+    authorize @program
+  end
+
+  def update
+    authorize @program
+    respond_to do |format|
+      debugger
+      if @program.update(tv_program_params)
+        format.html do
+          redirect_to root_path, notice: "success updated"
+        end
+      else
+        format.html {render :edit}
       end
     end
   end

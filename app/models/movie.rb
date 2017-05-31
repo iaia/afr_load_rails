@@ -7,4 +7,6 @@ class Movie < ActiveRecord::Base
   has_one :watched, class_name: "WatchedMovie"
   has_many :thumbnails, -> { distinct }, class_name: "MovieThumbnail"
 
+  validates :title, presence: true
+
 end

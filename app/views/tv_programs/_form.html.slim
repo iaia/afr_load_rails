@@ -1,18 +1,18 @@
 = form_for(program) do |f|
   .form-group
     = f.label :on_air_start, "on_air_start"
-    = f.text_field :on_air_start, class: "form-control"
+    div
+      = f.datetime_select :on_air_start, {}, {class: "form-control", style: "display: inline; width: 10%;"}
 
   .form-group
     = f.label :on_air_end, "on_air_end"
-    = f.text_field :on_air_end, class: "form-control"
+    div
+      = f.datetime_select :on_air_end, {}, {class: "form-control", style: "display: inline; width: 10%;"}
 
   .form-group
     = f.label :movie_id, "movie"
-    = f.text_field :movie, id: "search-movie", class: "form-control"
-    = f.select :movie_id, [], {}, {class: "form-control selectpicker"}
-
-  ul#title_list
+    = text_field_tag "movie_title", program.movie.title, {id: "search-movie", class: "form-control"}
+    = f.select :movie_id, [[program.movie.title, program.movie.id]], {selected: program.movie.id}, {class: "form-control selectpicker"}
 
   .form-group
     = f.submit class: "btn btn-primary"

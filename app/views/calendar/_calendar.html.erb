@@ -32,6 +32,9 @@
                 </tr>
                 <% if policy(program).edit? %>
                   <tr>
+                    <td>edit</td><td><%= link_to "edit", edit_tv_program_path(program) %></td>
+                  </tr>
+                  <tr>
                     <td>delete</td><td><%= link_to "delete", tv_program_path(program), method: :delete, confirm: "削除しますか?" %></td>
                   </tr>
                 <% end %>
@@ -60,6 +63,4 @@
       <% end %>
     </div>
   <% end %>
-
-
 <% end %>
