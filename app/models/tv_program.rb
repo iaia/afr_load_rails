@@ -7,6 +7,8 @@ class TvProgram < ActiveRecord::Base
   alias_attribute :oa_start, :on_air_start
   alias_attribute :oa_end, :on_air_end
 
+  validates :movie, presence: true
+
   def self.get_by(date)
     TvProgram.includes(:movie).where(on_air_start: date.beginning_of_month..date.end_of_month)
   end

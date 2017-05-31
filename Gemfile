@@ -81,3 +81,5 @@ gem "twitter"
 gem "tweetstream"
 
 gem "countries"
+
+gem "slim-rails"

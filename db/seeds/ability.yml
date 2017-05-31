@@ -30,6 +30,8 @@ admin:
     - update
     - destroy
   tv_program:
+    - new
+    - create
     - edit
     - update
     - destroy

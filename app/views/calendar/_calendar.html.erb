@@ -1,6 +1,10 @@
 <%= month_calendar start_date: @start_date, events: programs do |date, programs| %>
   <%= date.mday %>
 
+  <% if policy(TvProgram.new).new? %>
+    <%= link_to "new", new_tv_program_path(date: date) %>
+  <% end %>
+
   <% programs.each do |program| %>
     <div>
       <%= link_to program.movie.title_ja, movie_path(program.movie) %>
@@ -27,6 +31,9 @@
                   <td>コメント数</td><td><%= program.comments.count %></td>
                 </tr>
                 <% if policy(program).edit? %>
+                  <tr>
+                    <td>edit</td><td><%= link_to "edit", edit_tv_program_path(program) %></td>
+                  </tr>
                   <tr>
                     <td>delete</td><td><%= link_to "delete", tv_program_path(program), method: :delete, confirm: "削除しますか?" %></td>
                   </tr>
