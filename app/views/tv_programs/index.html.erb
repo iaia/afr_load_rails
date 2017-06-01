@@ -1,6 +1,0 @@
-<h1>午後ロー視聴管理</h1>
-<% unless @current_user %>
-  Sign inすれば視聴管理できます
-<% end %>
-
-<%= render "calendar/calendar", programs: @programs, user: @current_user %>

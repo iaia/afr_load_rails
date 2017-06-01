@@ -1,0 +1,70 @@
+= month_calendar start_date: @start_date, events: programs do |date, programs|
+  = date.mday
+  - if policy(TvProgram.new).new?
+    = link_to "new", new_tv_program_path(date: date)
+  - programs.each do |program|
+    div
+      = link_to program.movie.title_ja, movie_path(program.movie)
+      |  <a class="glyphicon glyphicon-list-alt" href="#staticModal
+      = program.id
+      | " data-toggle="modal">
+      |  <div class="modal" id="staticModal
+      = program.id
+      | " tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-show="true" data-keyboard="false" data-backdrop="static"> 
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close[type="button" data-dismiss="modal"]
+              span[aria-hidden="true"]
+                | ×
+              span.sr-only
+                | 閉じる
+            h4.modal-title
+              = program.movie.title_ja
+              |  (
+              = program.movie.title
+              | )
+          .modal-body
+            table.table.table-condensed
+              tr
+                td
+                  | 開始
+                td
+                  = program.on_air_start.to_s(:datetime_ja)
+              tr
+                td
+                  | 終了
+                td
+                  = program.on_air_end.to_s(:datetime_ja)
+              tr
+                td
+                  | コメント数
+                td
+                  = program.comments.count
+              - if policy(program).edit?
+                tr
+                  td
+                    | edit
+                  td
+                    = link_to "edit", edit_tv_program_path(program)
+                tr
+                  td
+                    | delete
+                  td
+                    = link_to "delete", tv_program_path(program), method: :delete, confirm: "削除しますか?"
+          .modal-footer
+            button.btn.btn-default[type="button" data-dismiss="modal"]
+              | 閉じる
+    - if user
+      .button_group
+        - watched = user.watched_tv_programs.find_or_initialize_by(tv_program_id: program.id)
+        |  <div class="watched_tv_button" id="
+        = "watched_tv_#{watched.tv_program_id}"
+        | "> 
+        = render "watched/watched_toggle", watched: watched, user: @current_user
+      - rec = user.recordeds.find_by(tv_program_id: program.id)
+      |  <div class="remove_tv_button" id="
+      = "recorded_#{rec.tv_program_id}"
+      | "> 
+      = render "recordeds/recorded_toggle", recorded: rec, user: @current_user
+      = link_to "実況リプレイ",  "/tv_programs/#{program.id}/comments"

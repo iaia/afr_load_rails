@@ -1,0 +1,8 @@
+h1
+  | New Movie
+= link_to "add director", new_director_path
+= link_to "add country", new_country_path
+= link_to "add actor", new_actor_path
+.form[style="margin: 10px;"]
+  = render 'form', movie: @movie
+= link_to 'Back', movies_path

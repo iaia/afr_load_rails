@@ -1,0 +1,52 @@
+.movie-thumbnails[style="width:320px; float:left; padding-left:15px;"]
+  - if movie.thumbnails.count > 0
+    - movie.thumbnails.each do |thumbnail|
+      |  <img src="
+      = thumbnail.path
+      | " width="90%" /> 
+  - else
+    img.img-fluid[src="" width="300px" height="400px"]
+.movie-info[style="float:left; padding-left:10px;"]
+  - if user
+    |  <div id="
+    = "watched_movie_#{movie.id}"
+    | "> 
+    = render "watched/watched_toggle",
+    -         watched: user.watched_movies.find_or_initialize_by(movie_id: movie.id),
+    -         user: user
+br
+table.table
+  tr
+    th
+      | 邦題
+    td
+      = movie.title_ja
+  tr
+    th
+      | 原題
+    td
+      = movie.title
+  tr
+    th
+      | 監督
+    td
+      = link_to movie.director.name_ja, movie.director
+  tr
+    th
+      | 公開
+    td
+      = movie.released_year
+  tr
+    th
+      | 製作国
+    td
+      - movie.countries.each do |country|
+        = country.name
+        br
+  tr
+    th
+      | 出演者
+    td
+      - movie.actors.each do |actor|
+        = link_to actor.name_ja, actor
+        br

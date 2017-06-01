@@ -1,0 +1,33 @@
+p#notice
+  = notice
+p
+  strong
+    | Movie:
+  = @movie_thumbnail.movie_id
+p
+  strong
+    | Path:
+  = @movie_thumbnail.path
+p
+  strong
+    | File size:
+  = @movie_thumbnail.file_size
+p
+  strong
+    | Caption:
+  = @movie_thumbnail.caption
+p
+  strong
+    | View status:
+  = @movie_thumbnail.view_status
+p
+  strong
+    | Status:
+  = @movie_thumbnail.status
+p
+  strong
+    | Removed:
+  = @movie_thumbnail.removed
+= link_to 'Edit', edit_movie_thumbnail_path(@movie_thumbnail)
+|  | 
+= link_to 'Back', movie_thumbnails_path

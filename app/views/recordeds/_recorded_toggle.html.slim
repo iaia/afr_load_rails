@@ -1,0 +1,15 @@
+- if recorded.removed
+  = form_for(recorded, remote: true, :authenticity_token => true) do |f|
+    = f.hidden_field :user_id, value: user.id
+    = f.hidden_field :removed, value: false
+    = f.submit "unremoved", class: "btn btn-secondary btn-xs"
+- elsif recorded.recorded
+  = form_for(recorded, remote: true, :authenticity_token => true) do |f|
+    = f.hidden_field :user_id, value: user.id
+    = f.hidden_field :removed, value: true
+    = f.submit "remove", class: "btn btn-warning btn-xs"
+- else
+  = form_for(recorded, remote: true, :authenticity_token => true) do |f|
+    = f.hidden_field :user_id, value: user.id
+    = f.hidden_field :recorded, value: true
+    = f.submit "record", class: "btn btn-info btn-xs"

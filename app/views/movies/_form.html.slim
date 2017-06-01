@@ -1,0 +1,38 @@
+= form_for(movie) do |f|
+  - if movie.errors.any?
+    #error_explanation
+      h2
+        = pluralize(movie.errors.count, "error")
+        |  prohibited this movie from being saved:
+      ul
+        - movie.errors.full_messages.each do |message|
+          li
+            = message
+  - directors = Director.order(:name_ja).all.pluck(:name_ja, :id)
+  - countries = ISO3166::Country.all.map do |c| [c.translated_names.join(" "), c.number]; end
+  .form-group
+    label[for="editTitle"]
+      | 原題
+    = f.text_field :title, id: "editTitle", class: "form-control", placeholder: "Back to the Future"
+  .form-group
+    label[for="editTitleJa"]
+      | 邦題
+    = f.text_field :title_ja, id: "editTitleJa", class: "form-control", placeholder: "バック・トゥ・ザ・フューチャー"
+  .form-group
+    label[for="editDirector"]
+      | 監督
+    = f.select :director_id, directors, {include_blank: true}, {id: "editDirector", class: "form-control"}
+  .form-group
+    label[for="editCountry"]
+      | 製作国
+    = f.select :countries, countries, {include_blank: true}, {id: "editCountry", class: "form-control"}
+  .form-group
+    label[for="editReleasedYear"]
+      | 公開年
+    = f.text_field :released_year, id: "editReasedYear", class: "form-control", placeholder: "1985"
+  .form-group
+    label[for="editStory"]
+      | あらすじ
+    = f.text_area :story, id: "editStory", class: "form-control", placeholder: "1985年のカリフォルニア州ヒルバレーに住むロックとペプシコーラが大好きな高校生マーティ・マクフライは、科学者である親友のエメット・ブラウン博士（通称ドク）を手伝って、深夜のショッピングモール「ツインパインズ・モール」の駐車場にて、スポーツタイプの乗用車デロリアンDMC-12を改造してドクが開発したタイムマシンの実験をする。"
+  .form-group
+    = f.submit class: "btn btn-primary"

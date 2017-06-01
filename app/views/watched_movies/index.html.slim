@@ -1,0 +1,26 @@
+p#notice
+  = notice
+h1
+  | 視聴済み映画
+table.table
+  thead
+    tr
+      th
+        | 邦題
+      th
+        | 原題
+      th
+        | 監督
+      th
+        | 視聴日時
+  tbody
+    - @watched_movies.each do |watched_movie|
+      tr
+        td
+          = link_to watched_movie.movie.title_ja, movie_path(watched_movie.movie)
+        td
+          = watched_movie.movie.title
+        td
+          = watched_movie.movie.director.name_ja
+        td
+          = watched_movie.watched_date.to_s(:date_ja)
