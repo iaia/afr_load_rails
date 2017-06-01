@@ -11,6 +11,9 @@ table.table
         | 監督
       th
         | 主演
+      - if policy(@movies).destroy?
+        th
+          | 操作
   tbody
     - @movies.each do |movie|
       tr
@@ -22,3 +25,6 @@ table.table
           = movie.director.name_ja if movie.director
         td
           = movie.actors.first.name_ja if movie.actors.count > 0
+        - if policy(@movies).destroy?
+          td
+            = link_to "delete", movie_path(movie), method: :delete, confirm: "削除しますか?"

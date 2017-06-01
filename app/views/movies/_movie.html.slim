@@ -12,8 +12,8 @@
     = "watched_movie_#{movie.id}"
     | "> 
     = render "watched/watched_toggle",
-    -         watched: user.watched_movies.find_or_initialize_by(movie_id: movie.id),
-    -         user: user
+            watched: user.watched_movies.find_or_initialize_by(movie_id: movie.id),
+            user: user
 br
 table.table
   tr
