@@ -6,7 +6,6 @@
         |  prohibited this movie_country from being saved:
       ul
         - movie_country.errors.full_messages.each do |message|
-          li
-            = message
+          li = message
   .actions
     = f.submit

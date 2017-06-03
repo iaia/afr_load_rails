@@ -3,19 +3,13 @@
 .actor-info[style="float:left; padding-left:10px;"]
   table.table
     tr
-      th
-        | 名前
-      td
-        = actor.name_ja
+      th 名前
+      td = actor.name_ja
     tr
-      th
-        | 名前
-      td
-        = actor.name
+      th 名前
+      td = actor.name
     tr
-      th
-        | 作品
+      th 出演作
       td
         - actor.movies.each do |movie|
           = link_to movie.title_ja, movie
-          br

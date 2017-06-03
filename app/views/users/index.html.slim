@@ -1,7 +1,6 @@
 p#notice
   = notice
-h1
-  | Users
+h1 Users
 = link_to "login", login_path
 br
 - if @current_user
@@ -14,13 +13,9 @@ table
   tbody
     - @users.each do |user|
       tr
-        td
-          = link_to user.name, user
-        td
-          = link_to 'Show', user
-        td
-          = link_to 'Edit', edit_user_path(user)
-        td
-          = link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+        td = link_to user.nickname, user
+        td = link_to 'Show', user
+        td = link_to 'Edit', edit_user_path(user)
+        td = link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
 br
 = link_to 'New User', new_user_path

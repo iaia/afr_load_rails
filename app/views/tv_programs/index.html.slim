@@ -1,5 +1,4 @@
-h1
-  | 午後ロー視聴管理
+h1 午後ロー視聴管理
 - unless @current_user
   |  Sign inすれば視聴管理できます 
 = render "calendar/calendar", programs: @programs, user: @current_user

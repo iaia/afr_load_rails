@@ -9,25 +9,22 @@
           li
             = message
   .form-group
-    label[for="role"]
-      | role
+    label[for="role"] role
     p#role
       = user.role.name
-    label[for="editName"]
-      | name
+  .form-group
+    label[for="editName"] name
     = f.text_field :name, id: "editName", class: "form-control"
-    br
-    label[for="editNickname"]
-      | nickname
+  .form-group
+    label[for="editNickname"] nickname
     = f.text_field :nickname, id: "editNickname", class: "form-control"
-    br
+  .form-group
     = f.fields_for :setting do |s|
       .checkbox-inline
         = s.check_box :is_tweet, {class: "checkbox"}
         = s.label :is_tweet, "watched tv時 tweetする"
-      br
       .checkbox-inline
         = s.check_box :is_post_on_facebook, {class: "checkbox"}
         = s.label :is_post_on_facebook, "watched tv時 facebookに投稿する"
-    br
+  .form-group
     = f.submit class: "btn btn-primary"

@@ -11,18 +11,12 @@ nav.navbar.navbar-default[role="navigation"]
     #bs-example-navbar-collapse-6.collapse.navbar-collapse
       - active = controller.controller_name
       ul.nav.navbar-nav
-        |  <li class="
-        = "active" if active == "movies"
-        | ">
-        = link_to "Movies", movies_path
-        |  <li class="
-        = "active" if active == "watched_tv_programs"
-        | ">
-        = link_to "WatchedTvPrograms", watched_tv_programs_path
-        |  <li class="
-        = "active" if active == "watched_movies"
-        | ">
-        = link_to "WatchedMovies", watched_movies_path
+        li class="#{'.active' if active == "movies"}"
+          = link_to "Movies", movies_path
+        li class="#{'.active' if active == "watched_tv_programs"}"
+          = link_to "WatchedTvPrograms", watched_tv_programs_path
+        li class="#{'.active' if active == "watched_movies"}"
+          = link_to "WatchedMovies", watched_movies_path
       ul.nav.navbar-nav.navbar-right
         li.nav-item
           = link_to @current_user.nickname if @current_user
@@ -31,10 +25,7 @@ nav.navbar.navbar-default[role="navigation"]
             i.glyphicon.glyphicon-list
           ul.dropdown-menu
             - if @current_user
-              li
-                = link_to "Settings", edit_user_path(@current_user)
-              li
-                = link_to "Logout", logout_path
+              li = link_to "Settings", edit_user_path(@current_user)
+              li = link_to "Logout", logout_path
             - else
-              li
-                = link_to "Login or Sign in", login_path
+              li = link_to "Login or Sign in", login_path

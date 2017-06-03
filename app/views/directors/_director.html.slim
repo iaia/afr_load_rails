@@ -3,18 +3,13 @@
 .director-info[style="float:left; padding-left:10px;"]
   table.table
     tr
-      th
-        | 名前
-      td
-        = director.name_ja
+      th 名前
+      td = director.name_ja
     tr
-      th
-        | 名前
-      td
-        = director.name
+      th 名前
+      td = director.name
     tr
-      th
-        | 作品
+      th 作品
       td
         - director.movies.each do |movie|
           = link_to movie.title_ja, movie

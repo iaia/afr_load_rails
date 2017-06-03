@@ -1,7 +1,6 @@
 p#notice
   = notice
-h1
-  | Recordeds
+h1 Recordeds
 table
   thead
     tr
@@ -9,11 +8,8 @@ table
   tbody
     - @recordeds.each do |recorded|
       tr
-        td
-          = link_to 'Show', recorded
-        td
-          = link_to 'Edit', edit_recorded_path(recorded)
-        td
-          = link_to 'Destroy', recorded, method: :delete, data: { confirm: 'Are you sure?' }
+        td = link_to 'Show', recorded
+        td = link_to 'Edit', edit_recorded_path(recorded)
+        td = link_to 'Destroy', recorded, method: :delete, data: { confirm: 'Are you sure?' }
 br
 = link_to 'New Recorded', new_recorded_path
