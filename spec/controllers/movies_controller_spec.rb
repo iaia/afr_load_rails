@@ -71,8 +71,10 @@ RSpec.describe MoviesController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { movie: invalid_attributes }, session: valid_session
-        expect(response).not_to be_success
+        expect do
+          post :create, params: { movie: invalid_attributes }, session: valid_session
+          expect(response).not_to be_success
+        end.to change(Movie, :count).by(0)
       end
     end
   end
