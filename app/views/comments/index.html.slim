@@ -1,0 +1,29 @@
+= javascript_include_tag "//www.google.com/jsapi", "chartkick"
+.comments[style="width:50%; float:left; padding-left: 15px;"]
+  ul.list-group
+    - @tv.comments.each do |comment|
+      li.list-group-item[style=""]
+        p.text-muted[style="float: left;"] @
+          = comment.user_name
+        p[style="text-align: right"]
+          = link_to comment.commented_time,
+          - "https://twitter.com/#{comment.user_name}/status/#{comment.comment_id_on_provider}"
+        p = comment.body
+        - comment.contents.each do |content|
+          img src="#{content.expanded_url}:small" width="300px"
+.comments-status[style="float:clear; left:50%; position:fixed; z-index:1; padding:10px; height: 300px; width: 50%;"]
+  h2 = @tv.movie.title_ja
+  h3 = @tv.movie.title
+  p 開始: #{@tv.oa_start.to_s(:datetime_ja)}
+  p 終了: #{@tv.oa_end.to_s(:datetime_ja)}
+  p 総コメント数: #{@tv.comments.count}
+  .comments-graph
+    = area_chart @tv.comments.group_by_minute(:commented_time, time_zone: "Asia/Tokyo").count, {library: {width: 500}}
+
+link[rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"]
+link[rel="stylesheet" href="/resources/demos/style.css"]
+script[src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"]
+style
+  |  #slider .ui-slider-range { background: #ef2929; } #slider .ui-slider-handle { border-color: #eff929; } 
+.comments-slider-div[style="position:fixed; z-index: 2; bottom: 10%; width: 90%; left:30px;"]
+  #slider

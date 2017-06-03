@@ -1,0 +1,33 @@
+p#notice
+  = notice
+p
+  strong
+    | Actor:
+  = @actor_thumbnail.actor_id
+p
+  strong
+    | Path:
+  = @actor_thumbnail.path
+p
+  strong
+    | File size:
+  = @actor_thumbnail.file_size
+p
+  strong
+    | Caption:
+  = @actor_thumbnail.caption
+p
+  strong
+    | View status:
+  = @actor_thumbnail.view_status
+p
+  strong
+    | Status:
+  = @actor_thumbnail.status
+p
+  strong
+    | Removed:
+  = @actor_thumbnail.removed
+= link_to 'Edit', edit_actor_thumbnail_path(@actor_thumbnail)
+|  | 
+= link_to 'Back', actor_thumbnails_path

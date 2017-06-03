@@ -1,0 +1,47 @@
+p#notice
+  = notice
+h1
+  | Movie Thumbnails
+table
+  thead
+    tr
+      th
+        | Movie
+      th
+        | Path
+      th
+        | File size
+      th
+        | Caption
+      th
+        | View status
+      th
+        | Status
+      th
+        | Removed
+      th[colspan="3"]
+  tbody
+    - @movie_thumbnails.each do |movie_thumbnail|
+      tr
+        td
+          = movie_thumbnail.movie_id
+        td
+          = movie_thumbnail.path
+        td
+          = movie_thumbnail.file_size
+        td
+          = movie_thumbnail.caption
+        td
+          = movie_thumbnail.view_status
+        td
+          = movie_thumbnail.status
+        td
+          = movie_thumbnail.removed
+        td
+          = link_to 'Show', movie_thumbnail
+        td
+          = link_to 'Edit', edit_movie_thumbnail_path(movie_thumbnail)
+        td
+          = link_to 'Destroy', movie_thumbnail, method: :delete, data: { confirm: 'Are you sure?' }
+br
+= link_to 'New Movie Thumbnail', new_movie_thumbnail_path

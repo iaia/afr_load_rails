@@ -1,0 +1,14 @@
+p#notice #{notice}
+h1 Countries
+table
+  thead
+    tr
+      th[colspan="3"]
+  tbody
+    - @countries.each do |country|
+      tr
+        td = link_to 'Show', country
+        td = link_to 'Edit', edit_country_path(country)
+        td = link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' }
+br
+= link_to 'New Country', new_country_path

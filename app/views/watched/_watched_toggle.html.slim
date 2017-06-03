@@ -1,0 +1,27 @@
+- if watched.watched
+  = form_for(watched, remote: true, :authenticity_token => true) do |f|
+    = f.hidden_field :watched, value: false
+    = f.submit "unwatch", class: "btn btn-secondary btn-xs"
+- else
+  = form_for(watched, remote: true, :authenticity_token => true) do |f|
+    = f.hidden_field :watched, value: true
+    - if watched.id.nil?
+      = f.hidden_field :user_id, value: user.id
+      - if watched.respond_to?(:tv_program)
+        = f.hidden_field :tv_program_id, value: watched.tv_program.id
+      - if watched.respond_to?(:movie)
+        = f.hidden_field :movie_id, value: watched.movie.id
+    .btn-group
+      - btn_class = "btn btn-primary btn-xs"
+      - if watched.class == WatchedTvProgram
+        - if user.watched_movies.find_or_initialize_by(movie_id: watched.tv_program.movie).watched
+          - btn_class = "btn btn-info btn-xs"
+          = f.submit "watch", class: btn_class
+        - else
+          = f.submit "watch", class: btn_class
+      - elsif watched.class == WatchedMovie
+        = f.submit "watch", class: btn_class
+      = button_tag class: "#{btn_class} dropdown-toggle", data: {toggle: "dropdown", "aria-expanded": "false"} do
+        = content_tag :span, "", class: "caret"
+      ul.dropdown-menu.keep-open.watched-date-menu.form-inline
+        li = f.date_select :watched_date, {order: [:year, :month, :day]}, {class: "form-control"}

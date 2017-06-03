@@ -1,0 +1,33 @@
+= form_for(actor_thumbnail) do |f|
+  - if actor_thumbnail.errors.any?
+    #error_explanation
+      h2
+        = pluralize(actor_thumbnail.errors.count, "error")
+        |  prohibited this actor_thumbnail from being saved:
+      ul
+        - actor_thumbnail.errors.full_messages.each do |message|
+          li
+            = message
+  .field
+    = f.label :actor_id
+    = f.number_field :actor_id
+  .field
+    = f.label :path
+    = f.text_field :path
+  .field
+    = f.label :file_size
+    = f.number_field :file_size
+  .field
+    = f.label :caption
+    = f.text_field :caption
+  .field
+    = f.label :view_status
+    = f.check_box :view_status
+  .field
+    = f.label :status
+    = f.check_box :status
+  .field
+    = f.label :removed
+    = f.check_box :removed
+  .actions
+    = f.submit

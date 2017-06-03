@@ -1,0 +1,17 @@
+= form_for(director) do |f|
+  - if director.errors.any?
+    #error_explanation
+      h2
+        = pluralize(director.errors.count, "error")
+        |  prohibited this director from being saved:
+      ul
+        - movie.errors.full_messages.each do |message|
+          li = message
+  .form-group
+    label[for="editName"] name
+    = f.text_field :name, id: "editName", class: "form-control", placeholder: "name"
+  .form-group
+    label[for="editNameJa"] 日本名
+    = f.text_field :name_ja, id: "editNameJa", class: "form-control", placeholder: "日本名"
+  .form-group
+    = f.submit class: "btn btn-primary"

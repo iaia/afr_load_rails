@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
           redirect_to @movie, notice: "Movie was successfully created."
         end
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -41,7 +41,17 @@ class MoviesController < ApplicationController
 
   def update
     authorize @movie
-    redirect_to @movie, notice: "saved" if @movie.update_attributes(movie_params)
+    respond_to do |format|
+      if @movie.update(movie_params)
+        format.html do
+          redirect_to @movie, notice: "saved"
+        end
+      else
+        format.html do
+          render :edit, status: :unprocessable_entity
+        end
+      end
+    end
   end
 
   # DELETE /users/1

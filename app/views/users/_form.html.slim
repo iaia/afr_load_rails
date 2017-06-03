@@ -1,0 +1,30 @@
+= form_for(user) do |f|
+  - if user.errors.any?
+    #error_explanation
+      h2
+        = pluralize(user.errors.count, "error")
+        |  prohibited this user from being saved:
+      ul
+        - user.errors.full_messages.each do |message|
+          li
+            = message
+  .form-group
+    label[for="role"] role
+    p#role
+      = user.role.name
+  .form-group
+    label[for="editName"] name
+    = f.text_field :name, id: "editName", class: "form-control"
+  .form-group
+    label[for="editNickname"] nickname
+    = f.text_field :nickname, id: "editNickname", class: "form-control"
+  .form-group
+    = f.fields_for :setting do |s|
+      .checkbox-inline
+        = s.check_box :is_tweet, {class: "checkbox"}
+        = s.label :is_tweet, "watched tv時 tweetする"
+      .checkbox-inline
+        = s.check_box :is_post_on_facebook, {class: "checkbox"}
+        = s.label :is_post_on_facebook, "watched tv時 facebookに投稿する"
+  .form-group
+    = f.submit class: "btn btn-primary"

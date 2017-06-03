@@ -1,0 +1,5 @@
+| $('#watched_tv_
+= @watched_tv_program.tv_program.id
+| ').html("
+= j (render 'watched/watched_toggle', watched: @watched_tv_program, user: @current_user)
+| "); 

@@ -1,0 +1,17 @@
+p#notice
+  = notice
+h1 視聴済みTV
+table.table
+  thead
+    tr
+      th 邦題
+      th 原題
+      th 監督
+      th 視聴日時
+  tbody
+    - @watched_tv_programs.each do |watched_tv|
+      tr
+        td = link_to watched_tv.tv_program.movie.title_ja, movie_path(watched_tv.tv_program.movie)
+        td = watched_tv.tv_program.movie.title
+        td = watched_tv.tv_program.movie.director.name_ja
+        td = watched_tv.watched_date.to_s(:date_ja)
