@@ -8,6 +8,11 @@ class TvProgramsController < ApplicationController
     @programs = TvProgram.get_by(@start_date)
     Recorded.create_user_tvs(@programs, @current_user) if @current_user
     authorize @programs
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @programs}
+    end
   end
 
   def new

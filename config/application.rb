@@ -19,5 +19,9 @@ module AfrLoadRails
     unless Rails.env.production?
       config.web_console.development_only = false
     end
+
+    config.generators do |g|
+      g.template_engine :slim
+    end
   end
 end
