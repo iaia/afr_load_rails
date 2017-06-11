@@ -10,19 +10,19 @@ class WatchedMoviePolicy < ApplicationPolicy
   end
 
   def new?
-    true
+    mine?
   end
 
   def show?
-    true
+    mine?
   end
 
   def edit?
-    true
+    mine?
   end
 
   def destroy?
-    true
+    mine?
   end
 
   def create?

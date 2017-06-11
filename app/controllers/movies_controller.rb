@@ -5,6 +5,10 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.includes(:director, :actors).order(:title_ja).all
     authorize @movies
+    respond_to do |format|
+      format.html 
+      format.json {render json: @movies}
+    end
   end
 
   def new

@@ -11,7 +11,7 @@ class TvProgramsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {render json: @programs}
+      format.json 
     end
   end
 

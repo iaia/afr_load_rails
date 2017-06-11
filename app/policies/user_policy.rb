@@ -26,7 +26,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    can?(__method__) and mine?(__method__)
+    can?(__method__) and mine?
   end
 
   def destroy?

@@ -16,13 +16,13 @@ class ApplicationPolicy
   end
 
   def mine?
+    debugger
     return false if user.nil?
     if record.respond_to?(:where)
-      # ActiveRecordRelation
-      return false if record.where.not(user_id: user.id).count > 0
-      true
+      return true if record.where.not(user_id: user.id).count > 0
+      false
     else
-      record.id == user.id
+      record.user_id == user.id
     end
   end
 
