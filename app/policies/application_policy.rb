@@ -18,10 +18,13 @@ class ApplicationPolicy
   def mine?
     return false if user.nil?
     if record.respond_to?(:where)
-      return true if record.where.not(user_id: user.id).count > 0
-      false
+      record.where.not(user_id: user.id).count > 0
     else
-      record.user_id == user.id
+      if record.class == User
+        record.id == user.id
+      else
+        record.user_id == user.id
+      end
     end
   end
 
