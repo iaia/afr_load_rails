@@ -16,7 +16,6 @@ class ApplicationPolicy
   end
 
   def mine?
-    debugger
     return false if user.nil?
     if record.respond_to?(:where)
       return true if record.where.not(user_id: user.id).count > 0
