@@ -14,6 +14,13 @@ class SessionsController < ApplicationController
     redirect_to :root
   end
 
+  def login_mobile
+    credentials = "{\"token\":\"#{params[:token]}\""
+    social = SocialProfile.where("credentials like '#{credentials}%'")
+    session[:user_id] = social.first.user.id
+    redirect_to :root
+  end
+
   def failure
     redirect_to :root
   end
