@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20170526192630) do
     t.string   "ability",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["domain", "ability"], name: "index_abilities_on_domain_and_ability", unique: true, using: :btree
   end
 
   create_table "actor_movies", force: :cascade do |t|

@@ -11,13 +11,13 @@ RUN bundle install
 ADD . /afr_load_rails
 
 # task
+RUN apt-get update
 RUN apt-get install -y cron
 RUN apt-get install -y sysv-rc-conf
 RUN sysv-rc-conf cron on
 RUN bundle exec whenever --update-crontab
 
 # user's development environment
-RUN apt-get update
 RUN apt-get install -y zsh
 RUN chsh -s $(which zsh)
 RUN apt-get install -y less
