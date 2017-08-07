@@ -1,4 +1,5 @@
 # encoding: utf-8
+#require "./afr_load_countries.rb"
 
 class FetchAfrLoad
   def fetch
@@ -15,7 +16,10 @@ class FetchAfrLoad
         m.story = ""
       end
 
-      split_and_create_country(movie, program.released_country)
+      AfrLoadCountries.find_country_by_names(program.released_country, "/").each do |country|
+        movie.countries.find_or_create_by(country_code: country.number)
+      end
+
       add_tv_program(program, movie)
     end
   end
@@ -26,19 +30,6 @@ class FetchAfrLoad
     supporting_actor =
       Actor.find_or_create_by(name_ja: program.supporting_actor)
     [leading_actor, supporting_actor]
-  end
-
-  def split_and_create_country(movie, str, delimiter = "/")
-    str.split(delimiter).each do |s|
-      if s == "アメリカ"
-        s += "合衆国"
-      end
-      c = ISO3166::Country.find_country_by_name(s)
-      if c.nil?
-        c = Struct.new(:number).new("000")
-      end
-      movie.countries.find_or_create_by(country_code: c.number)
-    end
   end
 
   def add_tv_program(program, movie)
@@ -54,5 +45,4 @@ class FetchAfrLoad
       on_air_end: program.on_air_end
     )
   end
-
 end
