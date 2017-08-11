@@ -5,7 +5,7 @@ require "countries"
 require_relative "./countries/data.rb"
 
 class AfrLoadCountries < ISO3166::Country
-  def self.find_country_by_names(names, delimiter = "/")
+  def self.find_country_by_names(names, delimiter: "/")
     ISO3166.configure do |config|
       config.locales = [:ja]
     end

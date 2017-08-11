@@ -9,4 +9,11 @@ class Actor < ActiveRecord::Base
     self.name_ja ||= "no name"
   end
 
+  def self.create_from_task(leading, supporting)
+    leading_actor =
+      Actor.find_or_create_by(name_ja: leading)
+    supporting_actor =
+      Actor.find_or_create_by(name_ja: supporting)
+    [leading_actor, supporting_actor]
+  end
 end
