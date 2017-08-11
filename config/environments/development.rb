@@ -58,4 +58,7 @@ Rails.application.configure do
     Bullet.console = true
     Bullet.rails_logger = true
   end
+
+  config.fetch_afr_load_log = Logger.new(Rails.root.join('log/fetch_afr_load.log'))
+
 end

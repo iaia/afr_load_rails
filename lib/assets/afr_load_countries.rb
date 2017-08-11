@@ -20,5 +20,4 @@ class AfrLoadCountries < ISO3166::Country
   def self.plastic_country_string(name)
     name = NKF.nkf("-w -x", name)
   end
-
 end
