@@ -83,4 +83,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.fetch_afr_load_log = Logger.new(Rails.root.join('log/fetch_afr_load.log'))
 end

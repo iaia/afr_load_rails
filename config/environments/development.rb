@@ -60,5 +60,4 @@ Rails.application.configure do
   end
 
   config.fetch_afr_load_log = Logger.new(Rails.root.join('log/fetch_afr_load.log'))
-
 end
