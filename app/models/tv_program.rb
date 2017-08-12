@@ -9,6 +9,14 @@ class TvProgram < ActiveRecord::Base
 
   validates :movie, presence: true
 
+  def self.create_from_task(movie, program)
+    TvProgram.find_or_create_by(
+      movie: movie,
+      on_air_start: program.on_air_start,
+      on_air_end: program.on_air_end
+    )
+  end
+
   def self.get_by(date)
     TvProgram.includes(:movie).where(on_air_start: date.beginning_of_month..date.end_of_month)
   end

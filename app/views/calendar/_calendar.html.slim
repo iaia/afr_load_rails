@@ -31,6 +31,12 @@
                   td = program.comments.count
                 - if policy(program).edit?
                   tr
+                    td id
+                    td = program.id
+                  tr
+                    td movie_id
+                    td = program.movie.id
+                  tr
                     td edit
                     td = link_to "edit", edit_tv_program_path(program)
                   tr
