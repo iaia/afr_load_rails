@@ -23,13 +23,10 @@ class Movie < ActiveRecord::Base
       m.story = ""
     end
 
-    return nil if movie.persisted?
-
     movie.save!
 
-    AfrLoadCountries.find_country_by_names(program.released_country, delimiter: "◆").each do |country|
-      movie.countries.find_or_create_by(country_code: country.number)
-    end
+    MovieCountry.create_from_task(movie, program.released_country)
+
     movie
   end
 end

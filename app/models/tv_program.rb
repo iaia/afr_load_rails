@@ -9,7 +9,7 @@ class TvProgram < ActiveRecord::Base
 
   validates :movie, presence: true
 
-  def add_tv_program(program, movie)
+  def self.create_from_task(movie, program)
     TvProgram.find_or_create_by(
       movie: movie,
       on_air_start: program.on_air_start,
