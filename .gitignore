@@ -47,3 +47,7 @@ bower.json
 
 test/fixtures/index.html
 .DS_Store
+
+public/images/
+public/uploads/
+spec/fixture/*.jpg

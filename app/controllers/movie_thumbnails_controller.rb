@@ -17,6 +17,7 @@ class MovieThumbnailsController < ApplicationController
   # POST /movie_thumbnails
   # POST /movie_thumbnails.json
   def create
+    params[:movie_thumbnail][:image] = params[:file]
     @movie_thumbnail = MovieThumbnail.new(movie_thumbnail_params)
 
     respond_to do |format|
@@ -67,9 +68,15 @@ class MovieThumbnailsController < ApplicationController
     @movie_thumbnail = MovieThumbnail.find(params[:id])
   end
 
+  def create_params
+    params.require(:movie_thumbnail).permit(
+      :movie_id, :image
+    )
+  end
+
   def movie_thumbnail_params
     params.require(:movie_thumbnail).permit(
-      :movie_id, :path, :file_size, :caption, :view_status, :status, :removed
+      :movie_id, :image
     )
   end
 end

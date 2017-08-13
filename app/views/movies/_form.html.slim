@@ -1,4 +1,13 @@
-br
+.form-group[style="position: relative; height: 200px;"]
+  - movie.thumbnails.each do |thumbnail|
+    - if thumbnail.persisted? and thumbnail.image
+      = image_tag thumbnail.image.url, style: "width: 150px; height: 200px; margin-right: 3px; float: left;" 
+  div[style="border: dashed 2px #0087f7; width: 150px; height: 200px; float: left;"]
+    = form_tag(movie_movie_thumbnails_path(movie_id: movie.id), class: "dropzone", id: "upload-dropzone") do
+      = hidden_field_tag("movie_thumbnail[movie_id]", movie.id)
+      .fallback
+        = file_field_tag("movie_thumbnail[image]")
+br[clear="both"]
 = form_for(movie) do |f|
   - if movie.errors.any?
     #error_explanation
@@ -11,15 +20,6 @@ br
             = message
   - directors = Director.order(:name_ja).all.pluck(:name_ja, :id)
   - countries = ISO3166::Country.all.map do |c| [c.translated_names.join(" "), c.number]; end
-  .form-group[style="position: relative; height: 200px;"]
-    - movie.thumbnails.each do |thumbnail|
-      - if thumbnail.persisted? and thumbnail.image
-        = image_tag thumbnail.image.url, style: "width: 150px; height: 200px; float: left;" 
-    = f.fields_for :thumbnails do |t_form|
-      /img.img-fluid[src="" width="150px" height="200px"]
-      /span[style="position: absolute; width: 130px; height: 30px; top: 0; bottom: 0; left: 0; right: 0; margin: auto;"] drop image here
-      = t_form.file_field :image, style: "float: left;"
-  br[clear="both"]
   .form-group
     label[for="editTitle"] 原題
     = f.text_field :title, id: "editTitle", class: "form-control", placeholder: "Back to the Future"
