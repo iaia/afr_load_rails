@@ -83,3 +83,8 @@ gem "tweetstream"
 gem "countries"
 
 gem "slim-rails"
+
+gem "carrierwave"
+gem "rmagick"
+gem "dropzonejs-rails"
+

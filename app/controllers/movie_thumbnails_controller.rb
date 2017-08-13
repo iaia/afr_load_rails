@@ -11,11 +11,6 @@ class MovieThumbnailsController < ApplicationController
   # GET /movie_thumbnails/1.json
   def show; end
 
-  # GET /movie_thumbnails/new
-  def new
-    @movie_thumbnail = MovieThumbnail.new
-  end
-
   # GET /movie_thumbnails/1/edit
   def edit; end
 

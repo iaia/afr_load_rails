@@ -40,6 +40,7 @@ class MoviesController < ApplicationController
   end
 
   def edit
+    @movie.thumbnails.build if @movie.thumbnails.count == 0
     authorize @movie
   end
 
@@ -87,7 +88,8 @@ class MoviesController < ApplicationController
       :title, :title_ja,
       :director_id, :country_id,
       :released_year, :released_country_id,
-      :story
+      :story,
+      thumbnails_attributes: [:image]
     )
   end
 end

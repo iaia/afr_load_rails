@@ -1,12 +1,16 @@
 .movie-thumbnails[style="width:320px; float:left; padding-left:15px;"]
   - if movie.thumbnails.count > 0
     - movie.thumbnails.each do |thumbnail|
-      img src="#{thumbnail.path}" width="90%"
+      = image_tag thumbnail.image.url, class: "img-fluid", style: "width: 300px; height: 400px;"
   - else
-    img.img-fluid[src="" width="300px" height="400px"]
+      img.img-fluid[src="" width="300px" height="400px"]
 
 .movie-info[style="float:left; padding-left:10px;"]
   - if user
+    div[style="clear:both;"]
+      - if policy(@movie).update?
+        = link_to "edit", [:edit, @movie]
+    br
     div id="watched_movie_#{movie.id}"
     = render "watched/watched_toggle",
             watched: user.watched_movies.find_or_initialize_by(movie_id: movie.id),

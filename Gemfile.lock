@@ -59,6 +59,10 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
+    carrierwave (1.1.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     chartkick (2.2.4)
     chronic (0.10.2)
     coderay (1.1.1)
@@ -85,6 +89,8 @@ GEM
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
       railties (>= 3.2, < 5.2)
+    dropzonejs-rails (0.8.1)
+      rails (> 3.1)
     em-http-request (1.1.5)
       addressable (>= 2.3.4)
       cookiejar (!= 0.3.1)
@@ -261,6 +267,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rdoc (4.3.0)
+    rmagick (2.16.0)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
       rspec-expectations (~> 3.6.0)
@@ -383,10 +390,12 @@ DEPENDENCIES
   bootstrap-sass
   bullet
   byebug
+  carrierwave
   chartkick
   coffee-rails (~> 4.1.1)
   countries
   dotenv-rails
+  dropzonejs-rails
   factory_girl_rails
   groupdate
   guard
@@ -402,6 +411,7 @@ DEPENDENCIES
   pg
   pundit
   rails (= 5.0.1)
+  rmagick
   rspec-rails
   rubocop
   sass-rails (~> 5.0.4)
