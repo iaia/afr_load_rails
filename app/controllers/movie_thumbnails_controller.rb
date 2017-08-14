@@ -26,6 +26,8 @@ class MovieThumbnailsController < ApplicationController
           redirect_to @movie_thumbnail,
                       notice: "Movie thumbnail was successfully created."
         end
+        format.json do
+        end
       else
         format.html { render :new }
       end

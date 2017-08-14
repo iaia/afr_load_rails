@@ -50,4 +50,4 @@ test/fixtures/index.html
 
 public/images/
 public/uploads/
-spec/fixture/*.jpg
+spec/fixtures/images/*.jpg
