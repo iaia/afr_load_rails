@@ -5,7 +5,9 @@ class Movie < ActiveRecord::Base
   has_many :countries, -> { distinct }, class_name: "MovieCountry"
   has_many :tv_programs, dependent: :delete_all
   has_one :watched, class_name: "WatchedMovie"
+
   has_many :thumbnails, -> { distinct }, class_name: "MovieThumbnail"
+  accepts_nested_attributes_for :thumbnails
 
   validates :title, presence: true, allow_blank: false
 

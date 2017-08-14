@@ -46,3 +46,8 @@ bower.json
 *.swp
 
 test/fixtures/index.html
+.DS_Store
+
+public/images/
+public/uploads/
+spec/fixtures/images/*.jpg

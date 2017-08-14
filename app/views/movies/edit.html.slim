@@ -1,10 +1,2 @@
-= render "movie", movie: @movie, user: @current_user
-br
-= form_for(@movie) do |f|
-  |  title: 
-  = f.text_field :title
-  br
-  |  title_ja: 
-  = f.text_field :title_ja
-  br
-  = f.submit "保存する"
+div[style="margin: 10px;"]
+  = render "form", movie: @movie, user: @current_user

@@ -1,3 +1,13 @@
+.form-group[style="position: relative; height: 200px;"]
+  - movie.thumbnails.each do |thumbnail|
+    - if thumbnail.persisted? and thumbnail.image
+      = image_tag thumbnail.image.url, style: "width: 150px; height: 200px; margin-right: 3px; float: left;" 
+  div[style="border: dashed 2px #0087f7; width: 150px; height: 200px; float: left;"]
+    = form_tag(movie_movie_thumbnails_path(movie_id: movie.id), class: "dropzone", id: "upload-dropzone") do
+      = hidden_field_tag("movie_thumbnail[movie_id]", movie.id)
+      .fallback
+        = file_field_tag("movie_thumbnail[image]")
+br[clear="both"]
 = form_for(movie) do |f|
   - if movie.errors.any?
     #error_explanation

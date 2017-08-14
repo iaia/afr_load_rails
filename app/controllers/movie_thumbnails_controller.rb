@@ -11,17 +11,13 @@ class MovieThumbnailsController < ApplicationController
   # GET /movie_thumbnails/1.json
   def show; end
 
-  # GET /movie_thumbnails/new
-  def new
-    @movie_thumbnail = MovieThumbnail.new
-  end
-
   # GET /movie_thumbnails/1/edit
   def edit; end
 
   # POST /movie_thumbnails
   # POST /movie_thumbnails.json
   def create
+    params[:movie_thumbnail][:image] = params[:file]
     @movie_thumbnail = MovieThumbnail.new(movie_thumbnail_params)
 
     respond_to do |format|
@@ -29,6 +25,8 @@ class MovieThumbnailsController < ApplicationController
         format.html do
           redirect_to @movie_thumbnail,
                       notice: "Movie thumbnail was successfully created."
+        end
+        format.json do
         end
       else
         format.html { render :new }
@@ -72,9 +70,15 @@ class MovieThumbnailsController < ApplicationController
     @movie_thumbnail = MovieThumbnail.find(params[:id])
   end
 
+  def create_params
+    params.require(:movie_thumbnail).permit(
+      :movie_id, :image
+    )
+  end
+
   def movie_thumbnail_params
     params.require(:movie_thumbnail).permit(
-      :movie_id, :path, :file_size, :caption, :view_status, :status, :removed
+      :movie_id, :image
     )
   end
 end
