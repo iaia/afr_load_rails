@@ -16,4 +16,16 @@ RSpec.describe MovieThumbnailsController, type: :controller do
       end.to change(MovieThumbnail, :count).by(1)
     end
   end
+
+  describe "DELETE #destroy" do
+    it "destroys the requested movie_thumbnail" do
+      movie = valid_movie
+      post :create, params: {movie_id: movie.id, movie_thumbnail: {movie_id: movie.id}, file: image}, format: :json
+      movie.reload
+      movie_thumbnail = movie.thumbnails.first
+      expect do
+        delete :destroy, params: { movie_id: movie.id, id: movie_thumbnail.id }, format: :json
+      end.to change(MovieThumbnail, :count).by(-1)
+    end
+  end
 end

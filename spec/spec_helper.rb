@@ -14,4 +14,11 @@ RSpec.configure do |config|
   end
 
   config.filter_run_excluding skip: true
+
+  config.after(:all) do
+    if Rails.env.test?
+      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
+    end
+  end
 end
+

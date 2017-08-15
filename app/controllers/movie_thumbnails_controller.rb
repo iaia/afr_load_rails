@@ -60,6 +60,8 @@ class MovieThumbnailsController < ApplicationController
         redirect_to movie_thumbnails_url,
                     notice: "Movie thumbnail was successfully destroyed."
       end
+      format.json do
+      end
     end
   end
 
