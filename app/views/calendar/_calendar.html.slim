@@ -17,8 +17,11 @@
                 span[aria-hidden="true"] ×
                 span.sr-only 閉じる
               h4.modal-title
-                = "#{program.movie.title_ja}(#{program.movie.title})"
+                = link_to "#{program.movie.title_ja} (#{program.movie.title})", movie_path(program.movie)
             .modal-body
+              div
+                - program.movie.thumbnails.each do |thumbnail|
+                  = image_tag thumbnail.image.url, style: "width: 130px; height: 200px; margin-right: 3px;"
               table.table.table-condensed
                 tr
                   td 開始

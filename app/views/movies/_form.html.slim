@@ -31,7 +31,8 @@ br[clear="both"]
     = f.select :director_id, directors, {include_blank: true}, {id: "editDirector", class: "form-control"}
   .form-group
     label[for="editCountry"] 製作国
-    = f.select :countries, countries, {include_blank: true}, {id: "editCountry", class: "form-control"}
+    - movie.countries.each do |country|
+      = f.select :countries, countries, {include_blank: true, selected: country.country_code}, {id: "editCountry", class: "form-control"}
   .form-group
     label[for="editReleasedYear"] 公開年
     = f.text_field :released_year, id: "editReasedYear", class: "form-control", placeholder: "1985"

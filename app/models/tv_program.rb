@@ -18,7 +18,7 @@ class TvProgram < ActiveRecord::Base
   end
 
   def self.get_by(date)
-    TvProgram.includes(:movie).where(on_air_start: date.beginning_of_month..date.end_of_month)
+    TvProgram.includes(movie: :thumbnails).where(on_air_start: date.beginning_of_month..date.end_of_month)
   end
 
   def start_time
