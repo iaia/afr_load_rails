@@ -1,5 +1,7 @@
 class MovieCountry < ApplicationRecord
-  belongs_to :movies
+  belongs_to :movie
+  validates :movie_id, uniqueness: {scope: [:country_code]}
+
   def name
     c = ISO3166::Country.find_country_by_number(self.country_code)
     return "" if c.nil?
