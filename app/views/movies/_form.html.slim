@@ -19,7 +19,7 @@ br[clear="both"]
         - movie.errors.full_messages.each do |message|
           li
             = message
-  - directors = Director.order(:name_ja).all.pluck(:name_ja, :id)
+  - directors = Director.order(:name_ja).all.pluck(:name_ja, :id).sort!
   - countries = ISO3166::Country.all.map do |c| [c.translated_names.join(" "), c.number]; end
   .form-group
     label[for="editTitle"] 原題
