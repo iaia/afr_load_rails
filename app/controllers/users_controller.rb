@@ -80,8 +80,8 @@ class UsersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user
-    @user = User.find(params[:id])
-    @user.setting = UserSetting.new if @user.setting.nil?
+    @user = User.includes(:setting).find(params[:id])
+    @user.setting ||= UserSetting.new
   end
 
   def user_params_on_create

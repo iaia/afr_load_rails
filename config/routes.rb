@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   resources :directors
   resources :countries
   resources :actors
-  resources :users
+  resources :users do
+    #patch :setting, to: "user_settings#update"
+    patch :application_editor_permission, to: "user_settings#application_editor_permission"
+    #patch :application_editor_permission, to: "user_settings#application_editor_permission"
+  end
 
   resources :watched_tv_programs
   resources :watched_movies
