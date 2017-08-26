@@ -1,50 +1,25 @@
-admin:
-  user:
-    - index
-    - show
-    - edit
-    - update
-    - destroy
-  movie:
-    - new
-    - create
-    - edit
-    - update
-    - destroy
-  actor:      
-    - new
-    - create
-    - edit
-    - update
-    - destroy
-  director:
-    - new
-    - create
-    - edit
-    - update
-    - destroy
-  country:
-    - new
-    - create
-    - edit
-    - update
-    - destroy
-  tv_program:
-    - new
-    - create
-    - edit
-    - update
-    - destroy
-  movie_country:
-    - new
-    - create
-    - edit
-    - update
-    - destroy
-
 user:
   user:
-    - show
-    - edit
-    - update
+    [show, edit, update]
 
+editor:
+  user:
+    [show, edit, update]
+  movie:
+    [new, show, edit, update, create]
+  actor: 
+    [new, show, edit, update, create]
+  director: 
+    [new, show, edit, update, create]
+
+admin:
+  user:
+    [index, show, edit, update, destroy]
+  movie:
+    [new, show, edit, update, create, destroy]
+  actor:
+    [new, show, edit, update, create, destroy]
+  director:
+    [new, show, edit, update, create, destroy]
+  tv_program:
+    [new, show, edit, update, create, destroy]

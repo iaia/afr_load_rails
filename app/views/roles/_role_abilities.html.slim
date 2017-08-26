@@ -1,0 +1,29 @@
+ul.nav.nav-tabs
+  - roles.each_with_index do |role, index|
+    li[class="#{"active" if index==0}"] = link_to role.name, "##{role.name}", {"data-toggle": "tab"}
+
+.tab-content
+  - roles.each_with_index do |role, index|
+    .tab-pane.fade[id="#{role.name}" class="#{"in active" if index==0}"]
+      table.table
+        thead
+          tr
+            th domain
+            th index
+            th show
+            th create
+            th edit
+            th update 
+            th destroy 
+        - role.abilities.group(:domain).pluck(:domain).each do |domain|
+          tbody
+            tr
+              th = domain
+              th = check_box :ability, :index, checked: role.abilities.exists?(domain: domain, ability: "index")
+              th = check_box :ability, :index, checked: role.abilities.exists?(domain: domain, ability: "show")
+              th = check_box :ability, :index, checked: role.abilities.exists?(domain: domain, ability: "create")
+              th = check_box :ability, :index, checked: role.abilities.exists?(domain: domain, ability: "edit")
+              th = check_box :ability, :index, checked: role.abilities.exists?(domain: domain, ability: "update")
+              th = check_box :ability, :index, checked: role.abilities.exists?(domain: domain, ability: "destroy")
+
+

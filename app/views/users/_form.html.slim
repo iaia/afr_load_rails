@@ -1,4 +1,4 @@
-= form_for(user) do |f|
+div[style="margin: 10px;"]
   - if user.errors.any?
     #error_explanation
       h2
@@ -12,19 +12,28 @@
     label[for="role"] role
     p#role
       = user.role.name
-  .form-group
-    label[for="editName"] name
-    = f.text_field :name, id: "editName", class: "form-control"
-  .form-group
-    label[for="editNickname"] nickname
-    = f.text_field :nickname, id: "editNickname", class: "form-control"
-  .form-group
-    = f.fields_for :setting do |s|
-      .checkbox-inline
-        = s.check_box :is_tweet, {class: "checkbox"}
-        = s.label :is_tweet, "watched tv時 tweetする"
-      .checkbox-inline
-        = s.check_box :is_post_on_facebook, {class: "checkbox"}
-        = s.label :is_post_on_facebook, "watched tv時 facebookに投稿する"
-  .form-group
-    = f.submit class: "btn btn-primary"
+  = form_for(user.setting, url: application_editor_permission_user_user_setting_path(user)) do |f|
+    .form-group
+      label[for="editEMail"] e-mail
+      = f.text_field :mail_address, id: "editEMail", class: "form-control"
+    = f.hidden_field(:apply_editor_permission, value: (not user.setting.apply_editor_permission))
+    .form-group
+      = f.submit "編集者権限を申請する", class: "btn btn-primary", disabled: user.setting.apply_editor_permission
+  hr
+  = form_for(user) do |f|
+    .form-group
+      label[for="editName"] name
+      = f.text_field :name, id: "editName", class: "form-control"
+    .form-group
+      label[for="editNickname"] nickname
+      = f.text_field :nickname, id: "editNickname", class: "form-control"
+    .form-group
+      = f.fields_for :setting do |s|
+        .checkbox-inline
+          = s.check_box :is_tweet, {class: "checkbox"}
+          = s.label :is_tweet, "watched tv時 tweetする"
+        .checkbox-inline
+          = s.check_box :is_post_on_facebook, {class: "checkbox"}
+          = s.label :is_post_on_facebook, "watched tv時 facebookに投稿する"
+    .form-group
+      = f.submit class: "btn btn-primary"

@@ -32,4 +32,8 @@ class UserPolicy < ApplicationPolicy
   def destroy?
     can?(__method__) and not record.admin?
   end
+
+  def assign?
+    admin?
+  end
 end

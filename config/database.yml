@@ -6,6 +6,7 @@ development: &default
   username: postgres
   password:
   host: db
+  port: 5432
 
 test:
   <<: *default

@@ -19,7 +19,7 @@ nav.navbar.navbar-default[role="navigation"]
           = link_to "WatchedMovies", watched_movies_path
       ul.nav.navbar-nav.navbar-right
         li.nav-item
-          = link_to @current_user.nickname if @current_user
+          = link_to @current_user.nickname, edit_user_path(@current_user) if @current_user
         li
           = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
             i.glyphicon.glyphicon-list

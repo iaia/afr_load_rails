@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root to: "tv_programs#index"
+  namespace :users do
+    resources :application_permissions, only: :index, shallow: true do
+      patch :assign, param: :user_id, on: :collection
+    end
+  end
 
   resources :movie_countries
 
@@ -17,7 +21,11 @@ Rails.application.routes.draw do
   resources :directors
   resources :countries
   resources :actors
-  resources :users
+  resources :users do
+    resource :user_setting, only: [:show] do
+      patch :application_editor_permission
+    end
+  end
 
   resources :watched_tv_programs
   resources :watched_movies
@@ -32,6 +40,7 @@ Rails.application.routes.draw do
   get "login" => "sessions#new"
   post "login" => "sessions#create"
   get "logout" => "sessions#destroy"
-
   get "login_mobile" => "sessions#login_mobile"
+
+  root to: "tv_programs#index"
 end
