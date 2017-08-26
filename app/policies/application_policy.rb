@@ -15,6 +15,10 @@ class ApplicationPolicy
     )
   end
 
+  def admin?
+    user.admin?
+  end
+
   def mine?
     return false if user.nil?
     if record.respond_to?(:where)

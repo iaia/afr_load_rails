@@ -1,0 +1,24 @@
+- roles = Role.where.not(name: "admin")
+= render partial: "roles/role_abilities", locals: {roles: roles}
+
+table.table
+  thead
+    tr
+      th id
+      th name
+      th nickname
+      th email
+      th role
+      th assign_role
+      th operation
+  tbody
+    - @users.each do |user|
+      = form_for(user, url: assign_users_application_permissions_path(user_id: user.id)) do |f|
+        tr
+          td = user.id
+          td = user.name
+          td = user.nickname
+          td = user.setting.mail_address
+          td = user.role.name
+          td = f.select :role_id, roles.pluck(:name, :id), {}, {class: "form-control"}
+          td = f.submit "save", {class: "form-control"}

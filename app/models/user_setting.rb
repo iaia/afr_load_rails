@@ -3,7 +3,7 @@ class UserSetting < ApplicationRecord
   after_initialize :set_default
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :mail_address, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX } if: :apply_editor_permission?
+  validates :mail_address, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }, if: :apply_editor_permission?
 
   def apply_editor_permission?
      self.apply_editor_permission == true 

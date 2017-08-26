@@ -1,7 +1,7 @@
 class UserSettingsController < ApplicationController
   before_action :set_user, only: [:application_editor_permission, :update]
 
-  # PATCH/PUT /users/1/application_editor_permission
+  # PATCH /users/1/user_setting/application_editor_permission
   def application_editor_permission
     authorize @user.setting
     respond_to do |format|

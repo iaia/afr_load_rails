@@ -12,7 +12,7 @@ div[style="margin: 10px;"]
     label[for="role"] role
     p#role
       = user.role.name
-  = form_for(user.setting, url: user_application_editor_permission_path(user)) do |f|
+  = form_for(user.setting, url: application_editor_permission_user_user_setting_path(user)) do |f|
     .form-group
       label[for="editEMail"] e-mail
       = f.text_field :mail_address, id: "editEMail", class: "form-control"

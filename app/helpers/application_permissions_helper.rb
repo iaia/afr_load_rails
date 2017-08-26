@@ -1,0 +1,2 @@
+module ApplicationPermissionsHelper
+end
